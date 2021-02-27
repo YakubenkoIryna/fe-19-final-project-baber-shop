@@ -1,0 +1,124 @@
+@import '~antd/lib/style/themes/default.less';
+
+.basket-icon {
+  position: relative;
+  font-size: 30px;
+}
+
+.basket-icon > svg {
+  position: absolute;
+  right: -4px;
+  bottom: -11px;
+  font-size: 30px;
+}
+
+
+.login {
+  text-align: center;
+  cursor: pointer;
+  }
+
+.login-title {
+  padding-left: 3px;
+  font-weight: 600;
+  font-size: 20px;
+  vertical-align: baseline;
+}
+
+.cart {
+  width: 320px;
+  height: 35px;
+  color: black;
+  font-size: 24px;
+  border: 1px solid black;
+}
+
+.img-cart {
+  width: 33px;
+  margin-right: 5px;
+  padding-bottom: 0;
+  vertical-align: sub;
+}
+.header-breadcrumbs {
+  margin-bottom: 0 !important;
+}
+//.header-row {
+//  margin: -18px -12px;
+//}
+.logout-title{
+  font-weight: 600;
+  font-size: 20px;
+}
+
+@media (max-width: 585px ) {
+  .user-icon {
+   margin: 0 auto;
+    //margin-right: 25px;
+  }
+  .contact-number {
+    display: none;
+  }
+  .cart{
+    width: 160px;
+    height: 35px;
+  }
+
+  .login{
+    padding-left: 5px;
+    }
+
+  .username, .login-title{
+    display: none;
+  }
+  .header-contact{
+    margin-left: 34px;
+  }
+  .search-box{
+    margin: 0;
+    padding: 2px 4px;
+  }
+
+}
+
+@media (max-width: 768px ) {
+
+  .user-icon{
+    margin-left: 24px;
+  }
+  .contact-number {
+    display: none;
+  }
+
+  .logout-title {
+    display: none;
+  }
+}
+
+.username {
+  font-weight: 600;
+  font-size: 20px;
+  vertical-align: text-bottom;
+}
+
+.logoutBtn {
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.header-profile {
+  color: @black;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    color: @yellow-6;
+    text-shadow: 1px 1px 1px @black;
+  }
+}
+
+@media (max-width: 950px ) {
+  .contact-number {
+    display: none;
+  }
+}

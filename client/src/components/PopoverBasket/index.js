@@ -16,7 +16,7 @@ const PopoverBasket = () => {
         <Badge className='basket-badge' count={productsLength} size="small"
                offset={[-20, -20]}>
         </Badge>
-        <span className="popover-basket-span" style={{ color: 'black' }}>Cart</span>
+        <span className="popover-basket-span" style={{ color: 'black', verticalAlign: 'super', marginLeft:'-10px'}}>Cart</span>
       </Link>
     </Popover>
   )
