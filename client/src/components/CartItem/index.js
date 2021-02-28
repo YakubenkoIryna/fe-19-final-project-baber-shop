@@ -11,6 +11,7 @@ const CartItem = (props) => {
   const { imageUrls, name, currentPrice, _id, itemNo, quantity } = props.product.product
   const isAuth = useSelector(state => state.user.isAuthenticated)
 
+  console.log("---quantity----quantity---",quantity);
   return (
     <div className="cart-item-wrapper">
       <div className="cart-item_item-image-description">
@@ -23,14 +24,15 @@ const CartItem = (props) => {
           <Link to={`/product/${itemNo}`}>
             <p className='cart-item-link'>{name}</p>
           </Link>
+          {quantity === 0
+            ? <p className="cart-item-available-zero">Available: 0</p>
+            : <p className="cart-item-available">Available: {quantity}</p>
+          }
           <p>
             Lorem ipsum dolor sit amet,
             consectetur adipisicing elit.
             Delectus doloribus explicabo veniam!
-            {quantity < 0
-              ? <p className="cart-item-available">Available: 0</p>
-              : <p className="cart-item-available">Available: {quantity}</p>
-            }
+
           </p>
         </div>
       </div>
@@ -58,8 +60,12 @@ const CartItem = (props) => {
             <DeleteFilled/>
           </div>
         </div>
-        <div className="hidersmar">
-          <p className="cart-item-available">Available: {quantity}</p>
+        <div className="cart-item-available-mobile">
+          {quantity === 0
+            ? <p className="cart-item-available-zero">Available: 0</p>
+            : <p className="cart-item-available">Available: {quantity}</p>
+          }
+          {/* <p className="cart-item-available">Available: {quantity}</p> */}
         </div>
         <div className="item-handler_main-basket-mobile" onClick={() => dispatch(deleteFromCart(_id, isAuth))}>
           <DeleteFilled/>
