@@ -15,22 +15,18 @@ const {checkIfProductInWishList} = WishListService
 
 const ProductCard = ({product, refresh}) => {
 
-    const {name, currentPrice, imageUrls, _id} = product;
-    const {exp, isAuthenticated, isAdmin} = useSelector(state => ({...state.user}));
-    const history = useHistory();
-    const dispatch = useDispatch();
-    const [inWishlist, setInWishlist] = useState(false);
+  const { name, currentPrice, imageUrls, _id } = product;
+  const { exp, isAuthenticated, isAdmin } = useSelector(state => ({ ...state.user }));
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const [inWishlist, setInWishlist] = useState(false);
 
-    const onAddToCart = (e) => {
+  const productsFromStore = useSelector(state => state.cart.products.products);
+  const filteredProducts = productsFromStore.filter(item => item.product._id === _id);
+
+  const onAddToCart = (e) => {
         e.preventDefault();
         console.log("product.quantity",product.quantity);
-        if (product.quantity === 0) {
-            product = {...product, ...product, quantity: product.quantity}
-        }
-        else {
-            product = {...product, ...product, quantity: product.quantity - 1}
-        }
-        // product = {...product, ...product, quantity: product.quantity - 1}
         const newProduct2 = {product, cartQuantity: + 1}
         dispatch(addToCart(newProduct2, _id, isAuthenticated));
     }
@@ -85,9 +81,15 @@ const ProductCard = ({product, refresh}) => {
                     <Button className='btn-favourite' onClick={addToWishlist}>
                         {inWishlistIcon}
                     </Button>
-                    <Button className='btn-addToCard' onClick={onAddToCart}>
-                        Add to cart
-                    </Button>
+                    {filteredProducts.length === 1
+                    ? <Button className='btn-addToCard'>
+                          Added
+                      </Button>
+                      :<Button className='btn-addToCard' onClick={onAddToCart}>
+                          Add to cart
+                      </Button>
+                    }
+
                 </div>
             </div>
         </>

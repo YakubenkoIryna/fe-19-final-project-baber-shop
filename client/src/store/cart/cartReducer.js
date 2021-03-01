@@ -18,7 +18,7 @@ const cartReducer = (state = initialState, action) => {
         ...state,
         products: {products: state.products.products.map(product =>
           product.product._id === action.payload._id
-            ? {...product, cartQuantity: product.cartQuantity + 1, product: {...product.product, quantity: product.product.quantity - 1} }
+            ? {...product, cartQuantity: product.cartQuantity + 1}
             : product,
         )},
       };
@@ -27,7 +27,7 @@ const cartReducer = (state = initialState, action) => {
         ...state,
         products: {products: state.products.products.map(product =>
           product.product._id === action.payload._id
-            ? {...product, cartQuantity: product.cartQuantity - 1, product: {...product.product, quantity: product.product.quantity + 1} }
+            ? {...product, cartQuantity: product.cartQuantity - 1}
             : product,
         )},
       };
