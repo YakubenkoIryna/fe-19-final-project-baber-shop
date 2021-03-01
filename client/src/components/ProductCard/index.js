@@ -17,7 +17,7 @@ const {checkIfProductInWishList} = WishListService
 
 const ProductCard = ({product, refresh}) => {
 
-  const { name, currentPrice, imageUrls, _id } = product;
+  const { name, currentPrice, imageUrls, _id, quantity } = product;
   const { exp, isAuthenticated, isAdmin } = useSelector(state => ({ ...state.user }));
   const history = useHistory();
   const dispatch = useDispatch();
@@ -25,10 +25,9 @@ const ProductCard = ({product, refresh}) => {
 
   const productsFromStore = useSelector(state => state.cart.products.products);
   const filteredProducts = productsFromStore.filter(item => item.product._id === _id);
-
+  console.log("ProductCard----quantity",quantity);
   const onAddToCart = (e) => {
         e.preventDefault();
-        console.log("product.quantity",product.quantity);
         const newProduct2 = {product, cartQuantity: + 1}
         dispatch(addToCart(newProduct2, _id, isAuthenticated));
     }
@@ -85,15 +84,13 @@ const ProductCard = ({product, refresh}) => {
                     <Button className='btn-favourite' onClick={addToWishlist}>
                         {inWishlistIcon}
                     </Button>
-                    {filteredProducts.length === 1
-                    ? <Button className='btn-addToCard add-disabled'>
-                          Added
-                      </Button>
-                      :<Button className='btn-addToCard' onClick={onAddToCart}>
-                          Add to cart
-                      </Button>
-                    }
 
+                  { quantity === 0
+                    ? <Button className='btn-addToCard'>SOLD OUT</Button>
+                    : filteredProducts.length === 1
+                      ? <Button className='btn-addToCard add-disabled'>Added</Button>
+                      : <Button className='btn-addToCard' onClick={onAddToCart}>Add to cart</Button>
+                  }
                 </div>
             </div>
         </>
