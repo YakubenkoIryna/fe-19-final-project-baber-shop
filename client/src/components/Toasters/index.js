@@ -24,14 +24,14 @@ export const successRegisterToastCustom = () => {
   toast("Registration complete", {
     position: toast.POSITION.TOP_CENTER,
     className: 'success-register-toast',
-    autoClose: 40000
+    autoClose: 3000
   });
 }
 export const errorRegisterToastCustom = () => {
   toast(<LoginModal/>, {
     position: toast.POSITION.TOP_CENTER,
     className: 'error-register-toast',
-    autoClose: 40000
+    autoClose: 4000
   });
 }
 export const absentToday = () => {

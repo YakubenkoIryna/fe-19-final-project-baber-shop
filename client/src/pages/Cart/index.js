@@ -9,7 +9,6 @@ import { ToastContainer } from "react-toastify";
 
 const Cart = () => {
   const products = useSelector(state => state.cart.products.products);
-  console.log("Cart-products--->>", products);
 
   return (
     <div className="cart-page-wrapper">
