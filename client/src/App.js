@@ -9,6 +9,7 @@ import jwt_decode from "jwt-decode";
 import {authUser} from "./store/user/userAction";
 import Footer from "./components/Footer";
 import AdminRouting from "./routes/AdminRouting";
+import BreadCrumbs from "./components/BreadCrumbs";
 
 
 const {Content} = Layout;
@@ -41,6 +42,7 @@ const App = () => {
     const layoutShop = () => (
         <Layout style={{backgroundColor:'white'}}>
             <SiteHeader/>
+            <BreadCrumbs/>
             <Content className="site-layout" style={{padding: "0 0px"}}>
                 <div className="site-layout-background" style={{minHeight: 380}}>
                     <MainRoutes/>

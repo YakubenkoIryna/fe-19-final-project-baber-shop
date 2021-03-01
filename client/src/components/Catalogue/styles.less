@@ -1,6 +1,63 @@
+@import '~antd/lib/style/themes/default.less';
+
+
 .catalogue-wrapper {
   height: 30px;
   margin: 0 auto;
+
+  .ant-menu {
+    background-color: #fafafa;
+
+    & > ul {
+      background-color: #fafafa;
+    }
+  }
+
+  .ant-menu-submenu-title {
+    color: black;
+
+    &:hover {
+      background-color: @yellow-5;
+    }
+  }
+
+  .ant-menu-submenu-open {
+    background-color: #e2e2e2;
+
+    & > .ant-menu-submenu-title {
+      font-weight: bold
+    }
+  }
+
+  .level3 {
+    &:hover {
+      background-color: @yellow-5;
+    }
+
+    & > a:hover {
+      color: black;
+    }
+  }
+
+  .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+    background-color: #e2e2e2;
+
+    & > a {
+      color: black;
+      font-weight: bold;
+    }
+  }
+
+  .ant-menu-item::after {
+    border-right: 3px solid @yellow-5;
+  }
+
+  .ant-menu-submenu-arrow::before, .ant-menu-submenu-arrow::after {
+    width: 8px;
+    height: 2.5px;
+    background-color: black;
+  }
+
 
 }
 
@@ -29,65 +86,6 @@
   }
 }
 
-.catalogue-menu {
-  position: relative;
-  z-index: 100;
-  width: 37vw;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.catalogue-item {
-  &.ant-menu-submenu > div, .ant-menu-inline .ant-menu-item {
-    margin: 0;
-  }
-}
-.catalogue-item.ant-menu-submenu, .catalogue-menu-item.ant-menu-item {
-  color: #000000;
-  font-size: 17px;
-  background-color: lightgrey;
-}
-.catalogue-menu-item.ant-menu-item {
-  font-size: 16px;
-}
-.ant-menu-item-selected {
-  background-color: darkgray !important;
-}
-.ant-menu-submenu-arrow::before, .ant-menu-submenu-arrow::after {
-  width: 8px;
-  height: 2.5px;
-  background-color: black;
-}
-
-.catalogue-menu-item:hover {
-  background-color: darkgray;
-
-  &.ant-menu-item a {
-    color: black;
-  }
-}
-.catalogue-menu-item {
-  &.ant-menu-item-selected a {
-    color: black;
-  }
-}
-
-.ant-menu-inline .ant-menu-item::after {
-  border-color: dimgrey;
-}
-
-.catalogue-item.ant-menu-submenu:hover > .ant-menu-submenu-title:hover {
-  color: black;
-  background-color: darkgray;
-
-  & > .ant-menu-submenu-arrow {
-    color: black;
-  }
-}
-
-.ant-menu-submenu-open {
-  color: black;
-}
 
 @media screen and (max-width: 1163px) {
   .catalogue-btn {
@@ -99,7 +97,7 @@
 @media screen and (max-width: 988px) {
   .catalogue-menu {
     width: 27vw;
-      }
+  }
 }
 
 @media screen and (max-width: 988px) and (min-width: 720px) {
@@ -110,7 +108,8 @@
     margin-left: 6.5vw;
     font-size: 20px;
   }
-  .catalogue-menu{
+
+  .catalogue-menu {
     width: 45vw;
     margin-left: 6.7vw;
   }
@@ -118,6 +117,7 @@
   .catalogue-item.ant-menu-submenu {
     font-size: 15px;
   }
+
   .catalogue-menu-item.ant-menu-item {
     font-size: 14px;
   }
@@ -145,34 +145,45 @@
   .ant-menu {
     background-color: transparent;
   }
+
   .catalogue-btn {
     width: 47vw;
     /* padding: 5px; */
     height: 38px;
     margin-left: 1vw;
   }
+
   .catalogue-btn-text {
     display: none;
   }
+
   .catalogue-btn-img {
     margin-right: 0;
   }
+
   .catalogue-menu {
     width: 94vw;
     margin-left: 1vw;
   }
 
-  .ant-menu-submenu-arrow::before, .ant-menu-submenu-arrow::after {
+  .ant-menu-inline {
+    background-color: #fff852;
+
+  }
+
+  ul .ant-menu-submenu-arrow::before, .ant-menu-submenu-arrow::after {
     width: 6px;
     height: 1.5px;
   }
 }
+
 @media screen and (max-width: 375px) {
   .catalogue-item {
     & > .ant-menu-submenu-title {
       padding: 0 0 0 10px !important;
     }
   }
+
   .catalogue-menu-item {
     padding: 0 0 0 30px !important;
   }

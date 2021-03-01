@@ -7,12 +7,12 @@ import cartReducer from "./cart/cartReducer";
 import {persistReducer} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import checkoutReducer from "./checkout/checkoutReducer";
-
+import lastProducts from './lastViewedProducts/lastProductsReducer'
 
 const persistConfig ={
   key:'root',
   storage,
-  whitelist: ['user','cart']
+  whitelist: ['user','cart', 'lastProducts']
 }
 
 const rootReducer = combineReducers({
@@ -21,7 +21,9 @@ const rootReducer = combineReducers({
   modalHandler: modalHandler,
   preloader: preloaderReducer,
   cart: cartReducer,
-  checkout: checkoutReducer
+  checkout: checkoutReducer,
+  lastProducts,
+
 })
 
 export default persistReducer(persistConfig,rootReducer)

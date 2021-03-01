@@ -11,7 +11,6 @@ import Login from "../Modal/LoginModal";
 import {headerLogo, iconContact, iconLogin} from './img/index'
 import {LogoutOutlined} from "@ant-design/icons";
 import Catalogue from "../Catalogue";
-import BreadCrumbs from "../BreadCrumbs";
 
 
 const SiteHeader = () => {
@@ -86,7 +85,7 @@ const SiteHeader = () => {
             <Row className="header-row" justify='center' gutter={[24, 24]}>
 
 
-                <Col className="catalogue-box" style={{padding: 0,textAlign: '-webkit-center'}} xs={{span: 12, order: 1}} sm={{span: 12, order: 1}} lg={{span: 8, order: 1}}>
+                <Col className="catalogue-box" style={{padding: 0,textAlign: '-webkit-center', zIndex:1}} xs={{span: 12, order: 1}} sm={{span: 12, order: 1}} lg={{span: 8, order: 1}}>
                     <div  key="plp">
                         <Catalogue/>
 
@@ -97,15 +96,10 @@ const SiteHeader = () => {
                     <LiveSearch/>
                 </Col>
                 <Col style={{padding: 2}} xs={{span: 12, order: 2}} sm={{span: 12, order: 2}} lg={{span: 8, order: 3}}>
-
                     <div className="cart" key="cart">
                         <PopoverBasket/>
                     </div>
                 </Col>
-            </Row>
-
-            <Row className="header-row header-breadcrumbs" gutter={[24, 24]}>
-                    <BreadCrumbs/>
             </Row>
 
         </PageHeader>

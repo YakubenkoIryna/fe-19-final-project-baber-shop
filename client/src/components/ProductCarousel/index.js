@@ -5,8 +5,8 @@ import './styles.less';
 const ProductCarousel = ({imageUrls}) => {
     const images = imageUrls.map(item => {
         return {
-            original: item,
-            thumbnail: item
+            original: item.url,
+            thumbnail: item.url
         }
     })
 

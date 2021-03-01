@@ -3,10 +3,10 @@ import './styles.less';
 import CategoryService from "../../services/CategoryService";
 import {Link} from "react-router-dom";
 import {iconCatalogue} from "../Header/img";
+import {CaretRightOutlined,ForwardOutlined } from '@ant-design/icons';
 import OutsideClickHandler from 'react-outside-click-handler';
 
 import {Menu} from 'antd';
-
 const {SubMenu} = Menu;
 
 const Catalogue = () => {
@@ -48,18 +48,18 @@ const Catalogue = () => {
 
     const categoriesCatalogue = sortedCategories.map((topLevelCategory, index) => {
         return (
-            <SubMenu key={'sub' + index} title={topLevelCategory.name}
-                     className='catalogue-item'>
+            <SubMenu key={'sub' + index} title={topLevelCategory.name} icon={<CaretRightOutlined/>}
+                     className='catalogue-item level1'>
                 {topLevelCategory.childLevel.map(nestedLevel => {
                     if (nestedLevel.childLevel) {
                         return (
-                            <SubMenu key={nestedLevel.id} title={nestedLevel.name}
-                                     className='catalogue-item'>
+                            <SubMenu key={nestedLevel.id} title={nestedLevel.name} icon={<ForwardOutlined/>}
+                                     className='catalogue-item level2'>
                                 {nestedLevel.childLevel.map(menuItem => {
                                     return (
                                         <Menu.Item key={menuItem.id}
-                                                   className='catalogue-menu-item'>
-                                            <Link to='/shop'>{menuItem.name}</Link>
+                                                   className='catalogue-menu-item level3'>
+                                            <Link to={`/shop?categories=${menuItem.name}`}>{menuItem.name}</Link>
                                         </Menu.Item>
                                     )
                                 })}
@@ -69,7 +69,7 @@ const Catalogue = () => {
                         return (
                             <Menu.Item key={nestedLevel.id}
                                        className='catalogue-menu-item'>
-                                <Link to='/shop'>{nestedLevel.name}</Link>
+                                <Link to={`/shop?categories=${nestedLevel.name}`}>{nestedLevel.name}</Link>
                             </Menu.Item>
                         )
                     }
@@ -85,8 +85,11 @@ const Catalogue = () => {
                 <span className="catalogue-btn-text">Catalogue</span>
             </button>
             <OutsideClickHandler onOutsideClick={handleOutsideClick}>
-                <Menu mode='inline' openKeys={openKeys} onOpenChange={onOpenChange}
-                      onClick={handleCategoryClick} style={{display: visible}}
+                <Menu mode='inline'
+                      openKeys={openKeys}
+                      onOpenChange={onOpenChange}
+                      onClick={handleCategoryClick}
+                      style={{display: visible}}
                       className='catalogue-menu'>
                     {categoriesCatalogue}
                 </Menu>

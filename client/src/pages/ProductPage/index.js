@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom'
 import Ajax from "../../services/Ajax";
 import {CheckCircleOutlined} from '@ant-design/icons'
 import { MetaForEachPage } from "../../components/Helmet";
-
+import LastViewedProducts from '../../components/LastViewedProducts'
 
 
 const ProductPage = (props) => {
@@ -61,7 +61,6 @@ const ProductPage = (props) => {
                                 }
                             </div>
 
-
                             <div className="product-code">Item No:{product.itemNo}</div>
                             <Row>
                                 <Col>
@@ -91,7 +90,7 @@ const ProductPage = (props) => {
                     </Col>
                 </Row>
             </div>
-
+            <LastViewedProducts />
             <Banner title={'One more  thing'} config='cc'/>
         </div>
           </>

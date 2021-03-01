@@ -76,7 +76,9 @@ const UserInformation = () => {
                 name="userInfo"
                 initialValues={{
                     remember: true,
+                    phone: "+380"
                 }}
+                scrollToFirstError
             >
                 {collectionItemsForm.map(formItem =>
                     formItem.name !== "password"

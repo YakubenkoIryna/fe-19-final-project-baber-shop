@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {Button, Form, Input, message} from "antd";
-import {collectionItemsCheckoutAddress} from "../../Forms/RegistrationForm/collectionItems";
+import {collectionItemsCheckoutAddress, onlyNumbers} from "../../Forms/RegistrationForm/collectionItems";
 import {useDispatch, useSelector} from "react-redux";
 import "./styles.less";
 import {setAddress} from "../../../store/checkout/checkoutAction";
@@ -46,38 +46,44 @@ const CheckoutAddress = ({disabled, onChange}) => {
     }
 
     return (
-            <div className="checkout-address">
-                <h3>Shipping address</h3>
-                <Form
-                    form={form}
-                    {...layout}
-                    name="checkout-address"
-                    initialValues={{
-                        remember: true,
-                    }}
-                >
-                    {collectionItemsCheckoutAddress.map(formItem =>
-                        <Form.Item
-                            label={formItem.label}
-                            name={formItem.name}
-                            rules={formItem.rules}
-                            key={formItem.name}
-                        >
-                            <Input placeholder={formItem.label} disabled={disabled}/>
-                        </Form.Item>
-                    )}
-                    {!disabled
-                        ?
-                        <Form.Item {...layout}>
-                            <Button type="primary" onClick={onFinish}>
-                                Submit
-                            </Button>
-                        </Form.Item>
-                        :
-                        null
-                    }
-                </Form>
-            </div>
+        <div className="checkout-address">
+            <h3>Shipping address</h3>
+            <Form
+                form={form}
+                {...layout}
+                name="checkout-address"
+                initialValues={{
+                    remember: true,
+                    phone: "+380"
+                }}
+                scrollToFirstError
+            >
+                {collectionItemsCheckoutAddress.map(formItem =>
+                    <Form.Item
+                        label={formItem.label}
+                        name={formItem.name}
+                        rules={formItem.rules}
+                        key={formItem.name}
+                    >
+                        {formItem.name === "phone"
+                            ? <Input placeholder={formItem.label} disabled={disabled} maxLength={13}
+                                     onKeyPress={onlyNumbers()}/>
+                            : <Input placeholder={formItem.label} disabled={disabled}/>
+                        }
+                    </Form.Item>
+                )}
+                {!disabled
+                    ?
+                    <Form.Item {...layout}>
+                        <Button type="primary" onClick={onFinish}>
+                            Submit
+                        </Button>
+                    </Form.Item>
+                    :
+                    null
+                }
+            </Form>
+        </div>
     )
 }
 

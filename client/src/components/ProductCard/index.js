@@ -8,6 +8,8 @@ import Ajax from "../../services/Ajax";
 import WishListService from '../../services/WishListServise'
 import './styles.less';
 import {addToCart} from "../../store/cart/actionCart";
+import { setToLastProducts } from '../../store/lastViewedProducts/lastProductsAction'
+
 
 const {put, deleteRequest} = Ajax;
 const {checkIfProductInWishList} = WishListService
@@ -32,11 +34,10 @@ const ProductCard = ({product, refresh}) => {
     }
 
     const forwardToCardDetails = () => {
-        return{
+        return({
             pathname: `/product/${product.itemNo}`,
             state: { product: product },
-        }
-
+        })
     }
 
     const addToWishlist = async () => {
@@ -55,6 +56,9 @@ const ProductCard = ({product, refresh}) => {
             }
         }
     }
+    const addToLastProducts = () => {
+        dispatch(setToLastProducts(product))
+    }
 
 
     useEffect(() => {
@@ -70,7 +74,7 @@ const ProductCard = ({product, refresh}) => {
     return (
         <>
             <div className='productCard'>
-                <Link to={forwardToCardDetails()}>
+                <Link to={forwardToCardDetails()} onClick={addToLastProducts}>
                     <div className='productCard-title'>{name}</div>
                     <div className='productCard-picture'>
                         <Image src={imageUrls[0]?.url} preview={false}/>

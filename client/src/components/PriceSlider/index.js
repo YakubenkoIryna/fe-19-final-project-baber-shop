@@ -24,6 +24,7 @@ const PriceSlider = ({query, onChange}) => {
         if (maxVal > value) {
             setMinVal(value);
             query.minPrice = value;
+            query.maxPrice = maxVal;
             onChange();
         }
     }
@@ -32,6 +33,7 @@ const PriceSlider = ({query, onChange}) => {
         if (minVal < value) {
             setMaxVal(value);
             query.maxPrice = value;
+            query.minPrice = minVal;
             onChange();
         }
     }
