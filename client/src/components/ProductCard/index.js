@@ -86,7 +86,7 @@ const ProductCard = ({product, refresh}) => {
                         {inWishlistIcon}
                     </Button>
                     {filteredProducts.length === 1
-                    ? <Button className='btn-addToCard'>
+                    ? <Button className='btn-addToCard add-disabled'>
                           Added
                       </Button>
                       :<Button className='btn-addToCard' onClick={onAddToCart}>
