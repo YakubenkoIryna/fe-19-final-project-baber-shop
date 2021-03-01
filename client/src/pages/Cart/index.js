@@ -5,10 +5,10 @@ import { useSelector } from "react-redux";
 import { TotalAmount } from "../../components/CartTotalQuaintity";
 import Checkout from "../../components/Checkout";
 import EmptyCartPage from "../../components/CartEmpty"
+import { ToastContainer } from "react-toastify";
 
 const Cart = () => {
   const products = useSelector(state => state.cart.products.products);
-  console.log("Cart-products--->>", products);
 
   return (
     <div className="cart-page-wrapper">
@@ -20,6 +20,7 @@ const Cart = () => {
             <TotalAmount total="cartTotal"/>
           </div>
           <Checkout products={products}/>
+          <ToastContainer/>
         </>
       }
     </div>

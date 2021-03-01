@@ -13,9 +13,9 @@ export const MetaForPages = ({ title, content, rel, href, src, type }) => {
     fetchProducts();
   }, []);
 
-  const metaContent = [...new Set(products.map(item => item.name + item.brand + item.category))].toString().split(",").join(" ");
-  const metaTitle = [...new Set(products.map(item => item.category))].toString().split(",").join(" ");
-
+  const metaContent = [...new Set(products.map(item => item.name + item.brand + item.categories))].toString().split(",").join(" ");
+  const metaTitle = [...new Set(products.map(item => item.categories))].toString().split(",").join(" ");
+  console.log("products",products);
   return (
     <Helmet>
       <title>{title} {metaTitle}</title>

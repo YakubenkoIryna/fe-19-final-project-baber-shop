@@ -19,6 +19,10 @@ const ProductPage = (props) => {
     const [product, setProduct] = useState({})
     const [images, setImages] = useState([])
 
+    const productsFromStore = useSelector(state => state.cart.products.products);
+    const filteredProducts = productsFromStore.filter(item => item.product._id === product._id);
+    console.log("filteredProducts",filteredProducts);
+
     useEffect(() => {
         async function fetch() {
             const product = await Ajax.get(`/products/${itemNo}`)
@@ -69,7 +73,10 @@ const ProductPage = (props) => {
                                 <Col className="btn-buy_box">
                                     { product.quantity === 0
                                         ? (<></>)
-                                        :  (<button className="btn-buy" onClick={onAddToCart}>Buy</button>)
+                                        : filteredProducts.length === 1
+                                        ? (<button className="btn-buy add-disabled">Added</button>)
+                                        : (<button className="btn-buy" onClick={onAddToCart}>Buy</button>)
+
                                     }
 
                                 </Col>
