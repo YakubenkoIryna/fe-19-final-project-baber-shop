@@ -25,7 +25,6 @@ const ProductCard = ({product, refresh}) => {
 
   const productsFromStore = useSelector(state => state.cart.products.products);
   const filteredProducts = productsFromStore.filter(item => item.product._id === _id);
-  console.log("ProductCard----quantity",quantity);
   const onAddToCart = (e) => {
         e.preventDefault();
         const newProduct2 = {product, cartQuantity: + 1}
