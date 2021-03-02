@@ -6,7 +6,6 @@ import ProductCard from '../ProductCard'
 import './styles.less';
 
 const FilteredProducts = ({queryString}) => {
-
     const [loading, setLoading] = useState(false);
     const [productsPerPage, setProductsPerPage] = useState(2);
     const [filteredProducts, setFilteredProducts] = useState([]);
@@ -26,7 +25,8 @@ const FilteredProducts = ({queryString}) => {
         }
         fetch()
     }, [queryString, productsPerPage])
-
+    // console.log("filteredProducts",filteredProducts);
+    // console.log("productsPerPage",productsPerPage);
     const onLoadMore = () => {
         setProductsPerPage(prevValue => prevValue + 2)
     }
