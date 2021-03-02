@@ -21,7 +21,6 @@ const ProductPage = (props) => {
 
     const productsFromStore = useSelector(state => state.cart.products.products);
     const filteredProducts = productsFromStore.filter(item => item.product._id === product._id);
-    console.log("filteredProducts",filteredProducts);
 
     useEffect(() => {
         async function fetch() {
