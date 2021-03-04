@@ -54,5 +54,5 @@ export default AdditionalInfo;
 
 
 ProductsInOrder.propTypes = {
-    order: PropTypes.array.isRequired
+    order: PropTypes.array,
 };

@@ -50,5 +50,5 @@ const ProductsInOrder = ({products}) => {
 export default ProductsInOrder;
 
 ProductsInOrder.propTypes = {
-    products: PropTypes.array.isRequired
+    products: PropTypes.array,
 };

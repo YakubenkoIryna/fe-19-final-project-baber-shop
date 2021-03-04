@@ -1,6 +1,6 @@
 @import '~antd/lib/style/themes/default.less';
 
-.barberHeader {
+.header {
   position: sticky;
   top: 0;
   z-index: 999;
@@ -8,67 +8,93 @@
   width: 100%;
   text-align: center;
   border-bottom: 2px solid @black;
+  padding: 10px 24px 4px;
 
-  .header-row {
-    align-items: center;
+  .ant-page-header-content {
+    padding-top: 0;
   }
+
+  //logIn & user-info
 
   .username, .login-title {
     display: none;
   }
 
-  .header-contact {
-    text-align: right;
+  &-login {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
 
-    & > a {
-      color: black;
-      font-weight: 400;
-      font-size: 20px;
+  &-profile {
+    color: @black;
+    text-decoration: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+
+    &:hover {
+      color: @yellow-6;
+      text-shadow: 1px 1px 1px @black;
     }
   }
 
-  .contact-number {
-    display: none;
+  //contact & logOut
+
+  &-contact {
+
+    .contact-number {
+      & > a {
+        color: black;
+        font-size: 20px;
+      }
+
+      &-text {
+        display: none;
+      }
+    }
+
+    .logout-title {
+      display: none;
+    }
+
+    .logoutBtn {
+      font-weight: bold;
+      font-size: 18px;
+      cursor: pointer;
+    }
   }
-
-  .logout-title {
-    display: none;
-  }
-
-  .logoutBtn {
-    font-weight: bold;
-    font-size: 18px;
-    cursor: pointer;
-  }
-
-  .cart {
-    width: 100%;
-    height: 35px;
-    color: black;
-    font-size: 18px;
-    border: 1px solid black;
-    margin: 0 auto;
-  }
-
-  .img-cart {
-    width: 33px;
-    margin-right: 6px;
-    padding-bottom: 0;
-    vertical-align: sub;
-
-  }
-
 }
 
-.header-profile {
-  color: @black;
-  text-decoration: none;
-  cursor: pointer;
+.cart {
+  width: 100%;
+  height: 24px;
+  color: black;
+  font-size: 14px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  &:hover {
-    color: @yellow-6;
-    text-shadow: 1px 1px 1px @black;
+  .ant-badge-count-sm {
+    min-width: 13px;
+    height: 12px;
+    padding: 0;
+    font-size: 10px;
+    line-height: 12px;
+    border-radius: 7px;
+    margin-top: -7px !important;
+    right: 17px !important;
   }
+}
+
+
+.img-cart {
+  width: 24px;
+  margin-right: 6px;
+  padding-bottom: 0;
+  vertical-align: sub;
 }
 
 .catalogue-box {
@@ -76,17 +102,167 @@
 }
 
 @media screen and (min-width: 576px) {
-
-
-  .barberHeader {
-    .cart {
-
-      height: 35px;
-      font-size: 18px;
+  .header {
+    .username, .login-title {
+      display: inline;
+      margin-left: 5px;
+      font-size: 16px;
+      font-weight: bold;
     }
 
-    .profile-col {
-      text-align: left;
+    &-profile, &-login {
+      padding-left: 3vw;
+    }
+
+    &-contact {
+      padding-right: 3vw;
+    }
+
+    .cart {
+      height: 26px;
+
+      .img-cart {
+        width: 26px;
+      }
+
+      .ant-badge-count-sm {
+        margin-top: -9px !important;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .header {
+    padding: 10px 24px;
+
+    .username, .login-title {
+      margin-left: 10px;
+    }
+
+    .logout-title {
+      display: inline-block;
+      font-size: 16px;
+      margin-left: 5px;
+    }
+  }
+
+  .cart {
+    height: 28px;
+
+    .popover-basket-span {
+      font-size: 16px;
+    }
+
+    .ant-badge-count-sm {
+      min-width: 14px;
+      height: 14px;
+      line-height: 14px;
+      right: 17px !important;
+    }
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .header {
+    padding: 14px 24px;
+
+    .username, .login-title {
+      font-size: 18px
+    }
+
+    &-profile, &-login {
+      padding-left: 3.5vw;
+    }
+
+    .ant-image {
+      width: 150px;
+    }
+
+    &-contact {
+      padding-right: 3.5vw;
+
+      .contact-number {
+        & > a {
+          color: black;
+          font-size: 20px;
+          display: flex;
+          align-items: center;
+        }
+
+        &-text {
+          display: inline-block;
+          font-size: 17px;
+          margin-left: 10px;
+          font-weight: bold;
+
+        }
+      }
+    }
+
+    .logout-title {
+      font-size: 18px;
+      margin-left: 10px;
+    }
+
+    .cart {
+      height: 32px;
+
+      .img-cart {
+        width: 32px;
+      }
+
+      .popover-basket-span {
+        font-size: 18px;
+      }
+
+      .ant-badge-count-sm {
+        font-size: 12px;
+        line-height: 15px;
+        margin-top: -14px !important;
+        right: 20px !important;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .header {
+    padding: 16px 24px;
+
+    .username, .login-title {
+      font-size: 22px
+    }
+
+    &-profile, &-login {
+      padding-left: 4.5vw;
+    }
+
+    .ant-image {
+      width: 170px;
+    }
+
+    &-contact {
+      padding-right: 5.5vw;
+
+      .contact-number {
+        &-text {
+          font-size: 20px;
+        }
+      }
+    }
+
+    .logout-title {
+      font-size: 22px;
+    }
+
+
+    .cart {
+      height: 34px;
+
+      .popover-basket-span {
+        font-size: 20px;
+      }
     }
   }
 }
