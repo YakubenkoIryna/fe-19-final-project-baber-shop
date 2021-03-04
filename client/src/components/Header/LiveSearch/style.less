@@ -2,8 +2,17 @@
 
 .search-container {
 
-  .ant-input-affix-wrapper-sm:hover {
-    border-color: @yellow-5;
+  .ant-input-affix-wrapper {
+    border: 1px solid @black;
+
+    &:hover {
+      box-shadow: 0 0 8px @yellow-5;
+    }
+  }
+
+  .ant-input-affix-wrapper:focus, .ant-input-affix-wrapper-focused {
+    border: 1px solid @black;
+    box-shadow: 0 0 8px @yellow-5;
   }
 
   .antd-wave-shadow-color {
