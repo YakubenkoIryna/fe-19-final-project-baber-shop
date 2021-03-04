@@ -7,7 +7,7 @@ import {Link} from "react-router-dom";
 import Ajax from "../../services/Ajax";
 import WishListService from '../../services/WishListServise'
 import './styles.less';
-import {addToCart} from "../../store/cart/actionCart";
+import { addToCart, deleteFromCart } from "../../store/cart/actionCart";
 import { setToLastProducts } from '../../store/lastViewedProducts/lastProductsAction'
 
 
@@ -87,7 +87,7 @@ const ProductCard = ({product, refresh}) => {
                   { quantity === 0
                     ? <Button className='btn-addToCard'>SOLD OUT</Button>
                     : filteredProducts.length === 1
-                      ? <Button className='btn-addToCard add-disabled'>Added</Button>
+                      ? <Button className='btn-addToCard add-disabled' onClick={()=>dispatch(deleteFromCart(_id))}>Added</Button>
                       : <Button className='btn-addToCard' onClick={onAddToCart}>Add to cart</Button>
                   }
                 </div>
