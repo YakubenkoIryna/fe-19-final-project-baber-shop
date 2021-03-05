@@ -68,7 +68,7 @@ const AdminProductCard = ({ product, loadProducts }) => {
         />
       }
       actions={[
-        <Link to={`/admin/product/${_id}`}>
+        <Link to={`/admin/product/${itemNo}`}>
           <EditOutlined className="text-warning" />
         </Link>,
         <DeleteOutlined

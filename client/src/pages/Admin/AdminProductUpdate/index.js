@@ -1,24 +1,29 @@
 import React, { useState } from "react";
 import { Layout, Row, Col, Divider } from "antd";
 import AdminSider from "../../../components/AdminSider";
-import CategoryService from "../../../services/CategoryService";
+// import CategoryService from "../../../services/CategoryService";
 import {useParams} from 'react-router-dom';
 import useAsyncEffect from "use-async-effect";
 import CategoryUpdateForm from "../../../components/Forms/CategoryUpdateForm";
+// import ProductForm from "../../../components/Forms/ProductForm";
 
 import "./styles.less";
+import ProductService from "../../../services/ProductService";
+
 
 const { Content } = Layout;
 
-const AdminCatergoryUpdate = () => {
-  const {id} = useParams()
-  const [categoryToUpdate, setCategoryToUpdate] = useState(null);
+const AdminProductUpdate = () => {
+  const {itemNo} = useParams()
+  const [productToUpdate, setProductToUpdate] = useState(null);
 
   useAsyncEffect(async isMounted => {
-    CategoryService.getCategory(id)
+    console.log("itemNo ====>",itemNo)
+    ProductService.getProduct(itemNo)
       .then(res => {
           if (!isMounted()) return;
-          setCategoryToUpdate(res);
+          console.log('Product Result ===>', res)
+          setProductToUpdate(res);
         }
       )
       .catch(err => console.log(err));
@@ -28,10 +33,10 @@ const AdminCatergoryUpdate = () => {
     <Layout className="admin-category-container">
       <AdminSider />
       <Content className="category-content-container">
-        <Divider orientation="left">Update Category</Divider>
+        <Divider orientation="left">Update Product</Divider>
         <Row gutter={16}>
           <Col span={22} style={{margin: 'auto'}}>
-            <CategoryUpdateForm categoryToUpdate={categoryToUpdate} />
+             <CategoryUpdateForm categoryToUpdate={productToUpdate} />
           </Col>
         </Row>
       </Content>
@@ -39,4 +44,4 @@ const AdminCatergoryUpdate = () => {
   );
 };
 
-export default AdminCatergoryUpdate;
+export default AdminProductUpdate;

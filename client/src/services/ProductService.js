@@ -27,6 +27,10 @@ class ProductService {
     return await Ajax.deleteRequest(`/products`, id);
   }
 
+  async getProduct (itemNo) {
+    return await Ajax.get(`/products/${itemNo}`);
+  }
+
 }
 
 export default new ProductService();
