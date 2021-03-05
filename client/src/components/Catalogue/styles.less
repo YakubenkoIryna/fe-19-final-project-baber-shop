@@ -10,6 +10,7 @@
     background-color: #f5f5f5;
     width: 100%;
     min-width: 260px;
+    font-size: 12px;
 
     & > ul {
       background-color: #f5f5f5;
@@ -53,6 +54,11 @@
 
   .ant-menu-item::after {
     border-right: 0 solid @yellow-5;
+  }
+
+  .ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title, .ant-menu-sub.ant-menu-inline > .ant-menu-item {
+    height: 30px;
+    line-height: 30px;
   }
 
   .ant-menu-submenu-arrow::before, .ant-menu-submenu-arrow::after {
@@ -114,81 +120,22 @@
       height: 25px;
     }
   }
+
+  .catalogue-wrapper {
+    .ant-menu {
+      font-size: 14px;
+    }
+
+    .ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title, .ant-menu-sub.ant-menu-inline > .ant-menu-item {
+      height: 35px;
+      line-height: 35px;
+    }
+  }
 }
 
-@media screen and (min-width: 1200px) {
-
+@media screen and (min-width: 1600px) {
   .catalogue-btn {
     height: 34px;
     font-size: 20px;
   }
-
-  //
-  //.catalogue-menu {
-  //  width: 45vw;
-  //}
-  //
-  //.catalogue-item.ant-menu-submenu {
-  //  font-size: 15px;
-  //}
-  //
-  //.catalogue-menu-item.ant-menu-item {
-  //  font-size: 14px;
-  //}
 }
-
-//
-//@media screen and (max-width: 767px) and (min-width: 576px) {
-//  .catalogue-btn {
-//    width: 100%;
-//    height: 38px;
-//    font-size: 18px;
-//    margin: 0 auto
-//  }
-//
-//  .catalogue-menu {
-//    width: 85vw;
-//    margin-left: 6.7vw;
-//  }
-//
-//  .ant-menu-submenu-arrow::before, .ant-menu-submenu-arrow::after {
-//    width: 6px;
-//    height: 1.5px;
-//  }
-//}
-//
-//@media screen and (max-width: 575px) {
-//  .ant-menu {
-//    background-color: transparent;
-//  }
-//
-//  .catalogue-btn {
-//    width: 100%;
-//    height: 35px;
-//    margin: 0 auto;
-//  }
-//
-//  .catalogue-btn-text {
-//    font-size: 18px;
-//    margin-left: 5px;
-//  }
-//
-//  .catalogue-btn-img {
-//    margin-right: 0;
-//  }
-//
-//  .catalogue-menu {
-//    width: 94vw;
-//    margin-left: 1vw;
-//  }
-//
-//  .ant-menu-inline {
-//    background-color: #fff852;
-//
-//  }
-//
-//  ul .ant-menu-submenu-arrow::before, .ant-menu-submenu-arrow::after {
-//    width: 6px;
-//    height: 1.5px;
-//  }
-//}
