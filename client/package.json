@@ -62,6 +62,7 @@
     "start-js": "craco start",
     "build": "npm run stylelint-build && craco build",
     "test": "craco test",
+    "coverage": "craco test --watchAll=false --coverage",
     "stylelint-dev": "stylelint \"src/**/*.less\" --cache --cache-location \".stylelintcache\" exit 0",
     "stylelint-build": "stylelint src/**/*.less",
     "stylelint-fix-sass": "stylelint --fix src/**/*.less",

@@ -5,6 +5,7 @@ import PaymentForm from "./PaymentForm";
 import {useDispatch} from "react-redux";
 import './styles.less';
 import {setPayment} from "../../../store/checkout/checkoutAction";
+import PropTypes from "prop-types";
 
 const CheckoutPayment = ({disabled, onChange}) => {
     const dispatch = useDispatch()
@@ -87,5 +88,10 @@ const CheckoutPayment = ({disabled, onChange}) => {
         </div>
     )
 }
+
+CheckoutPayment.propTypes = {
+    disabled: PropTypes.bool,
+    onChange: PropTypes.func
+};
 
 export default CheckoutPayment;
