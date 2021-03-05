@@ -5,7 +5,7 @@ import PriceSlider from "../../components/PriceSlider";
 import FilteredProducts from "../../components/FilteredProducts";
 import queryString from 'query-string';
 
-import {MetaForPages} from "../../components/Helmet"
+import {MetaForFiltered} from "../../components/Helmet"
 import {useHistory, useLocation} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {showPage} from "../../store/breadcrumbs/crumbsAction";
@@ -58,10 +58,10 @@ const ProductList = () => {
 
     return (
         <>
-            <MetaForPages
-                title = "Barber Shop Market"
-                content = "Barber Shop market"
-                rel = "icon"
+            <MetaForFiltered
+              title = "Barber Shop Market"
+              content = "Barber Shop market"
+              rel = "icon"
             />
             <div className="product-list-container">
                 <div className={"filters-container " + show}>
