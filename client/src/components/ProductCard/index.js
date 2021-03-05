@@ -7,7 +7,9 @@ import {Link} from "react-router-dom";
 import Ajax from "../../services/Ajax";
 import WishListService from '../../services/WishListServise'
 import './styles.less';
-import {addToCart} from "../../store/cart/actionCart";
+import { addToCart, deleteFromCart } from "../../store/cart/actionCart";
+import { setToLastProducts } from '../../store/lastViewedProducts/lastProductsAction'
+
 
 const {put, deleteRequest} = Ajax;
 const {checkIfProductInWishList} = WishListService
@@ -15,24 +17,25 @@ const {checkIfProductInWishList} = WishListService
 
 const ProductCard = ({product, refresh}) => {
 
-    const {name, currentPrice, imageUrls, _id} = product;
-    const {exp, isAuthenticated, isAdmin} = useSelector(state => ({...state.user}));
-    const history = useHistory();
-    const dispatch = useDispatch();
-    const [inWishlist, setInWishlist] = useState(false);
+  const { name, currentPrice, imageUrls, _id, quantity } = product;
+  const { exp, isAuthenticated, isAdmin } = useSelector(state => ({ ...state.user }));
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const [inWishlist, setInWishlist] = useState(false);
 
-    const onAddToCart = (e) => {
+  const productsFromStore = useSelector(state => state.cart.products.products);
+  const filteredProducts = productsFromStore.filter(item => item.product._id === _id);
+  const onAddToCart = (e) => {
         e.preventDefault();
-        const newProduct = {product, cartQuantity: + 1}
-        dispatch(addToCart(newProduct, _id, isAuthenticated));
+        const newProduct2 = {product, cartQuantity: + 1}
+        dispatch(addToCart(newProduct2, _id, isAuthenticated));
     }
 
     const forwardToCardDetails = () => {
-        return{
+        return({
             pathname: `/product/${product.itemNo}`,
             state: { product: product },
-        }
-
+        })
     }
 
     const addToWishlist = async () => {
@@ -51,6 +54,9 @@ const ProductCard = ({product, refresh}) => {
             }
         }
     }
+    const addToLastProducts = () => {
+        dispatch(setToLastProducts(product))
+    }
 
 
     useEffect(() => {
@@ -66,10 +72,10 @@ const ProductCard = ({product, refresh}) => {
     return (
         <>
             <div className='productCard'>
-                <Link to={forwardToCardDetails()}>
+                <Link to={forwardToCardDetails()} onClick={addToLastProducts}>
                     <div className='productCard-title'>{name}</div>
                     <div className='productCard-picture'>
-                        <Image src={imageUrls[0]} preview={false}/>
+                        <Image src={imageUrls[0]?.url} preview={false}/>
                         <div className='productCard-price'>{currentPrice}$</div>
                     </div>
                 </Link>
@@ -77,9 +83,13 @@ const ProductCard = ({product, refresh}) => {
                     <Button className='btn-favourite' onClick={addToWishlist}>
                         {inWishlistIcon}
                     </Button>
-                    <Button className='btn-addToCard' onClick={onAddToCart}>
-                        Add to cart
-                    </Button>
+
+                  { quantity === 0
+                    ? <Button className='btn-addToCard'>SOLD OUT</Button>
+                    : filteredProducts.length === 1
+                      ? <Button className='btn-addToCard add-disabled' onClick={()=>dispatch(deleteFromCart(_id))}>Added</Button>
+                      : <Button className='btn-addToCard' onClick={onAddToCart}>Add to cart</Button>
+                  }
                 </div>
             </div>
         </>

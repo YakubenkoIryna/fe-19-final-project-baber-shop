@@ -5,12 +5,12 @@ class CategoryService {
     const allCategories = await Ajax.get("/catalog");
 
     if (allCategories && allCategories.length > 0) {
-      const slice = allCategories.filter(c => +c.level === 1).sort(() => .5 - Math.random()).slice(0, count);
+      const slice = allCategories.filter(c => +c.level === 3).sort(() => .5 - Math.random()).slice(0, count);
       return Promise.all(slice.map(async cat => {
         const lowest = await this.getLowestPrice(cat);
         return {
           ...cat,
-          price: Number.isFinite(lowest) || null
+          price: Number.isFinite(lowest) ? lowest : null
         };
       }));
     } else {
@@ -19,7 +19,7 @@ class CategoryService {
   }
 
   async getLowestPrice (category = { id: "razor" }) {
-    const { products } = await Ajax.get(`/products/filter?categories=${category.id}`);
+    const { products } = await Ajax.get(`/products/filter?categories=${category.name}`);
     return Math.min.apply(Math, (products || []).map(p => p.currentPrice));
   }
 

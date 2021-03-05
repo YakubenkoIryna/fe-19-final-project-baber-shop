@@ -9,7 +9,7 @@ import { authUser } from "../../../store/user/userAction";
 import LoginService from "../../../services/LoginService";
 import RegisterService from "../../../services/RegisterService";
 import { ToastContainer } from "react-toastify";
-import { errorRegisterToast, successRegisterToast } from "../../Toasters";
+import { errorRegisterToastCustom, successRegisterToastCustom } from "../../Toasters";
 import jwt_decode from "jwt-decode";
 import "./styles.less";
 
@@ -39,18 +39,18 @@ const RegistrationForm = (props) => {
             dispatch(authUser({...decoded, isAuthenticated: true}));
             cartMerging(products, dispatch)
             if (!props.modal) history.push('/');
-            successRegisterToast()
+            successRegisterToastCustom()
             if (props.handleRegisterModalClose) props.handleRegisterModalClose();
           })
           .catch(err => {
-            errorRegisterToast()
+            errorRegisterToastCustom()
             console.log("login error",err);
             const error = err.response.data;
             console.log("error",error);
           })
       })
       .catch(err => {
-        errorRegisterToast()
+        errorRegisterToastCustom()
         console.log("Registration error");
         const error = err.response.data;
         console.log("error",error);

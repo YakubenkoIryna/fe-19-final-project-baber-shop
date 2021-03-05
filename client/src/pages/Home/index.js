@@ -10,7 +10,7 @@ const Home = (props) => {
     return (
         <div>
             <MetaForPages
-                title="Home Page "
+                title="BarberShop"
                 content="BarberShop Home Main Page"
                 rel="icon"
                 href={Union}

@@ -2,14 +2,14 @@ import React, {useState, useEffect} from 'react';
 import './styles.less'
 import {Col, Row} from 'antd'
 import { useDispatch, useSelector } from "react-redux";
-import {addToCart} from "../../store/cart/actionCart";
+import { addToCart, deleteFromCart } from "../../store/cart/actionCart";
 import Banner from "../../components/Banner";
 import ProductCarousel from "../../components/ProductCarousel";
 import { useParams } from 'react-router-dom'
 import Ajax from "../../services/Ajax";
 import {CheckCircleOutlined} from '@ant-design/icons'
 import { MetaForEachPage } from "../../components/Helmet";
-
+import LastViewedProducts from '../../components/LastViewedProducts'
 
 
 const ProductPage = (props) => {
@@ -18,6 +18,9 @@ const ProductPage = (props) => {
     const { itemNo } = useParams()
     const [product, setProduct] = useState({})
     const [images, setImages] = useState([])
+
+    const productsFromStore = useSelector(state => state.cart.products.products);
+    const filteredProducts = productsFromStore.filter(item => item.product._id === product._id);
 
     useEffect(() => {
         async function fetch() {
@@ -61,7 +64,6 @@ const ProductPage = (props) => {
                                 }
                             </div>
 
-
                             <div className="product-code">Item No:{product.itemNo}</div>
                             <Row>
                                 <Col>
@@ -70,7 +72,10 @@ const ProductPage = (props) => {
                                 <Col className="btn-buy_box">
                                     { product.quantity === 0
                                         ? (<></>)
-                                        :  (<button className="btn-buy" onClick={onAddToCart}>Buy</button>)
+                                        : filteredProducts.length === 1
+                                        ? (<button className="btn-buy add-disabled" onClick={()=>dispatch(deleteFromCart(product._id))}>Added</button>)
+                                        : (<button className="btn-buy" onClick={onAddToCart}>Buy</button>)
+
                                     }
 
                                 </Col>
@@ -91,7 +96,7 @@ const ProductPage = (props) => {
                     </Col>
                 </Row>
             </div>
-
+            <LastViewedProducts />
             <Banner title={'One more  thing'} config='cc'/>
         </div>
           </>

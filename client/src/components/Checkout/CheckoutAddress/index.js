@@ -1,14 +1,30 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Button, Form, Input, message} from "antd";
 import {collectionItemsCheckoutAddress, onlyNumbers} from "../../Forms/RegistrationForm/collectionItems";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import "./styles.less";
 import {setAddress} from "../../../store/checkout/checkoutAction";
+import Ajax from "../../../services/Ajax";
 
 const CheckoutAddress = ({disabled, onChange}) => {
     const dispatch = useDispatch();
+    const {isAuthenticated: isAuth} = useSelector(state => state.user);
 
     const [form] = Form.useForm();
+
+    useEffect(() => {
+        if (isAuth) {
+            Ajax.get('/customers/customer')
+                .then(customer => {
+                    form.setFieldsValue({
+                            fullName: customer.firstName + " " + customer.lastName,
+                            email: customer.email,
+                            phone: customer.phone,
+                        }
+                    )
+                })
+        }
+    }, [form, isAuth]);
 
     const layout = {
         labelCol: {

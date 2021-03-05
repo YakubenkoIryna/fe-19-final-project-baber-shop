@@ -1,90 +1,70 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import './styles.less';
 import CheckboxFilter from "../../components/CheckboxFilters";
 import PriceSlider from "../../components/PriceSlider";
-import {groupValues, pickUpValues} from "../../functions/checkboxFilters/filters";
-import Ajax from "../../services/Ajax";
 import FilteredProducts from "../../components/FilteredProducts";
-import {useDispatch, useSelector} from "react-redux";
-import {addFilter, deleteFilter} from "../../store/filters/filterAction";
+import queryString from 'query-string';
 
-import {MetaForPages} from "../../components/Helmet"
-import {CaretDownOutlined, CaretUpOutlined} from "@ant-design/icons";
+import {MetaForFiltered} from "../../components/Helmet"
+import {useHistory, useLocation} from "react-router-dom";
 
 const ProductList = () => {
-
-    const queryString = require('query-string');
-    const dispatch = useDispatch();
-    const filtersRedux = useSelector(state => state.filterReducer.filters);
-
-    const [checkboxFiltersDB, setCheckboxFiltersDB] = useState([]);
-    const [minValue, setMinValue] = useState(150);
-    const [maxValue, setMaxValue] = useState(700);
     const [showFilters, setShowFilters] = useState(false);
 
-    const values = pickUpValues(filtersRedux);
-    const groupedValues = groupValues(values);
-    const string = queryString.stringify({
-        ...groupedValues, ...{
-            minPrice: minValue,
-            maxPrice: maxValue
-        }
-    }, {arrayFormat: "comma"});
+    const {search} = useLocation();
+    const history = useHistory();
+    const query = queryString.parse(search, {arrayFormat: "comma"})
 
-    useEffect(() => {
-        async function fetch() {
-            const result = await Ajax.get('/filters');
-            setCheckboxFiltersDB(result);
-        }
+    const stringify = () => {
+        return queryString.stringify({
+            ...query
+        }, {arrayFormat: "comma"});
+    }
 
-        fetch()
-    }, []);
+    const onQueryChange = () => {
+        history.push('/shop?' + stringify());
+    }
 
-    const catchCheckbox = (e) => {
-        if (e.target.type === 'checkbox') {
-            const index = filtersRedux.findIndex(item => item.name === e.target.name);
-            const el = {type: e.target.dataset.type, name: e.target.name};
-            if (index < 0) {
-                dispatch(addFilter(el));
+    const catchCheckbox = ({target: {dataset: {type}, id, checked, type: el}}) => {
+        if (el === 'checkbox') {
+            const values = [].concat((query[type] || []));
+            if (checked) {
+                values.push(id);
             } else {
-                dispatch(deleteFilter(el));
+                const index = values.indexOf(id);
+                if (index > -1) {
+                    values.splice(index, 1);
+                }
             }
+            query[type] = values;
+            onQueryChange();
         }
     }
+
     const openFilters = () => {
         setShowFilters(!showFilters);
     }
+
     const show = showFilters ? 'active' : 'hidden';
-
-    const showButton = {display: showFilters ? 'none' : 'block'}
-
+    const showButton = {display: showFilters ? 'none' : 'inline-block'}
 
     return (
         <>
-            <MetaForPages
-                title="Barber Shop Market"
-                content="Barber Shop market"
-                rel="icon"
+            <MetaForFiltered
+              title = "Barber Shop Market"
+              content = "Barber Shop market"
+              rel = "icon"
             />
             <div className="product-list-container">
-                <div className='filters'>
-                    <div className="open-filters-btn-container">
-                        <button type='button' className='open-filters-btn' style={showButton}
-                                onClick={openFilters}>Filter <CaretDownOutlined className='filters-btn-icon'/>
-                        </button>
-                        <button type='button' className={'open-filters-btn ' + show}
-                                onClick={openFilters}>Filter <CaretUpOutlined className='filters-btn-icon'/>
-                        </button>
-                    </div>
-                    <div className={"filters-container " + show}>
-                        <PriceSlider minValue={minValue} maxValue={maxValue}
-                                     setMinVal={setMinValue}
-                                     setMaxVal={setMaxValue}
-                        />
-                        <CheckboxFilter filters={checkboxFiltersDB} clickCheckbox={catchCheckbox}/>
-                    </div>
+                <div className={"filters-container " + show}>
+                    <PriceSlider query={query} onChange={onQueryChange}/>
+                    <CheckboxFilter clickCheckbox={catchCheckbox} query={query}/>
                 </div>
-                <FilteredProducts queryString={string}/>
+                <div className="open-filters-btn-container">
+                    <button type='button' className='open-filters-btn' style={showButton} onClick={openFilters}>X</button>
+                    <button type='button' className={'open-filters-btn ' + show} onClick={openFilters}>O</button>
+                </div>
+                <FilteredProducts queryString={stringify()}/>
             </div>
         </>
     )

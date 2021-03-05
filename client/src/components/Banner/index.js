@@ -34,7 +34,7 @@ const Banner = ({title, config}) => {
 
     useEffect(() => {
         if (config === 'cp' && categories && categories.length > 0) {
-            ProductService.getProductsForBanner() // categories[0]
+            ProductService.getProductsForBanner(categories[0])
                 .then(products => setProducts(products || []));
         }
         return () => setProducts([]);

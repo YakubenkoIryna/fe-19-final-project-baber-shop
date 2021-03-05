@@ -1,27 +1,40 @@
-import React from 'react';
-import {Col, Form, InputNumber, Row, Slider} from 'antd';
+import React, {useState}  from 'react';
+import { Slider, InputNumber, Row, Col, Form } from 'antd';
 import './styles.less';
 
-const PriceSlider = ({minValue, maxValue, setMinVal, setMaxVal}) => {
+const PriceSlider = ({query, onChange}) => {
+
+    const {minPrice: min = 0, maxPrice: max = 1000} = query;
+
+    const [minVal, setMinVal] = useState(min);
+    const [maxVal, setMaxVal] = useState(max);
+
     const onSliderChange = value => {
         setMinVal(value[0]);
         setMaxVal(value[1]);
     }
 
     const onSliderMouseUp = value => {
-        setMinVal(value[0]);
-        setMaxVal(value[1]);
+        query.minPrice = value[0];
+        query.maxPrice = value[1];
+        onChange();
     }
 
     const onChangeInputMin = value => {
-        if (maxValue > value) {
+        if (maxVal > value) {
             setMinVal(value);
+            query.minPrice = value;
+            query.maxPrice = maxVal;
+            onChange();
         }
     }
 
     const onChangeInputMax = value => {
-        if (minValue < value) {
+        if (minVal < value) {
             setMaxVal(value);
+            query.maxPrice = value;
+            query.minPrice = minVal;
+            onChange();
         }
     }
 
@@ -31,13 +44,14 @@ const PriceSlider = ({minValue, maxValue, setMinVal, setMaxVal}) => {
                 <p className='slider-heading'>Price</p>
             </div>
             <Row justify='space-between'>
-                <Col span={13}>
+                <Col span={12}>
                     <Form.Item label='from'>
                         <InputNumber
                             min={1}
                             max={1000}
+                            style={{ margin: '0 9px' }}
                             step={1}
-                            value={minValue}
+                            value={minVal}
                             onChange={onChangeInputMin}
                             addonBefore='from'
                         />
@@ -48,8 +62,9 @@ const PriceSlider = ({minValue, maxValue, setMinVal, setMaxVal}) => {
                         <InputNumber
                             min={1}
                             max={1000}
+                            style={{ margin: '0 9px' }}
                             step={1}
-                            value={maxValue}
+                            value={maxVal}
                             onChange={onChangeInputMax}
                         />
                     </Form.Item>
@@ -62,10 +77,10 @@ const PriceSlider = ({minValue, maxValue, setMinVal, setMaxVal}) => {
                         max={1000}
                         step={1}
                         range
-                        defaultValue={[minValue, maxValue]}
+                        defaultValue={[min, max]}
                         onChange={onSliderChange}
                         onAfterChange={onSliderMouseUp}
-                        value={[minValue, maxValue]}
+                        value={[minVal, maxVal]}
                     />
                 </Col>
             </Row>

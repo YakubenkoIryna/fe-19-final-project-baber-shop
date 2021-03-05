@@ -3,12 +3,12 @@ import {Link} from "react-router-dom";
 import './styles.less';
 import {Image, Row} from "antd";
 
-const CategoryBanner = ({category: {imgUrl, name, price, url}}) => {
+const CategoryBanner = ({category: {imgUrl, name, price}}) => {
     return (
         <Row justify="end" align='middle'>
-            <Link to='/'>
+            <Link to={`/shop?categories=${name}`}>
                 <div className="category-banner">
-                    <Image className='category-banner-img' src={imgUrl} alt='Category 1' preview={false}/>
+                    <Image className='category-banner-img' src={imgUrl[0]?.url} alt='Category 1' preview={false}/>
                     <div className="category-info category-banner-info">
                         <p className="category-info-title">
                             {name}

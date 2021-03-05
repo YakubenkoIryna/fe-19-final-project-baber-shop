@@ -2,15 +2,16 @@
 
 
 .product-list-container {
-  display: block;
+  display: flex;
 
-  .filters {
-    position: relative;
+  & .open-filters-btn-container {
+    position: absolute;
+    display: none;
   }
 
   .open-filters-btn-container {
     display: block;
-    padding-top: 10px;
+    padding: 10px 0 0 30px;
 
     .open-filters-btn {
       width: 220px;
@@ -34,12 +35,13 @@
 
   .filters-container {
     position: absolute;
-    top: 125%;
+    top: 285px;
+    //top: 125%;
     z-index: 1;
     display: none;
     width: 100%;
     padding: 0 5%;
-    background-color: #f0f2f5;
+    background-color: #fff;
   }
 
   .active {
