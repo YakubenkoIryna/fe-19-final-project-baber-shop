@@ -1,57 +1,47 @@
 import React, {useState, useEffect} from "react";
-import './styles.less';
 import {useLocation} from "react-router-dom";
-
+import {useSelector} from "react-redux";
 import {Breadcrumb, Typography} from 'antd';
 import {HomeOutlined} from '@ant-design/icons';
+import './styles.less';
 
 const BreadCrumbs = () => {
-    const {pathname, key, state} = useLocation();
+    const pageFromDispatch = useSelector(state => state.showSomething.page);
+    const {pathname} = useLocation();
     const [display, setDisplay] = useState('none');
+
     useEffect(() => {
-        pathname === '/' ? setDisplay('none') : setDisplay('block');
+        pathname === '/' || pathname === '/error' ? setDisplay('none') : setDisplay('block');
     }, [pathname])
 
-    console.log('useLocation -> ', useLocation());
-    if (state) {
-        console.log('State -> ', state)
-    } else {
-        console.log('State -> ', state)
+    const toUpper = (word) => {
+        return (word.charAt(0).toUpperCase() + word.slice(1)).replaceAll('-', ' ');
     }
-    const pathNames = pathname.split('/').filter(name => name);
 
     return (
         <Breadcrumb separator=">" className="breadcrumbs" style={{display}}>
-            {pathNames.length > 0
-                ? <Breadcrumb.Item key={key} href="/" className="breadcrumb-item">
-                    <HomeOutlined/>
-                </Breadcrumb.Item>
-                : ''
-            }
-
-            {pathNames.map((name, index) => {
-                const redirectTo = `/${pathNames.slice(0, index + 1).join('/')}`;
-                const isLast = index === pathNames.length - 1;
-
-                let pageName;
-                if (name === 'pages' || name === 'product') return '';
-                if (state) {
-                    const productName = state.product.name;
-                    pageName = productName.charAt(0).toUpperCase() + productName.slice(1);
-                }
-                else pageName = name.charAt(0).toUpperCase() + name.slice(1);
-
-                return (
-                    isLast
-                        ? <Breadcrumb.Item key={key} className="breadcrumb-item">
-                            <Typography>{pageName}</Typography>
-                        </Breadcrumb.Item>
-                        : <Breadcrumb.Item key={key} href={redirectTo}
-                                           className="breadcrumb-item">
-                            <span>{pageName}</span>
-                        </Breadcrumb.Item>
-                )
-            })}
+            {pageFromDispatch
+                ? <>
+                    <Breadcrumb.Item key={"home"} href="/" className="breadcrumb-item">
+                        <HomeOutlined className='homepage-img'/>
+                    </Breadcrumb.Item>
+                    {pageFromDispatch.parentPages
+                        ? pageFromDispatch.parentPages.map((page, i) => {
+                            return (
+                                <Breadcrumb.Item key={pageFromDispatch.key}
+                                                 href={pageFromDispatch.pathNames[i]}
+                                                 className="breadcrumb-item">
+                                    <span>{toUpper(page)}</span>
+                                </Breadcrumb.Item>
+                            )
+                        })
+                        : ''}
+                    <Breadcrumb.Item key={'key'}
+                                     className="breadcrumb-item">
+                        <Typography>{toUpper(pageFromDispatch.pageName)}</Typography>
+                    </Breadcrumb.Item>
+                </>
+                : ''}
         </Breadcrumb>
     )
 }

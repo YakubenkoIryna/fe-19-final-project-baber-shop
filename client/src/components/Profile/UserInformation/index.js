@@ -3,6 +3,7 @@ import {useDispatch} from "react-redux";
 import {Button, Col, Form, Input, message} from "antd";
 import Ajax from "../../../services/Ajax";
 import {changeFirstName} from "../../../store/user/userAction";
+import {showPage} from "../../../store/breadcrumbs/crumbsAction";
 import {collectionItemsForm, onlyLetters, onlyNumbers} from "../../Forms/RegistrationForm/collectionItems";
 import './style.less'
 
@@ -50,6 +51,8 @@ const UserInformation = () => {
     }
 
     useEffect(() => {
+        dispatch(showPage({pageName: 'Personal information', key: 'user_info'}));
+
         let cleanupFunction = false;
         get('/customers/customer')
             .then(customer => {
@@ -65,7 +68,7 @@ const UserInformation = () => {
 
             })
         return () => cleanupFunction = true
-    }, [form])
+    }, [form, dispatch])
 
     return (
         <Col xs={{span: 20, offset: 2}} sm={{span: 12, offset: 1}} md={{span: 12, offset: 2}}

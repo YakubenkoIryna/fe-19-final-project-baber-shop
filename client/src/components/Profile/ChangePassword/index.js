@@ -1,13 +1,19 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Button, Col, Form, Input, message} from "antd";
 import Ajax from "../../../services/Ajax";
 import {collectionItemsProfileChangePassword} from "../../Forms/RegistrationForm/collectionItems";
+import {showPage} from "../../../store/breadcrumbs/crumbsAction";
+import {useLocation} from "react-router-dom";
+import {useDispatch} from "react-redux";
 import './style.less'
 
 const {put} = Ajax;
 
 
 const ChangePassword = () => {
+    const {pathname, key} = useLocation();
+    const dispatch = useDispatch();
+
     const layout = {
         labelCol: {
             span: 24,
@@ -24,6 +30,16 @@ const ChangePassword = () => {
             span: 24,
         },
     };
+
+    useEffect(() => {
+        const parentPages = pathname.slice(1, pathname.length).split('/');
+        const pageName = parentPages.pop();
+
+        let result = '/';
+        const pathNames = parentPages.map(page => result+=`${page}`)
+
+        dispatch(showPage({pageName, parentPages: ['Personal information'], pathNames, key}));
+    }, [dispatch, key, pathname])
 
     const [form] = Form.useForm();
     const warning = () => {

@@ -19,9 +19,7 @@ const LoginForm = (props) => {
     const [error, setError] = useState('');
 
     const onFinish = (customerData) => {
-        console.log('Received values of form: ', customerData);
         setLoading(true);
-
 
         LoginService.LoginResult(customerData)
             .then(loginResult => {

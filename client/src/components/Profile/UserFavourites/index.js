@@ -5,6 +5,9 @@ import Ajax from "../../../services/Ajax";
 import ProductCard from "../../ProductCard";
 import Preloader from "../../Preloader";
 import '../style.less'
+import {useLocation} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {showPage} from "../../../store/breadcrumbs/crumbsAction";
 
 const {get} = Ajax;
 
@@ -12,6 +15,9 @@ const {get} = Ajax;
 const {Title} = Typography;
 
 const UserFavourites = () => {
+    const {pathname, key} = useLocation();
+    const dispatch = useDispatch();
+
     const [loading, setLoading] = useState(true);
     const [wishlist, setWishlist] = useState([]);
     const updateWishlist = (id) => {
@@ -21,6 +27,13 @@ const UserFavourites = () => {
 
     }
     useEffect(() => {
+        const parentPages = pathname.slice(1, pathname.length).split('/');
+        const pageName = parentPages.pop();
+
+        let result = '/';
+        const pathNames = parentPages.map(page => result+=`${page}`)
+
+        dispatch(showPage({pageName, parentPages: ['Personal information'], pathNames, key}));
             let cleanupFunction = false;
             get('/wishlist')
                 .then(wishlist => {
@@ -32,7 +45,7 @@ const UserFavourites = () => {
                     }
                 })
             return () => cleanupFunction = true
-        }, []
+        }, [dispatch, key, pathname]
     )
 
     return (

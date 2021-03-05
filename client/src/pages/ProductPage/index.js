@@ -10,6 +10,7 @@ import Ajax from "../../services/Ajax";
 import {CheckCircleOutlined} from '@ant-design/icons'
 import { MetaForEachPage } from "../../components/Helmet";
 import LastViewedProducts from '../../components/LastViewedProducts'
+import {showPage} from "../../store/breadcrumbs/crumbsAction";
 
 
 const ProductPage = (props) => {
@@ -24,10 +25,17 @@ const ProductPage = (props) => {
             const product = await Ajax.get(`/products/${itemNo}`)
             setProduct(product);
             setImages(product.imageUrls);
+
+            const {name, categories, _id} = product
+            dispatch(showPage({
+                pageName: name,
+                parentPages: [categories],
+                pathNames: [`/shop?categories=${categories}`],
+                key: _id}));
         }
 
         fetch();
-    }, [itemNo])
+    }, [itemNo, dispatch])
 
     const onAddToCart = (e) => {
         e.preventDefault();

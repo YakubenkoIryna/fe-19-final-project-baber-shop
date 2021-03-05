@@ -35,10 +35,7 @@ const Catalogue = () => {
         }
     };
 
-    const handleCategoryClick = ({key}) => {
-        console.log('click', key);
-        setVisible('none')
-    }
+    const handleCategoryClick = () => setVisible('none');
 
     const handleOutsideClick = (e) => {
         if (visible === 'block' && !e.target.className.includes('catalogue-btn')) {

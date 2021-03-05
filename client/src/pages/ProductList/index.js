@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './styles.less';
 import CheckboxFilter from "../../components/CheckboxFilters";
 import PriceSlider from "../../components/PriceSlider";
@@ -7,12 +7,20 @@ import queryString from 'query-string';
 
 import {MetaForPages} from "../../components/Helmet"
 import {useHistory, useLocation} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {showPage} from "../../store/breadcrumbs/crumbsAction";
 
 const ProductList = () => {
+    const {search, key} = useLocation();
+    const history = useHistory();
+    const dispatch = useDispatch();
+
     const [showFilters, setShowFilters] = useState(false);
 
-    const {search} = useLocation();
-    const history = useHistory();
+    useEffect(() => {
+        dispatch(showPage({pageName: 'Shop', key}));
+    }, [dispatch, key])
+
     const query = queryString.parse(search, {arrayFormat: "comma"})
 
     const stringify = () => {
