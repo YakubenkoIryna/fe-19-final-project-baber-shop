@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './styles.less';
 
 const CheckboxItem = ({type, id, name, checked, onChange}) => {
@@ -14,3 +15,11 @@ const CheckboxItem = ({type, id, name, checked, onChange}) => {
     )
 }
 export default CheckboxItem;
+
+CheckboxItem.propTypes = {
+    type: PropTypes.string,
+    id: PropTypes.string,
+    name: PropTypes.string,
+    checked: PropTypes.bool,
+    onChange: PropTypes.func
+}

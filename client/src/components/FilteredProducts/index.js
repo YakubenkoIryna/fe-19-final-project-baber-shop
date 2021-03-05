@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Card, Result } from 'antd'
 import { SyncOutlined } from '@ant-design/icons'
 import Ajax from "../../services/Ajax";
-import ProductCard from '../ProductCard'
+import ProductCard from '../ProductCard';
+import PropTypes from 'prop-types';
 import './styles.less';
 
 const FilteredProducts = ({queryString}) => {
@@ -69,4 +70,7 @@ const FilteredProducts = ({queryString}) => {
     )
 }
 
-export default FilteredProducts
+export default FilteredProducts;
+FilteredProducts.propTypes = {
+    queryString: PropTypes.string
+}
