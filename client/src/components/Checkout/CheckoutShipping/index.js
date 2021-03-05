@@ -4,6 +4,7 @@ import {Button, message, Radio, Skeleton} from "antd";
 import './styles.less';
 import {useDispatch} from "react-redux";
 import {setShipping} from "../../../store/checkout/checkoutAction";
+import PropTypes from "prop-types";
 
 const CheckoutShipping = ({disabled, onChange}) => {
     const dispatch = useDispatch();
@@ -75,5 +76,10 @@ const CheckoutShipping = ({disabled, onChange}) => {
         </div>
     )
 }
+
+CheckoutShipping.propTypes = {
+    disabled: PropTypes.bool,
+    onChange: PropTypes.func
+};
 
 export default CheckoutShipping;
