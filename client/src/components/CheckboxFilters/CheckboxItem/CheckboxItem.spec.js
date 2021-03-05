@@ -3,9 +3,9 @@ import CheckboxItem from "./index";
 import renderer from 'react-test-renderer';
 
 test('CheckboxItem renders correctly', () => {
-    const tree = renderer
+    const element = renderer
         .create(<CheckboxItem id={"id"} checked={false} name={"name"} type={"type"} onChange={() => {}}/>)
         .toJSON();
-    expect(tree).toMatchSnapshot();
+    expect(element).toMatchSnapshot();
 });
 
