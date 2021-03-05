@@ -2,25 +2,45 @@
 
 .staticPage {
   &-container {
-    padding: 50px;
-    font-size: 1.3em;
-    line-height: 1.8em;
+    padding: 25px;
+    font-size: 12px;
     text-align: justify;
-    text-indent: 3.5em;
+    line-height: 20px;
+    text-indent: 25px;
+
+    & h1 {
+      font-size: 18px;
+    }
+
+    & h2 {
+      font-size: 16px;
+    }
 
     & h3 {
-      margin-top: 12px;
+      font-size: 14px;
+    }
+
+    & h4 {
+      font-size: 14px;
+    }
+
+    & p {
+      margin-bottom: 10px;
+    }
+
+    .ant-image-img {
+      width: 150px;
+      margin-left: 20px;
     }
 
     & li {
-      margin-left: 150px;
-      text-indent: 10px;
+      margin-left: 30px;
+      text-indent: 15px;
     }
   }
 }
 
 .aboutUs {
-
   &-link {
     color: @yellow-6;
     text-shadow: 1px 1px 2px @black;
@@ -32,16 +52,9 @@
 }
 
 .contacts {
-  &-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
 
   &-map {
-    width: 600px;
-    height: 450px;
-    padding: 15px;
+    display: none;
   }
 }
 
@@ -57,42 +70,77 @@
   }
 }
 
-@media (max-width: 585px) {
+
+@media screen and (min-width: 576px) {
+
   .staticPage {
     &-container {
-      padding: 25px;
-      font-size: 1.1em;
-      line-height: 1.5em;
-      text-indent: 2.5em;
-
-      & h1 {
-        font-size: 28px;
-      }
-
-      & h2 {
-        font-size: 24px;
-      }
-
-      & h3 {
-        font-size: 20px;
+      & li {
+        margin-left: 60px;
+        text-indent: 25px;
       }
     }
   }
 
   .contacts {
+    &-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
 
     &-map {
-      display: none;
+      display: block;
+      width: 480px;
+      height: 360px;
+      padding: 15px;
     }
   }
 }
 
+@media screen and (min-width: 768px) {
+  .contacts-container {
+    div:first-of-type {
+      margin-right: 30px;
+    }
+  }
+}
 
-@media (max-width: 1200px) {
+@media screen and (min-width: 992px) {
+  .staticPage {
+    &-container {
+      font-size: 14px;
+    }
+  }
+
+  .contacts-container {
+    div:first-of-type {
+      margin-right: 60px;
+    }
+  }
+}
+
+@media screen and  (min-width: 1200px) {
+  .staticPage {
+    &-container {
+      & h1 {
+        font-size: 20px;
+      }
+
+      & h2 {
+        font-size: 18px;
+      }
+
+      & h3 {
+        font-size: 16px;
+      }
+    }
+  }
+
   .contacts {
     &-map {
-      width: 480px;
-      height: 360px;
+      width: 600px;
+      height: 450px;
     }
   }
 }
