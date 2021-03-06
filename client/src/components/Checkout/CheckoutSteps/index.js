@@ -4,6 +4,7 @@ import {Col, Row} from "antd";
 import {useHistory} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {nextStep, placeOrder} from "../../../store/checkout/checkoutAction";
+import PropTypes from "prop-types";
 
 const CheckoutSteps = ({children, onFinish}) => {
     const dispatch = useDispatch();
@@ -36,5 +37,9 @@ const CheckoutSteps = ({children, onFinish}) => {
         </Row>
     )
 }
+
+CheckoutSteps.propTypes = {
+    onFinish: PropTypes.func.isRequired
+};
 
 export default CheckoutSteps;

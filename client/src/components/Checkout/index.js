@@ -8,6 +8,7 @@ import CheckoutSteps from "./CheckoutSteps";
 import Ajax from "../../services/Ajax";
 import {useSelector} from "react-redux";
 import Preloader from "../Preloader";
+import PropTypes from "prop-types";
 
 const Checkout = ({products}) => {
     const [loading, setLoading] = useState(false);
@@ -70,5 +71,9 @@ const Checkout = ({products}) => {
         </div>
     );
 }
+
+Checkout.propTypes = {
+    products: PropTypes.array.isRequired
+};
 
 export default Checkout;

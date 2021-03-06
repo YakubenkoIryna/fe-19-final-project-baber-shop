@@ -92,11 +92,14 @@ const RegistrationForm = (props) => {
           </Button>
         </Form.Item>
         <Form.Item {...tailFormItemLayout}>
-          <span onClick={showModalLogin}>Already registered?(link to Login Form MODAL)</span>
-          <Link to="/login">link to Login PAGE</Link>
+          Already registered?
+          {props.modal
+          ? <span className="login-register_modal-link" onClick={showModalLogin}> Login now</span>
+          : <Link to="/login"> Login now</Link>
+          }
         </Form.Item>
+        <ToastContainer/>
       </Form>
-      <ToastContainer/>
     </>
   );
 };
