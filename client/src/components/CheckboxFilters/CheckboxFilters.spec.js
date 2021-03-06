@@ -23,7 +23,6 @@ test('CheckboxFilter is rendered', () => {
             <CheckboxFilter/>
         </MemoryRouter>, container)
     });
-
     expect(container.innerHTML).toMatchSnapshot();
 });
 
