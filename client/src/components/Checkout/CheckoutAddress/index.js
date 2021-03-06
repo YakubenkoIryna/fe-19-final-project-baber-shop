@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import "./styles.less";
 import {setAddress} from "../../../store/checkout/checkoutAction";
 import Ajax from "../../../services/Ajax";
+import PropTypes from "prop-types";
 
 const CheckoutAddress = ({disabled, onChange}) => {
     const dispatch = useDispatch();
@@ -86,5 +87,10 @@ const CheckoutAddress = ({disabled, onChange}) => {
         </div>
     )
 }
+
+CheckoutAddress.propTypes = {
+    disabled: PropTypes.bool,
+    onChange: PropTypes.func
+};
 
 export default CheckoutAddress;

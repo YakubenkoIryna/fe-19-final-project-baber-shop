@@ -8,6 +8,7 @@ import PopoverBasket from "../PopoverBasket/index";
 import LiveSearch from './LiveSearch'
 import {showModal} from "../../store/modal/modalAction";
 import Login from "../Modal/LoginModal";
+import RegistrationModal from "../Modal/RegisterModal";
 import {headerLogo, iconContact, iconLogin} from './img/index'
 import Catalogue from "../Catalogue";
 import "./styles.less";
@@ -113,7 +114,7 @@ const SiteHeader = () => {
                         <PopoverBasket/>
                     </Link>
                 </Col>
-            </Row>
+            </Row><RegistrationModal/>
         </PageHeader>
 
     );
