@@ -8,6 +8,7 @@ import PopoverBasket from "../PopoverBasket/index";
 import LiveSearch from './LiveSearch'
 import {showModal} from "../../store/modal/modalAction";
 import Login from "../Modal/LoginModal";
+import RegistrationModal from "../Modal/RegisterModal";
 import {headerLogo, iconContact, iconLogin} from './img/index'
 import {LogoutOutlined} from "@ant-design/icons";
 import Catalogue from "../Catalogue";
@@ -101,7 +102,7 @@ const SiteHeader = () => {
                     </div>
                 </Col>
             </Row>
-
+            <RegistrationModal/>
         </PageHeader>
 
     );
