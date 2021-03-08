@@ -2,23 +2,22 @@
 
 
 .product-list-container {
-  display: flex;
+  display: block;
 
-  & .open-filters-btn-container {
-    position: absolute;
-    display: none;
+  .filters {
+    position: relative;
   }
 
   .open-filters-btn-container {
     display: block;
-    padding: 10px 0 0 30px;
+    padding: 10px;
 
     .open-filters-btn {
-      width: 35px;
+      width: 220px;
       margin: 0 auto;
-      padding: 10px;
+      padding: 4px;
       color: @white;
-      font-size: 22px;
+      font-size: 16px;
       background-color: @black;
       border: none;
       border-radius: 5px;
@@ -35,13 +34,12 @@
 
   .filters-container {
     position: absolute;
-    top: 285px;
-    //top: 125%;
+    top: 45px;
     z-index: 1;
     display: none;
     width: 100%;
     padding: 0 5%;
-    background-color: #fff;
+    background-color: #f0f2f5;
   }
 
   .active {
@@ -57,7 +55,7 @@
 
   .product-list-container {
     display: flex;
-    padding: 3vw 5vw;
+    padding: 1vw 5vw;
 
     .filters {
       width: 30%;
@@ -79,9 +77,8 @@
 }
 
 @media screen and (min-width: 768px) {
-
   .product-list-container {
-    padding: 3vw 4vw;
+    padding: 1vw 4vw;
 
     .filters {
       width: 22%;
@@ -90,9 +87,7 @@
 }
 
 @media screen and (min-width: 992px) {
-
   .product-list-container {
-
     .filters {
       width: 20%;
 
@@ -104,9 +99,7 @@
 }
 
 @media screen and (min-width: 1200px) {
-
   .product-list-container {
-
     .filters {
       margin-right: 40px;
 

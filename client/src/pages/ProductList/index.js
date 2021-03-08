@@ -1,14 +1,13 @@
-import React, {useState, useEffect} from 'react';
-import './styles.less';
+import React, {useState, useEffect, useHistory, useLocation} from 'react';
+import queryString from 'query-string';
+import {MetaForFiltered} from "../../components/Helmet"
 import CheckboxFilter from "../../components/CheckboxFilters";
 import PriceSlider from "../../components/PriceSlider";
 import FilteredProducts from "../../components/FilteredProducts";
-import queryString from 'query-string';
-
-import {MetaForFiltered} from "../../components/Helmet"
-import {useHistory, useLocation} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {showPage} from "../../store/breadcrumbs/crumbsAction";
+import {CaretDownOutlined, CaretUpOutlined} from "@ant-design/icons";
+import './styles.less';
 
 const ProductList = () => {
     const {search, key} = useLocation();
@@ -54,23 +53,29 @@ const ProductList = () => {
     }
 
     const show = showFilters ? 'active' : 'hidden';
-    const showButton = {display: showFilters ? 'none' : 'inline-block'}
+    const showButton = {display: showFilters ? 'none' : 'block'}
 
     return (
         <>
             <MetaForFiltered
-              title = "Barber Shop Market"
-              content = "Barber Shop market"
-              rel = "icon"
+                title="Barber Shop Market"
+                content="Barber Shop market"
+                rel="icon"
             />
             <div className="product-list-container">
-                <div className={"filters-container " + show}>
-                    <PriceSlider query={query} onChange={onQueryChange}/>
-                    <CheckboxFilter clickCheckbox={catchCheckbox} query={query}/>
-                </div>
-                <div className="open-filters-btn-container">
-                    <button type='button' className='open-filters-btn' style={showButton} onClick={openFilters}>X</button>
-                    <button type='button' className={'open-filters-btn ' + show} onClick={openFilters}>O</button>
+                <div className='filters'>
+                    <div className={"filters-container " + show}>
+                        <PriceSlider query={query} onChange={onQueryChange}/>
+                        <CheckboxFilter clickCheckbox={catchCheckbox} query={query}/>
+                    </div>
+                    <div className="open-filters-btn-container">
+                        <button type='button' className='open-filters-btn' style={showButton}
+                                onClick={openFilters}>Filter <CaretDownOutlined className='filters-btn-icon'/>
+                        </button>
+                        <button type='button' className={'open-filters-btn ' + show}
+                                onClick={openFilters}>Filter <CaretUpOutlined className='filters-btn-icon'/>
+                        </button>
+                    </div>
                 </div>
                 <FilteredProducts queryString={stringify()}/>
             </div>

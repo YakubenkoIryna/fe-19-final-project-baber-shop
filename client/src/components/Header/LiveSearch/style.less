@@ -1,38 +1,86 @@
-.ant-input-affix-wrapper-sm:hover{
-  border-color: #fadb14;
+@import '~antd/lib/style/themes/default.less';
+
+.search-container {
+
+  .ant-input-affix-wrapper {
+    border: 1px solid @black;
+
+    &:hover {
+      box-shadow: 0 0 8px @yellow-5;
+    }
+  }
+
+  .ant-input-affix-wrapper:focus, .ant-input-affix-wrapper-focused {
+    border: 1px solid @black;
+    box-shadow: 0 0 8px @yellow-5;
+  }
+
+  .antd-wave-shadow-color {
+    color: @black;
+  }
+
+  .ant-input-affix-wrapper > input.ant-input {
+    padding: 0 15px;
+  }
+
+  .ant-input-affix-wrapper,
+  .ant-input-affix-wrapper-focused {
+    border-color: @black;
+    box-shadow: none;
+  }
 }
-.antd-wave-shadow-color{
-  color: black;
-}
-.ant-input-affix-wrapper > input.ant-input{
-  padding: 0 15px;
-}
-.ant-input-affix-wrapper,
-.ant-input-affix-wrapper-focused{
-  border-color: black;
-  box-shadow: none;
-}
-.search-product{
+
+.search-product {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  &-logo{
+
+  &-logo {
     width: 50px;
     height: 50px;
   }
-  &-name{
+
+  &-name {
     font-weight: bold;
   }
-  &-price{
+
+  &-price {
     font-weight: bold;
     text-shadow: 1px 1px 1px grey;
   }
 }
-.search-product-logo{
+
+.search-product-logo {
   width: 50px;
   height: 50px;
 }
-.search-input{
+
+.search-input {
   justify-content: space-between;
-  height: 34px;
+  height: 24px;
 }
+
+@media screen and (min-width: 576px) {
+  .search-input {
+    height: 26px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .search-input {
+    height: 28px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .search-input {
+    height: 32px;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .search-input {
+    height: 34px;
+  }
+}
+

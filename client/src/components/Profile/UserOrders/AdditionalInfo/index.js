@@ -1,7 +1,6 @@
 import {Col, Divider, Row} from "antd";
 import React from "react";
 import PropTypes from "prop-types";
-import ProductsInOrder from "../ProductsInOrder";
 
 const AdditionalInfo = ({order}) => {
     return (
@@ -53,6 +52,6 @@ const AdditionalInfo = ({order}) => {
 export default AdditionalInfo;
 
 
-ProductsInOrder.propTypes = {
-    order: PropTypes.array.isRequired
+AdditionalInfo.propTypes = {
+    order: PropTypes.array,
 };

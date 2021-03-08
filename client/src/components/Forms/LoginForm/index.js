@@ -9,14 +9,19 @@ import { useDispatch, useSelector } from 'react-redux'
 import {authUser} from "../../../store/user/userAction";
 import jwt_decode from "jwt-decode";
 import {cartMerging} from '../../../services/cartAuth'
+import { showModal } from "../../../store/modal/modalAction";
 
 const LoginForm = (props) => {
-    const [form] = Form.useForm();
-    const history = useHistory();
-    const dispatch = useDispatch();
-    const products = useSelector(state => state.cart.products.products);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
+  const [form] = Form.useForm();
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const products = useSelector(state => state.cart.products.products);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const showModalRegistration = () => {
+    dispatch(showModal({ status: true, type: "RegistrationForm" }));
+  };
 
     const onFinish = (customerData) => {
         setLoading(true);
@@ -89,8 +94,12 @@ const LoginForm = (props) => {
             </Form.Item>
             <Form.Item>
                 Do not have an account?
-                <Link to="/register"
-                      onClick={props.handleRegisterModalClose}> Register now!</Link>
+              {props.modal
+                ? <span className="login-register_modal-link"
+                        onClick={showModalRegistration}> Register now!</span>
+                : <Link to="/register" onClick={props.handleRegisterModalClose}> Register now!</Link>
+              }
+
             </Form.Item>
             <Button className='login-form-button'
                     type="primary"
