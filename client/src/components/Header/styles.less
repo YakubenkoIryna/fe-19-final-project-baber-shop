@@ -1,46 +1,70 @@
 @import '~antd/lib/style/themes/default.less';
 
-.basket-icon {
-  position: relative;
-  font-size: 30px;
-}
-
-.basket-icon > svg {
-  position: absolute;
-  right: -4px;
-  bottom: -11px;
-  font-size: 30px;
-}
-
-.basket-icon {
-  position: relative;
-  font-size: 30px;
-}
-
-.basket-icon > svg {
-  position: absolute;
-  right: -4px;
-  bottom: -11px;
-  font-size: 30px;
-}
-
-.login {
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  width: 100%;
+  height: auto;
+  padding: 10px 24px 4px;
   text-align: center;
-  cursor: pointer;
+  border-bottom: 2px solid @black;
+
+  .ant-page-header-content {
+    padding-top: 0;
   }
 
-.login-title {
-  padding-left: 3px;
-  font-weight: 600;
-  font-size: 20px;
-  vertical-align: baseline;
-}
+  //logIn & user-info
 
+  .username, .login-title {
+    display: none;
+  }
 
-.header-contact > a {
-  color: black;
-  font-weight: 400;
-  font-size: 20px;
+  &-login {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  &-profile {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    color: @black;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+      color: @yellow-6;
+      text-shadow: 1px 1px 1px @black;
+    }
+  }
+
+  //contact & logOut
+
+  &-contact {
+
+    .contact-number {
+      & > a {
+        color: black;
+        font-size: 20px;
+      }
+
+      &-text {
+        display: none;
+      }
+    }
+
+    .logout-title {
+      display: none;
+    }
+
+    .logoutBtn {
+      font-weight: bold;
+      font-size: 18px;
+      cursor: pointer;
+    }
+  }
 }
 
 .catalogue-wrapper {
@@ -49,99 +73,200 @@
 }
 
 .cart {
-  max-width: 37vw;
-  height: 35px;
-  margin-left: 5vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 24px;
   color: black;
-  font-size: 24px;
+  font-size: 14px;
   border: 1px solid black;
+
+  .ant-badge-count-sm {
+    right: 17px !important;
+    min-width: 13px;
+    height: 12px;
+    margin-top: -7px !important;
+    padding: 0;
+    font-size: 10px;
+    line-height: 12px;
+    border-radius: 7px;
+  }
 }
 
+
 .img-cart {
-  width: 33px;
-  margin-right: 5px;
+  width: 24px;
+  margin-right: 6px;
   padding-bottom: 0;
   vertical-align: sub;
 }
-.header-breadcrumbs {
-  margin-bottom: 0 !important;
-}
-.header-row {
-  margin: -18px -12px;
-}
-.logout-title{
-  font-weight: 600;
-  font-size: 20px;
+
+.catalogue-box {
+  z-index: 1;
 }
 
-@media (max-width: 585px ) {
-  .user-icon {
-   margin: 0 auto;
-    margin-right: 25px;
-  }
-  .contact-number {
-    display: none;
-  }
-  .cart{
-    max-width: 46vw;
-    margin: 2px 10px;
-  }
-
-  .login{
-    padding-left: 5px;
+@media screen and (min-width: 576px) {
+  .header {
+    .username, .login-title {
+      display: inline;
+      margin-left: 5px;
+      font-weight: bold;
+      font-size: 16px;
     }
 
-  .username, .login-title{
-    display: none;
-  }
-  .header-contact{
-    margin-left: 34px;
-  }
-  .search-box{
-    margin: 0;
-    padding: 2px 4px;
-  }
+    &-profile, &-login {
+      padding-left: 3vw;
+    }
 
-}
+    &-contact {
+      padding-right: 3vw;
+    }
 
-@media (max-width: 768px ) {
+    .cart {
+      height: 26px;
 
-  .user-icon{
-    margin-left: 24px;
-  }
-  .contact-number {
-    display: none;
-  }
+      .img-cart {
+        width: 26px;
+      }
 
-  .logout-title {
-    display: none;
+      .ant-badge-count-sm {
+        margin-top: -9px !important;
+      }
+    }
   }
 }
 
-.username {
-  font-weight: 600;
-  font-size: 20px;
-  vertical-align: text-bottom;
-}
+@media screen and (min-width: 768px) {
+  .header {
+    padding: 10px 24px;
 
-.logoutBtn {
-  font-weight: bold;
-  font-size: 18px;
-  cursor: pointer;
-}
+    .username, .login-title {
+      margin-left: 10px;
+    }
 
-.header-profile {
-  color: @black;
-  text-decoration: none;
-  cursor: pointer;
+    .logout-title {
+      display: inline-block;
+      margin-left: 5px;
+      font-size: 16px;
+    }
+  }
 
-  &:hover {
-    color: @yellow-6;
-    text-shadow: 1px 1px 1px @black;
+  .cart {
+    height: 28px;
+
+    .popover-basket-span {
+      font-size: 16px;
+    }
+
+    .ant-badge-count-sm {
+      right: 17px !important;
+      min-width: 14px;
+      height: 14px;
+      line-height: 14px;
+    }
   }
 }
-@media (max-width: 950px ) {
-  .contact-number {
-    display: none;
+
+@media screen and (min-width: 992px) {
+  .header {
+    padding: 14px 24px;
+
+    .username, .login-title {
+      font-size: 18px
+    }
+
+    &-profile, &-login {
+      padding-left: 3.5vw;
+    }
+
+    .ant-image {
+      width: 140px;
+    }
+
+    &-contact {
+      padding-right: 3.5vw;
+
+      .contact-number {
+        & > a {
+          display: flex;
+          align-items: center;
+          color: black;
+          font-size: 20px;
+        }
+
+        &-text {
+          display: inline-block;
+          margin-left: 10px;
+          font-weight: bold;
+          font-size: 16px;
+
+        }
+      }
+    }
+
+    .logout-title {
+      margin-left: 10px;
+      font-size: 17px;
+    }
+
+    .cart {
+      height: 32px;
+
+      .img-cart {
+        width: 32px;
+      }
+
+      .popover-basket-span {
+        font-size: 18px;
+      }
+
+      .ant-badge-count-sm {
+        right: 20px !important;
+        margin-top: -14px !important;
+        font-size: 12px;
+        line-height: 15px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .header {
+    padding: 16px 24px;
+
+    .username, .login-title {
+      font-size: 22px
+    }
+
+    &-profile, &-login {
+      padding-left: 4.5vw;
+    }
+
+    .ant-image {
+      width: 170px;
+    }
+
+    &-contact {
+      padding-right: 5.5vw;
+
+      .contact-number {
+        &-text {
+          font-size: 20px;
+        }
+      }
+    }
+
+    .logout-title {
+      font-size: 22px;
+    }
+
+    .cart {
+      height: 34px;
+
+      .popover-basket-span {
+        font-size: 20px;
+      }
+    }
   }
 }
