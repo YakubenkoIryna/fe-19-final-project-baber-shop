@@ -48,17 +48,17 @@ const Catalogue = () => {
 
     const categoriesCatalogue = sortedCategories.map((topLevelCategory, index) => {
         return (
-            <SubMenu key={'sub' + index} title={topLevelCategory.name} icon={<CaretRightOutlined/>}
-                     className='catalogue-item level1'>
+            <SubMenu key={'sub' + index} title={topLevelCategory.name} icon={<CaretRightOutlined />}
+                     className='catalogue-item'>
                 {topLevelCategory.childLevel.map(nestedLevel => {
                     if (nestedLevel.childLevel) {
                         return (
-                            <SubMenu key={nestedLevel.id} title={nestedLevel.name} icon={<ForwardOutlined/>}
-                                     className='catalogue-item level2'>
+                            <SubMenu key={nestedLevel.id} title={nestedLevel.name} icon={<ForwardOutlined />}
+                                     className='catalogue-item'>
                                 {nestedLevel.childLevel.map(menuItem => {
                                     return (
                                         <Menu.Item key={menuItem.id}
-                                                   className='catalogue-menu-item level3'>
+                                                   className='catalogue-menu-item'>
                                             <Link to={`/shop?categories=${menuItem.name}`}>{menuItem.name}</Link>
                                         </Menu.Item>
                                     )

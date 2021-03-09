@@ -1,17 +1,17 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {Col, PageHeader, Row} from "antd";
-import {authUser} from "../../store/user/userAction";
-import "./styles.less";
 import {Link} from "react-router-dom";
+import {Col, Image, PageHeader, Row} from "antd";
+import {LogoutOutlined} from "@ant-design/icons";
+import {authUser} from "../../store/user/userAction";
 import PopoverBasket from "../PopoverBasket/index";
 import LiveSearch from './LiveSearch'
 import {showModal} from "../../store/modal/modalAction";
 import Login from "../Modal/LoginModal";
 import RegistrationModal from "../Modal/RegisterModal";
 import {headerLogo, iconContact, iconLogin} from './img/index'
-import {LogoutOutlined} from "@ant-design/icons";
 import Catalogue from "../Catalogue";
+import "./styles.less";
 
 
 const SiteHeader = () => {
@@ -29,23 +29,16 @@ const SiteHeader = () => {
     }
 
     return (
-        <PageHeader style={{
-            position: 'sticky',
-            top:0,
-            zIndex:999,
-            height: 'auto',
-            width: "100%",
-            textAlign: "center",
-            borderBottom: "2px solid black"
-        }}>
-            <Row className="header-row" gutter={[24, 24]}>
-
-                <Col style={{padding: 2, marginTop: 10}} xs={6} sm={8} lg={8}>
+        <PageHeader className='header'>
+            <Row align="middle" gutter={[0, 12]}>
+                <Col xs={{span: 2}}
+                     sm={{span: 8}}
+                >
                     {!isAuthenticated
                         ? (<>
-                            <div className="login" key="login" onClick={showModalLogin}>
-                                <img src={iconLogin}  alt="User-icon"/>
-                                <span className="login-title">LogIn</span>
+                            <div className='header-login' key="login" onClick={showModalLogin}>
+                                <img src={iconLogin} alt="User-icon"/>
+                                <span className='login-title'>Login</span>
                             </div>
                             <Login/></>)
                         : (<Link to='/profile' className='header-profile'>
@@ -54,55 +47,74 @@ const SiteHeader = () => {
                         </Link>)
                     }
                 </Col>
-
-                <Col style={{padding: 2}} xs={10} sm={8} lg={8}>
+                <Col xs={{span: 16, offset: 2}}
+                     sm={{span: 8, offset: 0}}
+                     lg={{span: 6, offset: 1}}
+                >
                     <div className='header-logo' key="home">
                         <Link to="/">
-                            <img style={{width: '150px'}} src={headerLogo} alt="Logo"/>
+                            <Image src={headerLogo} alt="Logo" preview={false}/>
                         </Link>
                     </div>
                 </Col>
-                <Col style={{padding: 2, marginTop: 10}} xs={8} sm={8} lg={8}>
-                    <Row justify="center">
+                <Col xs={{span: 4}}
+                     sm={{span: 6, offset: 2}}
+                     lg={{span: 8, offset: 1}}
+
+                >
+                    <Row className='header-contact' justify="end">
                         <Col>
-                            <div className="header-contact" key="contact">
-                                <a href="tel:+79998887766">
-                                    <img style={{width: 19, verticalAlign:'inherit'}} src={iconContact} alt="icon-contact"/>
-                                    <span className="contact-number">+380(067)6167008</span>
+                            <div className="contact-number" key="contact">
+                                <a href="tel:+380676167008">
+                                    <img style={{fontSize: 22}} src={iconContact} alt="icon-contact"/>
+                                    <span className="contact-number-text">+38(067) 616 70 08</span>
                                 </a>
                             </div>
                         </Col>
-
-                        <Col style={{marginLeft: 20}}>
-                            {isAuthenticated &&
+                        {isAuthenticated &&
+                        <Col xs={{offset: 4}} lg={{offset: 1}}>
                             <div className="logoutBtn" key="logout" onClick={handleLogout}>
-                                {<LogoutOutlined style={{fontSize:19}}/>} <span className="logout-title">LogOut</span>
-                            </div>}
+                                <LogoutOutlined style={{width: 22}}/>
+                                <span className="logout-title">LogOut</span>
+                            </div>
                         </Col>
+                        }
                     </Row>
                 </Col>
             </Row>
 
-            <Row className="header-row" justify='center' gutter={[24, 24]}>
+            <Row justify='center' align="baseline" gutter={[{xs: 0, lg: 12, xl: 16}, 8]}>
 
 
-                <Col className="catalogue-box" style={{padding: 0,textAlign: '-webkit-center', zIndex:1}} xs={{span: 12, order: 1}} sm={{span: 12, order: 1}} lg={{span: 8, order: 1}}>
-                    <div  key="plp">
+                <Col className="catalogue-box"
+                     xs={{span: 10, order: 1}}
+                     sm={{span: 10}}
+                     md={{span: 5}}
+                     lg={{span: 6}}
+                >
+                    <div key="plp">
                         <Catalogue/>
-
                     </div>
                 </Col>
-                <Col style={{ paddingTop:3, paddingLeft: 4, paddingRight:4}} className="search-box" xs={{span: 24, order: 3}} sm={{span: 21, order: 3}}
-                     lg={{span: 8, order: 2}}>
+                <Col className="search-box"
+                     xs={{span: 24, order: 3}}
+                     sm={{span: 24}}
+                     md={{span: 12, offset: 1, order: 2}}
+                     lg={{span: 12, offset: 0}}
+                >
                     <LiveSearch/>
                 </Col>
-                <Col style={{padding: 2}} xs={{span: 12, order: 2}} sm={{span: 12, order: 2}} lg={{span: 8, order: 3}}>
-                    <div className="cart" key="cart">
+                <Col
+                    xs={{span: 10, offset: 4, order: 2}}
+                    sm={{span: 10}}
+                    md={{span: 5, offset: 1, order: 3}}
+                    lg={{span: 6, offset: 0}}
+                >
+                    <Link to="/cart">
                         <PopoverBasket/>
-                    </div>
+                    </Link>
                 </Col>
-            </Row>
-            <RegistrationModal/>
+            </Row><RegistrationModal/>
         </PageHeader>
 
     );

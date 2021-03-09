@@ -1,8 +1,19 @@
-#register {
-  background-color: #fff;
+@import '~antd/lib/style/themes/default.less';
 
-  .ant-form-item-control-input-content > input, .ant-input-affix-wrapper {
-    border-color: #000;
+#register {
+
+  & .ant-input {
+    border: 1px solid @black;
+
+
+    &:hover {
+      box-shadow: 0 0 8px @yellow-5;
+    }
+
+    &:focus {
+      border: 1px solid @black;
+      box-shadow: 0 0 8px @yellow-5;
+    }
   }
 
   .registration-form-title {
