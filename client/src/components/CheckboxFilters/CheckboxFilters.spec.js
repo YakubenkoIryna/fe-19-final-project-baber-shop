@@ -10,13 +10,11 @@ beforeEach(() => {
     container = document.createElement('div');
     document.body.appendChild(container);
 })
-
 afterEach(() => {
     unmountComponentAtNode(container);
     container.remove();
     container = null;
 })
-
 test('CheckboxFilter is rendered', () => {
     act(() => {
         render(<MemoryRouter>
@@ -25,13 +23,11 @@ test('CheckboxFilter is rendered', () => {
     });
     expect(container.innerHTML).toMatchSnapshot();
 });
-
 test('renders correctly when there is one filter', () => {
     const items = ['filter'];
     const tree = renderer.create(<CheckboxFilter items={items} />).toJSON();
     expect(tree).toMatchSnapshot();
 });
-
 test('renders correctly when there are couple of filters', () => {
     const items = ['filter-one', 'filter-two', 'filter-three'];
     const tree = renderer.create(<CheckboxFilter items={items} />).toJSON();
