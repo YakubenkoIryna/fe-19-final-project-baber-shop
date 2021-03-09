@@ -15,6 +15,7 @@ export const TotalAmount = (props) => {
   const sumArray = []
   filteredArray.forEach(product => sumArray.push(Number(product.product.currentPrice) * Number(product.cartQuantity)))
   const totalMoney = Number(sumArray.reduce((a, b) => a + b, 0).toFixed(2))
+  
 
   return (
     <>{props.total

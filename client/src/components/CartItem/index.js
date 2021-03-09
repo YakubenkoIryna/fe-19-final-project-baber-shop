@@ -31,7 +31,7 @@ const CartItem = (props) => {
           {realQuantity === 0
             ? <p className="cart-item-available-zero">Available: 0</p>
             : realQuantity < 0
-            ? <p className="cart-item-available-zero">Unavailable</p>
+            ? <p className="cart-item-available-zero">Unavailable now</p>
             : <p className="cart-item-available">Available: {realQuantity}</p>
           }
           <p>
@@ -55,7 +55,7 @@ const CartItem = (props) => {
               : <MinusCircleFilled onClick={() =>  dispatch(decreaseQuantity(_id,isAuth,cartQuantity))}/>
             }
             {realQuantity < 0
-              ? <span>0</span>
+              ? dispatch(deleteFromCart(_id,isAuth))
               : <span>{cartQuantity}</span>
             }
 
@@ -79,7 +79,7 @@ const CartItem = (props) => {
           {realQuantity === 0
             ? <p className="cart-item-available-zero">Available: 0</p>
             : realQuantity < 0
-            ? <p className="cart-item-available-zero">Unavailable</p>
+            ? <p className="cart-item-available-zero">Unavailable now</p>
             : <p className="cart-item-available">Available: {realQuantity}</p>
           }
         </div>
