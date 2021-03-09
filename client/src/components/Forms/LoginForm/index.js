@@ -7,10 +7,11 @@ import {authUser} from "../../../store/user/userAction";
 import jwt_decode from "jwt-decode";
 import {cartMerging} from '../../../services/cartAuth'
 import { showModal } from "../../../store/modal/modalAction";
-import {Form, Input, Button} from 'antd';
-import {UserOutlined, LockOutlined} from '@ant-design/icons';
 import PropTypes from 'prop-types';
 import './styles.less';
+
+import {Form, Input, Button} from 'antd';
+import {UserOutlined, LockOutlined} from '@ant-design/icons';
 
 const LoginForm = (props) => {
   const [form] = Form.useForm();
