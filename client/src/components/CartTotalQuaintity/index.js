@@ -11,8 +11,9 @@ export const TotalAmount = (props) => {
   const shippingPrice = useSelector(state => state.checkout.shipping.price)
   const dispatch = useDispatch()
 
+  const filteredArray = products.filter(item => item.product.quantity !== 0)
   const sumArray = []
-  products.forEach(product => sumArray.push(Number(product.product.currentPrice) * Number(product.cartQuantity)))
+  filteredArray.forEach(product => sumArray.push(Number(product.product.currentPrice) * Number(product.cartQuantity)))
   const totalMoney = Number(sumArray.reduce((a, b) => a + b, 0).toFixed(2))
 
   return (

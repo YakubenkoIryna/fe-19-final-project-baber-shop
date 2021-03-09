@@ -15,7 +15,7 @@ const CartItem = (props) => {
   useEffect(() => {
     setRealQuantity(quantity - cartQuantity)
   },[cartQuantity, quantity])
-
+  console.log("realQuantity",realQuantity);
   return (
     <div className="cart-item-wrapper">
       <div className="cart-item_item-image-description">
@@ -30,6 +30,8 @@ const CartItem = (props) => {
           </Link>
           {realQuantity === 0
             ? <p className="cart-item-available-zero">Available: 0</p>
+            : realQuantity < 0
+            ? <p className="cart-item-available-zero">Unavailable</p>
             : <p className="cart-item-available">Available: {realQuantity}</p>
           }
           <p>
@@ -48,17 +50,27 @@ const CartItem = (props) => {
         <div className="item-handler_main">
           <div className="item-handler_main-price"><span className="item-handler_main-total-mobile">Price</span><span>${currentPrice}</span></div>
           <div className="item-handler_main-quantity">
-            {cartQuantity === 1
+            {cartQuantity <= 1
               ? <MinusCircleFilled onClick={() =>  dispatch(deleteFromCart(_id,isAuth))}/>
               : <MinusCircleFilled onClick={() =>  dispatch(decreaseQuantity(_id,isAuth,cartQuantity))}/>
             }
-            <span>{cartQuantity}</span>
-            {realQuantity === 0
+            {realQuantity < 0
+              ? <span>0</span>
+              : <span>{cartQuantity}</span>
+            }
+
+            {realQuantity <= 0
             ? <PlusCircleFilled />
             : <PlusCircleFilled onClick={() => dispatch(increaseQuantity(_id,isAuth,cartQuantity))}/>
             }
           </div>
-          <div className="item-handler_main-total"><span className="item-handler_main-total-mobile">Total</span><span>${(currentPrice * cartQuantity).toFixed(2)}</span></div>
+          <div className="item-handler_main-total"><span className="item-handler_main-total-mobile">Total</span>
+            {realQuantity < 0
+              ? <span>$ 0</span>
+              : <span>${(currentPrice * cartQuantity).toFixed(2)}</span>
+            }
+
+          </div>
           <div className="item-handler_main-basket" onClick={() => dispatch(deleteFromCart(_id, isAuth))}>
             <DeleteFilled/>
           </div>
@@ -66,6 +78,8 @@ const CartItem = (props) => {
         <div className="cart-item-available-mobile">
           {realQuantity === 0
             ? <p className="cart-item-available-zero">Available: 0</p>
+            : realQuantity < 0
+            ? <p className="cart-item-available-zero">Unavailable</p>
             : <p className="cart-item-available">Available: {realQuantity}</p>
           }
         </div>
