@@ -1,3 +1,5 @@
+@import '~antd/lib/style/themes/default.less';
+
 .login-page-wrapper {
   width: 400px;
   margin: 0 auto;
@@ -7,6 +9,17 @@
   }
   .ant-btn {
     width: 20%;
+  }
+  & .ant-input-affix-wrapper {
+    border: 1px solid @black;
+
+    &:hover {
+      box-shadow: 0 0 8px @yellow-5;
+    }
+  }
+  .ant-input-affix-wrapper:focus, .ant-input-affix-wrapper-focused {
+    border: 1px solid @black;
+    box-shadow: 0 0 8px @yellow-5;
   }
 }
 .login-register_modal-link {

@@ -34,16 +34,14 @@ const FilteredProducts = ({queryString}) => {
     const showLoadingContainer = {
         display: showLoading ? 'flex' : 'none'
     }
-    const styleNoItemsContainer = {
-        justifyContent: filteredProducts.length === 0 ? 'center' : 'start'
-    }
+
     const showNoItemsContainer = {
         display: filteredProducts.length === 0 ? 'block' : 'none'
     }
 
     return (
         <>
-            <div className='filtered-products-container' style={styleNoItemsContainer}>
+            <div className='filtered-products-container' >
                 {filteredProducts.map(item =>
                     <ProductCard key={item._id} product={item}/>
                 )}
