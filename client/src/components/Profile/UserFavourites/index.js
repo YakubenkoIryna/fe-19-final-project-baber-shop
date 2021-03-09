@@ -8,6 +8,7 @@ import '../style.less'
 import {useLocation} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {showPage} from "../../../store/breadcrumbs/crumbsAction";
+import profileBreadcrumbs from "../../../functions/profileBreadcrumbs";
 
 const {get} = Ajax;
 
@@ -27,13 +28,9 @@ const UserFavourites = () => {
 
     }
     useEffect(() => {
-        const parentPages = pathname.slice(1, pathname.length).split('/');
-        const pageName = parentPages.pop();
+        const currentPage = profileBreadcrumbs(pathname, 'Personal information', key);
+        dispatch(showPage(currentPage));
 
-        let result = '/';
-        const pathNames = parentPages.map(page => result+=`${page}`)
-
-        dispatch(showPage({pageName, parentPages: ['Personal information'], pathNames, key}));
             let cleanupFunction = false;
             get('/wishlist')
                 .then(wishlist => {

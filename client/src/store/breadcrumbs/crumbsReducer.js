@@ -7,7 +7,7 @@ const initialState = {
     keys: []
 }
 
-export function showSomething(state = initialState, action) {
+export function showCurrentPageInfo(state = initialState, action) {
     switch (action.type) {
         case SHOW_PAGE:
             return {
@@ -18,4 +18,4 @@ export function showSomething(state = initialState, action) {
     }
 }
 
-export default showSomething
+export default showCurrentPageInfo

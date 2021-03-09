@@ -8,7 +8,7 @@ import {persistReducer} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import checkoutReducer from "./checkout/checkoutReducer";
 import lastProducts from './lastViewedProducts/lastProductsReducer';
-import showSomething from './breadcrumbs/crumbsReducer';
+import showCurrentPageInfo from './breadcrumbs/crumbsReducer';
 
 const persistConfig ={
   key:'root',
@@ -24,7 +24,7 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   checkout: checkoutReducer,
   lastProducts,
-  showSomething
+  showCurrentPageInfo
 })
 
 export default persistReducer(persistConfig,rootReducer)

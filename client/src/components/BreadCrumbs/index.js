@@ -3,10 +3,11 @@ import {useLocation} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {Breadcrumb, Typography} from 'antd';
 import {HomeOutlined} from '@ant-design/icons';
+import PropTypes from 'prop-types';
 import './styles.less';
 
 const BreadCrumbs = () => {
-    const pageFromDispatch = useSelector(state => state.showSomething.page);
+    const pageFromDispatch = useSelector(state => state.showCurrentPageInfo.page);
     const {pathname} = useLocation();
     const [display, setDisplay] = useState('none');
 
@@ -44,6 +45,17 @@ const BreadCrumbs = () => {
                 : ''}
         </Breadcrumb>
     )
+}
+
+BreadCrumbs.propTypes = {
+    display: PropTypes.string,
+    toUpper: PropTypes.func,
+    pathname: PropTypes.string,
+    pageFromDispatch: PropTypes.object,
+    pageName: PropTypes.string.isRequired,
+    parentPages: PropTypes.array,
+    pathNames: PropTypes.array,
+    keys: PropTypes.array.isRequired
 }
 
 export default BreadCrumbs

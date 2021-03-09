@@ -1,9 +1,10 @@
 import React, {useEffect} from 'react'
-import './styles.less'
 import LoginForm from "../../../components/Forms/LoginForm";
 import {useLocation} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {showPage} from "../../../store/breadcrumbs/crumbsAction";
+import PropTypes from 'prop-types';
+import './styles.less';
 
 const Login = () => {
     const {key} = useLocation();
@@ -18,6 +19,11 @@ const Login = () => {
             <LoginForm />
         </div>
     )
+}
+
+Login.propTypes = {
+    key: PropTypes.string,
+    dispatch: PropTypes.func
 }
 
 export default Login

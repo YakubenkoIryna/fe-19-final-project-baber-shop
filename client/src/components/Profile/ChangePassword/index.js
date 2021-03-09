@@ -5,6 +5,7 @@ import {collectionItemsProfileChangePassword} from "../../Forms/RegistrationForm
 import {showPage} from "../../../store/breadcrumbs/crumbsAction";
 import {useLocation} from "react-router-dom";
 import {useDispatch} from "react-redux";
+import profileBreadcrumbs from "../../../functions/profileBreadcrumbs";
 import './style.less'
 
 const {put} = Ajax;
@@ -32,13 +33,8 @@ const ChangePassword = () => {
     };
 
     useEffect(() => {
-        const parentPages = pathname.slice(1, pathname.length).split('/');
-        const pageName = parentPages.pop();
-
-        let result = '/';
-        const pathNames = parentPages.map(page => result+=`${page}`)
-
-        dispatch(showPage({pageName, parentPages: ['Personal information'], pathNames, key}));
+        const currentPage = profileBreadcrumbs(pathname, 'Personal information', key);
+        dispatch(showPage(currentPage));
     }, [dispatch, key, pathname])
 
     const [form] = Form.useForm();
