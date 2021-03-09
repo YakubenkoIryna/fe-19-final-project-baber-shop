@@ -9,6 +9,7 @@ import { authUser } from "../../../store/user/userAction";
 import LoginService from "../../../services/LoginService";
 import RegisterService from "../../../services/RegisterService";
 import { ToastContainer } from "react-toastify";
+import PropTypes from 'prop-types';
 import { errorRegisterToastCustom, successRegisterToastCustom } from "../../Toasters";
 import jwt_decode from "jwt-decode";
 import "./styles.less";
@@ -106,3 +107,6 @@ const RegistrationForm = (props) => {
 
 export default RegistrationForm;
 
+RegistrationForm.propTypes = {
+  modal: PropTypes.bool
+}
