@@ -1,7 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CheckboxItem is rendered true 1`] = `"<div class=\\"checkbox-group__item\\"><input class=\\"item-filter\\" type=\\"checkbox\\"><label class=\\"checkbox-label\\"></label></div>"`;
-
 exports[`CheckboxItem renders correctly 1`] = `
 <div
   className="checkbox-group__item"
