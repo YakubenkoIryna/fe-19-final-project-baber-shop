@@ -13,12 +13,12 @@ const PopoverBasket = () => {
         <Popover placement="bottom" className='popover-basket-div' content={content}
                  trigger="hover">
             <div className="cart" key="cart">
-                <img className="img-cart" src={iconCart} alt="icon"/>
-                <Badge className='basket-badge' count={productsLength} size="small"
-                       offset={[-20, -20]}>
-                </Badge>
+                    <img className="img-cart" src={iconCart} alt="icon"/>
+                    <Badge className='basket-badge' count={productsLength} size="small"
+                           offset={[-20, -20]}>
+                    </Badge>
                 <span className="popover-basket-span"
-                      style={{color: 'black', verticalAlign: 'super', marginLeft: '-10px'}}>Cart</span>
+                      style={{color: 'black', verticalAlign: 'super', paddingLeft: '5px'}}>Cart</span>
             </div>
         </Popover>
 
