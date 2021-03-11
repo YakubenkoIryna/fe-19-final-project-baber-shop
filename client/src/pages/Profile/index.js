@@ -2,10 +2,9 @@ import React from 'react'
 import {Row} from 'antd';
 import ProfileRoutes from "../../routes/ProfileRoutes";
 import UserOptionsMenu from "../../components/Profile/UserOptionsMenu";
-import './style.less'
+import './style.less';
 
 const Profile = () => {
-
 
     return (
         <div className='profile'>
