@@ -1,27 +1,32 @@
 import React, {useState} from 'react';
-import './styles.less'
 import {useHistory, Link} from 'react-router-dom';
-import {Form, Input, Button} from 'antd';
-import {UserOutlined, LockOutlined} from '@ant-design/icons';
 import LoginService from "../../../services/LoginService";
 import Preloader from "../../Preloader";
 import { useDispatch, useSelector } from 'react-redux'
 import {authUser} from "../../../store/user/userAction";
 import jwt_decode from "jwt-decode";
 import {cartMerging} from '../../../services/cartAuth'
+import { showModal } from "../../../store/modal/modalAction";
+import PropTypes from 'prop-types';
+import './styles.less';
+
+import {Form, Input, Button} from 'antd';
+import {UserOutlined, LockOutlined} from '@ant-design/icons';
 
 const LoginForm = (props) => {
-    const [form] = Form.useForm();
-    const history = useHistory();
-    const dispatch = useDispatch();
-    const products = useSelector(state => state.cart.products.products);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
+  const [form] = Form.useForm();
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const products = useSelector(state => state.cart.products.products);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const showModalRegistration = () => {
+    dispatch(showModal({ status: true, type: "RegistrationForm" }));
+  };
 
     const onFinish = (customerData) => {
-        console.log('Received values of form: ', customerData);
         setLoading(true);
-
 
         LoginService.LoginResult(customerData)
             .then(loginResult => {
@@ -91,8 +96,12 @@ const LoginForm = (props) => {
             </Form.Item>
             <Form.Item>
                 Do not have an account?
-                <Link to="/register"
-                      onClick={props.handleRegisterModalClose}> Register now!</Link>
+              {props.modal
+                ? <span className="login-register_modal-link"
+                        onClick={showModalRegistration}> Register now!</span>
+                : <Link to="/register" onClick={props.handleRegisterModalClose}> Register now!</Link>
+              }
+
             </Form.Item>
             <Button className='login-form-button'
                     type="primary"
@@ -107,5 +116,15 @@ const LoginForm = (props) => {
         </Form>
     );
 };
+
+LoginForm.propTypes = {
+    products: PropTypes.array,
+    loading: PropTypes.bool,
+    error: PropTypes.string,
+    handleRegisterModalClose: PropTypes.func,
+    modal: PropTypes.bool,
+    btnWidth: PropTypes.string,
+    dispatch: PropTypes.func
+}
 
 export default LoginForm

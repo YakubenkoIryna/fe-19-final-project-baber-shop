@@ -5,6 +5,10 @@ import Ajax from "../../../services/Ajax";
 import ProductsInOrder from "./ProductsInOrder";
 import AdditionalInfo from "./AdditionalInfo";
 import Preloader from "../../Preloader";
+import {showPage} from "../../../store/breadcrumbs/crumbsAction";
+import {useLocation} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import profileBreadcrumbs from "../../../functions/profileBreadcrumbs";
 import '../style.less'
 import './styles.less'
 
@@ -13,6 +17,9 @@ const {Panel} = Collapse;
 const {Title} = Typography;
 
 const UserOrders = () => {
+    const {pathname, key} = useLocation();
+    const dispatch = useDispatch();
+
     const [loading, setLoading] = useState(true);
     const [orders, setOrders] = useState([]);
     const dateFormat = require("dateformat");
@@ -22,6 +29,9 @@ const UserOrders = () => {
     }
 
     useEffect(() => {
+        const currentPage = profileBreadcrumbs(pathname, 'Personal information', key);
+        dispatch(showPage(currentPage));
+
             let cleanupFunction = false;
             get('/orders')
                 .then(orders => {
@@ -34,7 +44,7 @@ const UserOrders = () => {
                     }
                 })
             return () => cleanupFunction = true
-        }, []
+        }, [dispatch, key, pathname]
     )
 
     return (

@@ -2,6 +2,10 @@
   padding: 15px 0 15px 8%;
   background: lightgrey;
 
+  & .homepage-img {
+    font-size: 18px;
+  }
+
   & > span > a:hover {
     color: #fadb14;
     text-shadow: 1px 1px 1px #000;
@@ -10,7 +14,9 @@
 
 .breadcrumb-item {
   display: inline-block;
-  font-size: 16px;
+  font-weight: bold;
+  font-size: 18px;
+  font-family: Roboto;
 }
 
 @media screen and (max-width: 1163px) {
@@ -21,10 +27,12 @@
 
 @media screen and (max-width: 988px) {
   .breadcrumbs {
-    padding-left: 14%;
+    & .homepage-img {
+      font-size: 14px;
+    }
   }
 
   .breadcrumb-item {
-    font-size: 13px;
+    font-size: 14px;
   }
 }

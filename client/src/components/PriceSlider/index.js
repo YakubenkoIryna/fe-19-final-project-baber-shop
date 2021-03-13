@@ -1,6 +1,7 @@
 import React, {useState}  from 'react';
 import { Slider, InputNumber, Row, Col, Form } from 'antd';
 import './styles.less';
+import PropTypes from 'prop-types';
 
 const PriceSlider = ({query, onChange}) => {
 
@@ -90,3 +91,8 @@ const PriceSlider = ({query, onChange}) => {
 }
 
 export default PriceSlider;
+
+PriceSlider.propTypes = {
+    query: PropTypes.object,
+    onChange: PropTypes.func
+};

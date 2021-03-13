@@ -52,6 +52,9 @@ const CartItem = (props) => {
               ? <MinusCircleFilled onClick={() =>  dispatch(deleteFromCart(_id,isAuth))}/>
               : <MinusCircleFilled onClick={() =>  dispatch(decreaseQuantity(_id,isAuth,cartQuantity))}/>
             }
+            {realQuantity < 0 &&
+              dispatch(deleteFromCart(_id,isAuth))
+            }
             <span>{cartQuantity}</span>
             {realQuantity === 0
             ? <PlusCircleFilled />
