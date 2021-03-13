@@ -7,13 +7,13 @@ import {resetCart} from '../../store/cart/actionCart'
 
 export const TotalAmount = (props) => {
 
-  const products = useSelector(state => state.cart.products.products)
-  const shippingPrice = useSelector(state => state.checkout.shipping.price)
-  const dispatch = useDispatch()
-
+  const products = useSelector(state => state.cart.products.products);
+  const shippingPrice = useSelector(state => state.checkout.shipping.price);
+  const dispatch = useDispatch();
+  const filteredProducts = products.filter(product => product.product.quantity !== 0);
   const sumArray = []
-  products.forEach(product => sumArray.push(Number(product.product.currentPrice) * Number(product.cartQuantity)))
-  const totalMoney = Number(sumArray.reduce((a, b) => a + b, 0).toFixed(2))
+  filteredProducts.forEach(product => sumArray.push(Number(product.product.currentPrice) * Number(product.cartQuantity)));
+  const totalMoney = Number(sumArray.reduce((a, b) => a + b, 0).toFixed(2));
 
   return (
     <>{props.total
@@ -22,7 +22,7 @@ export const TotalAmount = (props) => {
         <div>
           <div className="cart-total_main">
             <div>
-              <span>{products.length} item(s)</span>
+              <span>{sumArray.length} item(s)</span>
               <span>${totalMoney}</span>
             </div>
             <div>
@@ -39,7 +39,7 @@ export const TotalAmount = (props) => {
       : <div className='popover-basket-wrapper'>
         {products.length
           ? <>
-            <p>You have <span className="popover-basket-span">{products.length}</span> goods in the basket</p>
+            <p>You have <span className="popover-basket-span">{sumArray.length}</span> goods in the basket</p>
             <p>For a total amount <span className="popover-basket-span">${totalMoney}</span></p>
             <div className="basket-buttons-wrapper">
               <Button onClick={() => dispatch(resetCart())} className='make-order-button'>Reset Cart</Button>

@@ -52,10 +52,10 @@ BreadCrumbs.propTypes = {
     toUpper: PropTypes.func,
     pathname: PropTypes.string,
     pageFromDispatch: PropTypes.object,
-    pageName: PropTypes.string.isRequired,
+    pageName: PropTypes.string,
     parentPages: PropTypes.array,
     pathNames: PropTypes.array,
-    keys: PropTypes.array.isRequired
+    keys: PropTypes.array
 }
 
 export default BreadCrumbs

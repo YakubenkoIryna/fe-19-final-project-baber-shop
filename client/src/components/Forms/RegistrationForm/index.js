@@ -2,20 +2,21 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Form, Input } from "antd";
+import PropTypes from "prop-types";
 import { collectionItemsForm } from "./collectionItems";
 import { formItemLayout2, tailFormItemLayout} from "./formLayouts"
 import { showModal } from "../../../store/modal/modalAction";
 import { authUser } from "../../../store/user/userAction";
 import LoginService from "../../../services/LoginService";
 import RegisterService from "../../../services/RegisterService";
+import { cartMerging } from '../../../services/cartAuth'
 import { ToastContainer } from "react-toastify";
 import { errorRegisterToastCustom, successRegisterToastCustom } from "../../Toasters";
 import jwt_decode from "jwt-decode";
 import "./styles.less";
 
-import { cartMerging } from '../../../services/cartAuth'
-
 const RegistrationForm = (props) => {
+  console.log("RegistrationForm = (props) =>", props);
   const [form] = Form.useForm();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -104,5 +105,14 @@ const RegistrationForm = (props) => {
   );
 };
 
+RegistrationForm.propTypes = {
+  modal: PropTypes.bool,
+  modalHandler: PropTypes.bool,
+  width: PropTypes.number,
+  handleRegisterModalClose: PropTypes.func
+}
+
 export default RegistrationForm;
+
+
 
