@@ -11,6 +11,8 @@ import './styles.less';
 import {useHistory, useLocation} from 'react-router-dom';
 import {MetaForFiltered} from "../../components/Helmet";
 
+const perPage = 2;
+
 const ProductList = () => {
     const {search, key} = useLocation();
     const history = useHistory();
@@ -23,6 +25,14 @@ const ProductList = () => {
     }, [dispatch, key])
 
     const query = queryString.parse(search, {arrayFormat: "comma"})
+    if (!Object.prototype.hasOwnProperty.call(query, 'perPage')) {
+        query.perPage = String(perPage);
+    }
+
+    const onLoadMore = () => {
+        query.perPage = String(+query.perPage + perPage);
+        onQueryChange();
+    }
 
     const stringify = () => {
         return queryString.stringify({
@@ -79,7 +89,7 @@ const ProductList = () => {
                         </button>
                     </div>
                 </div>
-                <FilteredProducts queryString={stringify()}/>
+                <FilteredProducts queryString={stringify()} onLoadMore={onLoadMore}/>
             </div>
         </>
     )

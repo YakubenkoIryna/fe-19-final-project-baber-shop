@@ -6,16 +6,15 @@ import ProductCard from '../ProductCard';
 import PropTypes from 'prop-types';
 import './styles.less';
 
-const FilteredProducts = ({queryString}) => {
+const FilteredProducts = ({queryString, onLoadMore}) => {
     const [loading, setLoading] = useState(false);
-    const [productsPerPage, setProductsPerPage] = useState(2);
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [showLoading, setShow] = useState(true);
 
     useEffect(()=>{
         async function fetch(){
             setLoading(true);
-            const data = await Ajax.get(`/products/filter?perPage=${productsPerPage}&${queryString}`);
+            const data = await Ajax.get(`/products/filter?${queryString}`);
             setFilteredProducts(data.products);
             setLoading(false);
             if (data.products.length === data.productsQuantity){
@@ -25,12 +24,10 @@ const FilteredProducts = ({queryString}) => {
             }
         }
         fetch()
-    }, [queryString, productsPerPage])
+    }, [queryString])
     // console.log("filteredProducts",filteredProducts);
     // console.log("productsPerPage",productsPerPage);
-    const onLoadMore = () => {
-        setProductsPerPage(prevValue => prevValue + 2)
-    }
+
     const showLoadingContainer = {
         display: showLoading ? 'flex' : 'none'
     }
