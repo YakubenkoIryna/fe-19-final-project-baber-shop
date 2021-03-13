@@ -20,7 +20,7 @@ const AdminCategoryCard = ({ category: { name, imgUrl, description, id }, loadCa
       onOk () {
         CategoryService.deleteCategory(id)
           .then(res => {
-            if (imgUrl && imgUrl.length > 0) {
+            if (imgUrl?.length > 1) {
               for (const { public_id } of imgUrl) {
                 CloudinaryService.imageRemove({ public_id })
                   .then(res => {

@@ -1,32 +1,44 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
+import useAsyncEffect from "use-async-effect";
 import { Layout, Row, Col, Divider } from "antd";
 import AdminSider from "../../../components/AdminSider";
-// import CategoryService from "../../../services/CategoryService";
-import {useParams} from 'react-router-dom';
-import useAsyncEffect from "use-async-effect";
-import CategoryUpdateForm from "../../../components/Forms/CategoryUpdateForm";
-// import ProductForm from "../../../components/Forms/ProductForm";
+import CategoryService from "../../../services/CategoryService";
+import ProductService from "../../../services/ProductService";
+import ProductUpdateForm from "../../../components/Forms/ProductUpdateForm";
 
 import "./styles.less";
-import ProductService from "../../../services/ProductService";
-
+import FilterServices from "../../../services/FilterServices";
+import Preloader from "../../../components/Preloader";
 
 const { Content } = Layout;
 
 const AdminProductUpdate = () => {
-  const {itemNo} = useParams()
+  const { itemNo } = useParams();
+  const [preloader, setPreloader] = useState(false);
   const [productToUpdate, setProductToUpdate] = useState(null);
+  const [listOfCategories, setListOfCategories] = useState(null);
+  const [filters, setFilters] = useState(null);
 
   useAsyncEffect(async isMounted => {
-    console.log("itemNo ====>",itemNo)
-    ProductService.getProduct(itemNo)
-      .then(res => {
-          if (!isMounted()) return;
-          console.log('Product Result ===>', res)
-          setProductToUpdate(res);
-        }
-      )
-      .catch(err => console.log(err));
+    setPreloader(true);
+    try {
+      const res = await Promise.all(
+        [
+          ProductService.getProduct(itemNo),
+          CategoryService.getCategoriesSortedPerLevels(),
+          FilterServices.getListByFilterType(["brand", "country"])
+        ]);
+      if (!isMounted()) return;
+      setProductToUpdate(res[0]);
+      setListOfCategories(Object.entries(res[1]));
+      setFilters(res[2]);
+      setPreloader(false);
+    } catch (err) {
+      setPreloader(false);
+      console.log("ADMIN PRODUCT UPDATE ERROR ===>", err);
+    }
+
   }, []);
 
   return (
@@ -35,8 +47,14 @@ const AdminProductUpdate = () => {
       <Content className="category-content-container">
         <Divider orientation="left">Update Product</Divider>
         <Row gutter={16}>
-          <Col span={22} style={{margin: 'auto'}}>
-             <CategoryUpdateForm categoryToUpdate={productToUpdate} />
+          <Col span={22} style={{ margin: "auto" }}>
+            {preloader && <Preloader />}
+            {!preloader && productToUpdate && listOfCategories && filters &&
+            <ProductUpdateForm
+              productToUpdate={productToUpdate}
+              listOfCategories={listOfCategories}
+              filters={filters}
+            />}
           </Col>
         </Row>
       </Content>
