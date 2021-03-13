@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from "react";
-import './styles.less';
 import CategoryService from "../../services/CategoryService";
 import {Link} from "react-router-dom";
 import {iconCatalogue} from "../Header/img";
 import {CaretRightOutlined,ForwardOutlined } from '@ant-design/icons';
 import OutsideClickHandler from 'react-outside-click-handler';
+import PropTypes from 'prop-types';
+import './styles.less';
 
 import {Menu} from 'antd';
 const {SubMenu} = Menu;
@@ -35,10 +36,7 @@ const Catalogue = () => {
         }
     };
 
-    const handleCategoryClick = ({key}) => {
-        console.log('click', key);
-        setVisible('none')
-    }
+    const handleCategoryClick = () => setVisible('none');
 
     const handleOutsideClick = (e) => {
         if (visible === 'block' && !e.target.className.includes('catalogue-btn')) {
@@ -98,5 +96,12 @@ const Catalogue = () => {
     )
 }
 
+Catalogue.propTypes = {
+    sortedCategories: PropTypes.array,
+    handleCategoryClick: PropTypes.func,
+    handleOutsideClick: PropTypes.func,
+    showCatalogue: PropTypes.func,
+    visible: PropTypes.string,
+}
 
 export default Catalogue

@@ -1,13 +1,20 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Button, Col, Form, Input, message} from "antd";
 import Ajax from "../../../services/Ajax";
 import {collectionItemsProfileChangePassword} from "../../Forms/RegistrationForm/collectionItems";
+import {showPage} from "../../../store/breadcrumbs/crumbsAction";
+import {useLocation} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import profileBreadcrumbs from "../../../functions/profileBreadcrumbs";
 import './style.less'
 
 const {put} = Ajax;
 
 
 const ChangePassword = () => {
+    const {pathname, key} = useLocation();
+    const dispatch = useDispatch();
+
     const layout = {
         labelCol: {
             span: 24,
@@ -24,6 +31,11 @@ const ChangePassword = () => {
             span: 24,
         },
     };
+
+    useEffect(() => {
+        const currentPage = profileBreadcrumbs(pathname, 'Personal information', key);
+        dispatch(showPage(currentPage));
+    }, [dispatch, key, pathname])
 
     const [form] = Form.useForm();
     const warning = () => {

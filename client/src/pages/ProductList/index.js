@@ -1,18 +1,27 @@
-import React, {useState} from 'react';
-import {useHistory, useLocation} from "react-router-dom";
-import queryString from 'query-string';
-import {MetaForFiltered} from "../../components/Helmet"
+import React, {useState, useEffect} from 'react';
 import CheckboxFilter from "../../components/CheckboxFilters";
 import PriceSlider from "../../components/PriceSlider";
 import FilteredProducts from "../../components/FilteredProducts";
+import {useDispatch} from "react-redux";
+import {showPage} from "../../store/breadcrumbs/crumbsAction";
 import {CaretDownOutlined, CaretUpOutlined} from "@ant-design/icons";
+import queryString from 'query-string';
 import './styles.less';
 
+import {useHistory, useLocation} from 'react-router-dom';
+import {MetaForFiltered} from "../../components/Helmet";
+
 const ProductList = () => {
+    const {search, key} = useLocation();
+    const history = useHistory();
+    const dispatch = useDispatch();
+
     const [showFilters, setShowFilters] = useState(false);
 
-    const {search} = useLocation();
-    const history = useHistory();
+    useEffect(() => {
+        dispatch(showPage({pageName: 'Shop', key}));
+    }, [dispatch, key])
+
     const query = queryString.parse(search, {arrayFormat: "comma"})
 
     const stringify = () => {
