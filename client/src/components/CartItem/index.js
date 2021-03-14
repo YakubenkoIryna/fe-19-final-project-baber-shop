@@ -1,17 +1,21 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import './style.less'
 import { PlusCircleFilled, MinusCircleFilled, DeleteFilled } from '@ant-design/icons'
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteFromCart, increaseQuantity, decreaseQuantity } from '../../store/cart/actionCart'
+import { deleteFromCart, increaseQuantity, decreaseQuantity} from "../../store/cart/actionCart";
 import { Link } from 'react-router-dom'
 
 const CartItem = (props) => {
   const dispatch = useDispatch()
   const cartQuantity = props.product.cartQuantity
-  const { imageUrls, name, currentPrice, _id, itemNo } = props.product.product
+  const { imageUrls, name, currentPrice, _id, itemNo, quantity } = props.product.product
   const isAuth = useSelector(state => state.user.isAuthenticated)
-  console.log("props.product.product",props.product.product);
-  console.log("imageUrls",imageUrls);
+
+  const [realQuantity,setRealQuantity] = useState(quantity)
+  useEffect(() => {
+    setRealQuantity(quantity - cartQuantity)
+  },[cartQuantity, quantity])
+
   return (
     <div className="cart-item-wrapper">
       <div className="cart-item_item-image-description">
@@ -24,6 +28,10 @@ const CartItem = (props) => {
           <Link to={`/product/${itemNo}`}>
             <p className='cart-item-link'>{name}</p>
           </Link>
+          {realQuantity === 0
+            ? <p className="cart-item-available-zero">Available: 0</p>
+            : <p className="cart-item-available">Available: {realQuantity}</p>
+          }
           <p>
             Lorem ipsum dolor sit amet,
             consectetur adipisicing elit.
@@ -38,19 +46,31 @@ const CartItem = (props) => {
           <span>Total for Item</span>
         </div>
         <div className="item-handler_main">
-          <div className="item-handler_main-price">{currentPrice}</div>
+          <div className="item-handler_main-price"><span className="item-handler_main-total-mobile">Price</span><span>${currentPrice}</span></div>
           <div className="item-handler_main-quantity">
-            {cartQuantity === 0
-              ? <MinusCircleFilled/>
-              : <MinusCircleFilled onClick={() =>  dispatch(decreaseQuantity(_id,isAuth))}/>
+            {cartQuantity === 1
+              ? <MinusCircleFilled onClick={() =>  dispatch(deleteFromCart(_id,isAuth))}/>
+              : <MinusCircleFilled onClick={() =>  dispatch(decreaseQuantity(_id,isAuth,cartQuantity))}/>
+            }
+            {realQuantity < 0 &&
+              dispatch(deleteFromCart(_id,isAuth))
             }
             <span>{cartQuantity}</span>
-            <PlusCircleFilled onClick={() => dispatch(increaseQuantity(_id,isAuth))}/>
+            {realQuantity === 0
+            ? <PlusCircleFilled />
+            : <PlusCircleFilled onClick={() => dispatch(increaseQuantity(_id,isAuth,cartQuantity))}/>
+            }
           </div>
-          <div className="item-handler_main-total">{(currentPrice * cartQuantity).toFixed(2)}</div>
+          <div className="item-handler_main-total"><span className="item-handler_main-total-mobile">Total</span><span>${(currentPrice * cartQuantity).toFixed(2)}</span></div>
           <div className="item-handler_main-basket" onClick={() => dispatch(deleteFromCart(_id, isAuth))}>
             <DeleteFilled/>
           </div>
+        </div>
+        <div className="cart-item-available-mobile">
+          {realQuantity === 0
+            ? <p className="cart-item-available-zero">Available: 0</p>
+            : <p className="cart-item-available">Available: {realQuantity}</p>
+          }
         </div>
         <div className="item-handler_main-basket-mobile" onClick={() => dispatch(deleteFromCart(_id, isAuth))}>
           <DeleteFilled/>

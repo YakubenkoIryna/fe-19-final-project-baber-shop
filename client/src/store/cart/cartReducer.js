@@ -9,7 +9,8 @@ const initialState = {
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADDING_TO_CART:
-      return {...state, products: {products: [...state.products.products.filter(item => item.product._id !== action.payload.item.product._id),action.payload.item]}}
+      return {...state, products: {products: [...state.products.products.filter(item => item.product._id !== action.payload.item.product._id),action.payload.item]}
+      }
     case DELETE_FROM_CART:
       return {...state, products: {products: [...state.products.products.filter(item => item.product._id !== action.payload._id)]}}
     case INCREASE_QUANTITY:
@@ -17,8 +18,7 @@ const cartReducer = (state = initialState, action) => {
         ...state,
         products: {products: state.products.products.map(product =>
           product.product._id === action.payload._id
-            ? {...product, cartQuantity: product.cartQuantity + 1, product: {...product.product, quantity: product.product.quantity - 1} }
-            // ? {...product, cartQuantity: product.product.cartQuantity + 1}
+            ? {...product, cartQuantity: product.cartQuantity + 1}
             : product,
         )},
       };
@@ -27,8 +27,7 @@ const cartReducer = (state = initialState, action) => {
         ...state,
         products: {products: state.products.products.map(product =>
           product.product._id === action.payload._id
-            ? { ...product, cartQuantity: product.cartQuantity - 1,
-        }
+            ? {...product, cartQuantity: product.cartQuantity - 1}
             : product,
         )},
       };

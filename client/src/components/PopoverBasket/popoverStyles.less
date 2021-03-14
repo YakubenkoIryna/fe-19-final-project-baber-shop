@@ -3,10 +3,17 @@
 }
 .popover-basket-div {
   cursor: pointer;
+  .basket-badge{
+    margin-right: -12px;
+  }
+  img {
+    margin-right: 15px;
+  }
 }
 .popover-basket-wrapper {
   display: flex;
   flex-direction: column;
+  text-align: center;
   cursor: pointer;
   .popover-basket-span {
     font-weight: 700;
@@ -16,6 +23,7 @@
     flex-direction: column;
     align-items: center;
     margin: 5px 0;
+
     button {
       width: 200px;
       margin: 5px 5px;
@@ -44,9 +52,5 @@
     border: 1px black solid;
   }
 }
-@media (max-width: 575px) {
-  .popover-basket-span {
-    display: none;
-  }
-}
+
 

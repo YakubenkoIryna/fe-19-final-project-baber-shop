@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import CheckboxItem from "./CheckboxItem";
 import Ajax from "../../services/Ajax";
+import PropTypes from 'prop-types';
 import './styles.less';
 
 const CheckboxFilter = ({clickCheckbox, query}) => {
@@ -73,3 +74,8 @@ const CheckboxFilter = ({clickCheckbox, query}) => {
 }
 
 export default CheckboxFilter;
+
+CheckboxFilter.propTypes = {
+    clickCheckbox: PropTypes.func,
+    query: PropTypes.object,
+}

@@ -7,7 +7,7 @@ import {Link} from "react-router-dom";
 import Ajax from "../../services/Ajax";
 import WishListService from '../../services/WishListServise'
 import './styles.less';
-import {addToCart} from "../../store/cart/actionCart";
+import { addToCart, deleteFromCart } from "../../store/cart/actionCart";
 import { setToLastProducts } from '../../store/lastViewedProducts/lastProductsAction'
 
 
@@ -17,16 +17,18 @@ const {checkIfProductInWishList} = WishListService
 
 const ProductCard = ({product, refresh}) => {
 
-    const {name, currentPrice, imageUrls, _id} = product;
-    const {exp, isAuthenticated, isAdmin} = useSelector(state => ({...state.user}));
-    const history = useHistory();
-    const dispatch = useDispatch();
-    const [inWishlist, setInWishlist] = useState(false);
+  const { name, currentPrice, imageUrls, _id, quantity } = product;
+  const { exp, isAuthenticated, isAdmin } = useSelector(state => ({ ...state.user }));
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const [inWishlist, setInWishlist] = useState(false);
 
-    const onAddToCart = (e) => {
+  const productsFromStore = useSelector(state => state.cart.products.products);
+  const filteredProducts = productsFromStore.filter(item => item.product._id === _id);
+  const onAddToCart = (e) => {
         e.preventDefault();
-        const newProduct = {product, cartQuantity: + 1}
-        dispatch(addToCart(newProduct, _id, isAuthenticated));
+        const newProduct2 = {product, cartQuantity: + 1}
+        dispatch(addToCart(newProduct2, _id, isAuthenticated));
     }
 
     const forwardToCardDetails = () => {
@@ -81,9 +83,13 @@ const ProductCard = ({product, refresh}) => {
                     <Button className='btn-favourite' onClick={addToWishlist}>
                         {inWishlistIcon}
                     </Button>
-                    <Button className='btn-addToCard' onClick={onAddToCart}>
-                        Add to cart
-                    </Button>
+
+                  { quantity === 0
+                    ? <Button className='btn-addToCard'>SOLD OUT</Button>
+                    : filteredProducts.length === 1
+                      ? <Button className='btn-addToCard add-disabled' onClick={()=>dispatch(deleteFromCart(_id))}>Added</Button>
+                      : <Button className='btn-addToCard' onClick={onAddToCart}>Add to cart</Button>
+                  }
                 </div>
             </div>
         </>

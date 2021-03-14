@@ -1,6 +1,7 @@
 import React, {useState}  from 'react';
 import { Slider, InputNumber, Row, Col, Form } from 'antd';
 import './styles.less';
+import PropTypes from 'prop-types';
 
 const PriceSlider = ({query, onChange}) => {
 
@@ -24,6 +25,7 @@ const PriceSlider = ({query, onChange}) => {
         if (maxVal > value) {
             setMinVal(value);
             query.minPrice = value;
+            query.maxPrice = maxVal;
             onChange();
         }
     }
@@ -32,6 +34,7 @@ const PriceSlider = ({query, onChange}) => {
         if (minVal < value) {
             setMaxVal(value);
             query.maxPrice = value;
+            query.minPrice = minVal;
             onChange();
         }
     }
@@ -88,3 +91,8 @@ const PriceSlider = ({query, onChange}) => {
 }
 
 export default PriceSlider;
+
+PriceSlider.propTypes = {
+    query: PropTypes.object,
+    onChange: PropTypes.func
+};

@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import './styles.less'
 import {Col, Row} from 'antd'
 import { useDispatch, useSelector } from "react-redux";
-import {addToCart} from "../../store/cart/actionCart";
+import { addToCart, deleteFromCart } from "../../store/cart/actionCart";
 import Banner from "../../components/Banner";
 import ProductCarousel from "../../components/ProductCarousel";
 import { useParams } from 'react-router-dom'
@@ -10,6 +10,7 @@ import Ajax from "../../services/Ajax";
 import {CheckCircleOutlined} from '@ant-design/icons'
 import { MetaForEachPage } from "../../components/Helmet";
 import LastViewedProducts from '../../components/LastViewedProducts'
+import {showPage} from "../../store/breadcrumbs/crumbsAction";
 
 
 const ProductPage = (props) => {
@@ -19,15 +20,25 @@ const ProductPage = (props) => {
     const [product, setProduct] = useState({})
     const [images, setImages] = useState([])
 
+    const productsFromStore = useSelector(state => state.cart.products.products);
+    const filteredProducts = productsFromStore.filter(item => item.product._id === product._id);
+
     useEffect(() => {
         async function fetch() {
             const product = await Ajax.get(`/products/${itemNo}`)
             setProduct(product);
             setImages(product.imageUrls);
+
+            const {name, categories, _id} = product
+            dispatch(showPage({
+                pageName: name,
+                parentPages: [categories],
+                pathNames: [`/shop?categories=${categories}`],
+                key: _id}));
         }
 
         fetch();
-    }, [itemNo])
+    }, [itemNo, dispatch])
 
     const onAddToCart = (e) => {
         e.preventDefault();
@@ -69,7 +80,10 @@ const ProductPage = (props) => {
                                 <Col className="btn-buy_box">
                                     { product.quantity === 0
                                         ? (<></>)
-                                        :  (<button className="btn-buy" onClick={onAddToCart}>Buy</button>)
+                                        : filteredProducts.length === 1
+                                        ? (<button className="btn-buy add-disabled" onClick={()=>dispatch(deleteFromCart(product._id))}>Added</button>)
+                                        : (<button className="btn-buy" onClick={onAddToCart}>Buy</button>)
+
                                     }
 
                                 </Col>

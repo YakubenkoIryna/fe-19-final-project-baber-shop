@@ -4,6 +4,7 @@ import MaskedInput from 'antd-mask-input'
 import {Row, Col, Form, Input} from "antd";
 import 'react-credit-cards/es/styles-compiled.css';
 import "./styles.less";
+import PropTypes from "prop-types";
 
 const PaymentForm = ({disabled, form}) => {
     const [state, setState] = useState({
@@ -110,5 +111,10 @@ const PaymentForm = ({disabled, form}) => {
         </div>
     );
 }
+
+PaymentForm.propTypes = {
+    disabled: PropTypes.bool,
+    form: PropTypes.object
+};
 
 export default PaymentForm;

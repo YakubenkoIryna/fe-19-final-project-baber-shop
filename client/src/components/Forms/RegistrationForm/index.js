@@ -2,20 +2,21 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Form, Input } from "antd";
+import PropTypes from "prop-types";
 import { collectionItemsForm } from "./collectionItems";
 import { formItemLayout2, tailFormItemLayout} from "./formLayouts"
 import { showModal } from "../../../store/modal/modalAction";
 import { authUser } from "../../../store/user/userAction";
 import LoginService from "../../../services/LoginService";
 import RegisterService from "../../../services/RegisterService";
+import { cartMerging } from '../../../services/cartAuth'
 import { ToastContainer } from "react-toastify";
-import { errorRegisterToast, successRegisterToast } from "../../Toasters";
+import { errorRegisterToastCustom, successRegisterToastCustom } from "../../Toasters";
 import jwt_decode from "jwt-decode";
 import "./styles.less";
 
-import { cartMerging } from '../../../services/cartAuth'
-
 const RegistrationForm = (props) => {
+  console.log("RegistrationForm = (props) =>", props);
   const [form] = Form.useForm();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -39,18 +40,18 @@ const RegistrationForm = (props) => {
             dispatch(authUser({...decoded, isAuthenticated: true}));
             cartMerging(products, dispatch)
             if (!props.modal) history.push('/');
-            successRegisterToast()
+            successRegisterToastCustom()
             if (props.handleRegisterModalClose) props.handleRegisterModalClose();
           })
           .catch(err => {
-            errorRegisterToast()
+            errorRegisterToastCustom()
             console.log("login error",err);
             const error = err.response.data;
             console.log("error",error);
           })
       })
       .catch(err => {
-        errorRegisterToast()
+        errorRegisterToastCustom()
         console.log("Registration error");
         const error = err.response.data;
         console.log("error",error);
@@ -92,14 +93,26 @@ const RegistrationForm = (props) => {
           </Button>
         </Form.Item>
         <Form.Item {...tailFormItemLayout}>
-          <span onClick={showModalLogin}>Already registered?(link to Login Form MODAL)</span>
-          <Link to="/login">link to Login PAGE</Link>
+          Already registered?
+          {props.modal
+          ? <span className="login-register_modal-link" onClick={showModalLogin}> Login now</span>
+          : <Link to="/login"> Login now</Link>
+          }
         </Form.Item>
+        <ToastContainer/>
       </Form>
-      <ToastContainer/>
     </>
   );
 };
 
+RegistrationForm.propTypes = {
+  modal: PropTypes.bool,
+  modalHandler: PropTypes.bool,
+  width: PropTypes.number,
+  handleRegisterModalClose: PropTypes.func
+}
+
 export default RegistrationForm;
+
+
 

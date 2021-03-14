@@ -11,6 +11,7 @@ const EmptyCartPage = () => {
         extra={<Link to={"/shop"}><Button className="empty-cart_button" type="primary">Go to shop</Button></Link>
         }
       />
+
   );
 };
 
