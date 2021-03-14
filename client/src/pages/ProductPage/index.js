@@ -89,18 +89,8 @@ const ProductPage = (props) => {
                                 </Col>
 
                             </Row>
-                            <div className="product_page__description"> {product.description}The shape of the mouth determines the
-                                structure of the hairstyle after pruning. Common teeth mouth has flat mouth, V word
-                                mouth and U word mouth. Flat mouth is a relatively early design, because the shears
-                                open and close when the hair will slip away from the mouth of the teeth, so the
-                                proportion of thinning is not standard. The V-shaped and U-shaped teeth have
-                                grooves, which can fix the hair proportionally in the teeth. The other blade cuts
-                                the hair in the teeth, and the hair outside the teeth will slide naturally. These
-                                two kinds of teeth have many uses. They can be used in the top and bangs to achieve
-                                a more natural effect and can meet the requirements of natural pruning.
-                            </div>
+                            <div className="product_page__description"> {product.description}</div>
                         </Col>
-
                     </Col>
                 </Row>
             </div>
