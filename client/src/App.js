@@ -20,6 +20,7 @@ const App = () => {
     const {isAdmin} = useSelector(store => ({...store.user}));
 
   useEffect(() => {
+    // throw new Error('Уупс!');
     // to check token expiration once App_did_Mount, after it will be checked through middleware in redux with every store request
     if (localStorage.getItem("token")) {
       const decoded = jwt_decode(localStorage.getItem("token"));
@@ -36,7 +37,7 @@ const App = () => {
   }, [dispatch, history]);
 
     useEffect(() => {
-        isAdmin && history.push("/admin");
+        isAdmin && history.push('/admin/category');
     }, [history, isAdmin]);
 
     const layoutShop = () => (

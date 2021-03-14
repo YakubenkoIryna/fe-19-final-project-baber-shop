@@ -35,7 +35,7 @@ const AdminProductCard = ({ product, loadProducts }) => {
         ProductService.deleteProduct(_id)
           .then(res => {
             const { deletedCategoryInfo } = res;
-            if (deletedCategoryInfo?.imageUrls[0].public_id) {
+            if (deletedCategoryInfo?.imageUrls.length > 1) {
               const { imageUrls } = deletedCategoryInfo;
               for (const image of imageUrls) {
                 const { public_id } = image;
@@ -68,7 +68,7 @@ const AdminProductCard = ({ product, loadProducts }) => {
         />
       }
       actions={[
-        <Link to={`/admin/product/${_id}`}>
+        <Link to={`/admin/product/${itemNo}`}>
           <EditOutlined className="text-warning" />
         </Link>,
         <DeleteOutlined

@@ -4,9 +4,9 @@ import AdminSider from "../../../components/AdminSider";
 import CategoryService from "../../../services/CategoryService";
 import {useParams} from 'react-router-dom';
 import useAsyncEffect from "use-async-effect";
-
-import "./style.less";
 import CategoryUpdateForm from "../../../components/Forms/CategoryUpdateForm";
+
+import "./styles.less";
 
 const { Content } = Layout;
 

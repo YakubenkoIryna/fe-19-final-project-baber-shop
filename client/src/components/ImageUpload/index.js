@@ -48,6 +48,7 @@ const ImageUpload = ({ images, setImages, cloudinaryfolderName, imageButtonDisab
   };
 
   const handleImageRemove = (public_id) => {
+    if (!public_id) return
     setPreloaderStatus(true);
     CloudinaryService.imageRemove({ public_id })
       .then(res => {
