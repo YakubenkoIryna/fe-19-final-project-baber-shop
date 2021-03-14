@@ -1,15 +1,17 @@
 import React from "react";
 import { Result, Button, Row, Col } from "antd";
-import * as Sentry from "@sentry/react";
 import { useHistory } from "react-router";
+import { useSelector } from "react-redux";
+import * as Sentry from "@sentry/react";
 
-const ErrorPageBoundary = (props) => {
+const ErrorPageBoundary = ({ errorInfo, error, eventId }) => {
+  const { isAdmin } = useSelector(store => ({ ...store.user }));
   const history = useHistory();
-  const { errorInfo, error, eventId } = props;
+
   return (
     <Result
       status="warning"
-      title={error || "There are some problems with your operation."}
+      title={error.message || "There are some problems with your operation."}
       extra={
         <>
           <Row gutter={[16, 16]} justify={"center"}>
@@ -21,7 +23,13 @@ const ErrorPageBoundary = (props) => {
             style={{ width: 160 }}
             type="primary"
             key="err_return-home"
-            onClick={() => history.push("/")}>
+            onClick={() => {
+              if (isAdmin) {
+                history.push("/admin/category");
+              } else {
+                history.push("/");
+              }
+            }}>
             Return to Home
           </Button>
           <Button
