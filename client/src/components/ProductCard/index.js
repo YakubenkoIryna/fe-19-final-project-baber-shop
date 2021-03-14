@@ -85,7 +85,7 @@ const ProductCard = ({product, refresh}) => {
                     </Button>
 
                   { quantity === 0
-                    ? <Button className='btn-addToCard'>SOLD OUT</Button>
+                    ? <Button className='btn-addToCard btn-disabled' disabled={true}>SOLD OUT</Button>
                     : filteredProducts.length === 1
                       ? <Button className='btn-addToCard add-disabled' onClick={()=>dispatch(deleteFromCart(_id))}>Added</Button>
                       : <Button className='btn-addToCard' onClick={onAddToCart}>Add to cart</Button>
