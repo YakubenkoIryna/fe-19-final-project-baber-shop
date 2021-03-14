@@ -21,9 +21,8 @@ const ProductUpdateForm = ({ productToUpdate, listOfCategories, filters: { brand
   const [imageButtonDisabled, setImageButtonDisabled] = useState(false);
 
   useEffect(() => {
-    handleCloudinaryFolderCreate();
     form.setFieldsValue(productToUpdate);
-  });
+  }, [productToUpdate, form]);
 
   // function to create form input fields based on constants
   const setUpFormFields = () => fieldsSetArr.map(category => {
@@ -88,6 +87,7 @@ const ProductUpdateForm = ({ productToUpdate, listOfCategories, filters: { brand
   });
 
   const onFinish = (values) => {
+    handleCloudinaryFolderCreate();
     const submitValue = { ...values, imageUrls: images && images.length > 0 ? images : [] };
     ProductService.updateProduct(_id, submitValue)
       .then(res => {
@@ -151,7 +151,6 @@ const ProductUpdateForm = ({ productToUpdate, listOfCategories, filters: { brand
   };
 
   const handleOnFieldsChange = ([{ name: [name], value }]) => {
-    console.log("Change");
     handleCategoriesList(name, value, listOfCategories);
     handleCloudinaryFolderCreate();
     setSubmitButtonStatus();
