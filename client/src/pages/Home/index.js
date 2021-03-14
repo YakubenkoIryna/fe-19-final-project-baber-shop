@@ -3,7 +3,6 @@ import './styles.less'
 import Slider from "../../components/Slider";
 import Banner from "../../components/Banner";
 import {MetaForPages} from "../../components/Helmet"
-import Union from "./Union.png"
 import { ToastContainer } from "react-toastify";
 const Home = (props) => {
 
@@ -13,7 +12,6 @@ const Home = (props) => {
                 title="BarberShop"
                 content="BarberShop Home Main Page"
                 rel="icon"
-                href={Union}
             />
             <Slider/>
             <Banner title={'Best sellers'} config='cp'/>
