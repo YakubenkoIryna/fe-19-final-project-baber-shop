@@ -37,7 +37,7 @@ const App = () => {
   }, [dispatch, history]);
 
     useEffect(() => {
-        isAdmin && history.push("/admin");
+        isAdmin && history.push('/admin/category');
     }, [history, isAdmin]);
 
     const layoutShop = () => (
