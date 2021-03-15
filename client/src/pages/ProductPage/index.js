@@ -7,7 +7,7 @@ import Banner from "../../components/Banner";
 import ProductCarousel from "../../components/ProductCarousel";
 import { useParams } from 'react-router-dom'
 import Ajax from "../../services/Ajax";
-import {CheckCircleOutlined} from '@ant-design/icons'
+import {CheckCircleOutlined, DeleteOutlined} from '@ant-design/icons'
 import { MetaForEachPage } from "../../components/Helmet";
 import LastViewedProducts from '../../components/LastViewedProducts'
 import {showPage} from "../../store/breadcrumbs/crumbsAction";
@@ -81,7 +81,7 @@ const ProductPage = (props) => {
                                     { product.quantity === 0
                                         ? (<></>)
                                         : filteredProducts.length === 1
-                                        ? (<button className="btn-buy add-disabled" onClick={()=>dispatch(deleteFromCart(product._id))}>Added</button>)
+                                        ? (<button className="btn-buy add-disabled" onClick={()=>dispatch(deleteFromCart(product._id))}><DeleteOutlined /> from cart</button>)
                                         : (<button className="btn-buy" onClick={onAddToCart}>Buy</button>)
 
                                     }
