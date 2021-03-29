@@ -1,4 +1,6 @@
 const Catalog = require("../models/Catalog");
+const Product = require("../models/Product");
+
 const queryCreator = require("../commonHelpers/queryCreator");
 const _ = require("lodash");
 
@@ -31,6 +33,7 @@ exports.aupdateCategory = (req, res, next) => {
           message: `Category with id "${req.params.id}" is not found.`
         });
       } else {
+        const oldCategoryName = category.name
         const initialQuery = _.cloneDeep(req.body);
         const updatedCategory = queryCreator(initialQuery);
 
@@ -39,10 +42,40 @@ exports.aupdateCategory = (req, res, next) => {
           { $set: updatedCategory },
           { new: true }
         )
-          .then(category => res.json(category))
+          .then(category => {
+            if (oldCategoryName !== updatedCategory.name) {
+
+              const catalogName = 'categories';
+
+              Product.find({ [catalogName]: oldCategoryName })
+                .then(products =>  {
+                  if (products && products.length > 0) {
+                    for (const { _id } of products) {
+                      Product.findOneAndUpdate(
+                        { _id },
+                        { [catalogName]:  updatedCategory.name},
+                        { new: true }
+                      )
+                        .then(product => console.log('Product category updated'))
+                        .catch(err =>
+                          res.status(400).json({
+                            message: `Error happened on server: "${err}" `
+                          })
+                        );
+                    }
+                  }
+                })
+                .catch(err =>
+                  res.status(400).json({
+                    message: `Error happened on server: category name update for product: "${err}" `
+                  })
+                )
+            }
+            res.json(category)
+          })
           .catch(err =>
             res.status(400).json({
-              message: `Error happened on server: "${err}" `
+              message: `Error happened on server: catalog update "${err}" `
             })
           );
       }

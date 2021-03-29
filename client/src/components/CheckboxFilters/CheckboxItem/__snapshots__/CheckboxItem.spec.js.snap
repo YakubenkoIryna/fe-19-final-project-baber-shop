@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CheckboxItem renders correctly 1`] = `
+<div
+  className="checkbox-group__item"
+>
+  <input
+    checked={false}
+    className="item-filter"
+    data-type="type"
+    id="id"
+    name="name"
+    onChange={[Function]}
+    type="checkbox"
+  />
+  <label
+    className="checkbox-label"
+    htmlFor="id"
+  >
+    name
+  </label>
+</div>
+`;

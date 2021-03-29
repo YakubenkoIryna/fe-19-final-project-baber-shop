@@ -1,0 +1,113 @@
+@import '~antd/lib/style/themes/default.less';
+
+.filtered-products-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: baseline;
+  justify-content: space-evenly;
+  width: 100%;
+  padding: 20px;
+
+  & .productCard {
+    margin: 5px;
+  }
+
+  & .load-more-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 155px;
+    height: 155px;
+    margin: 5px;
+    background-color: #f0f0f0;
+
+    & .load-more-spinner {
+      color: @black;
+
+      & svg {
+        width: 30px;
+        height: 40px;
+      }
+    }
+
+    & .load-more-text {
+      color: @black;
+      font-weight: bold;
+      font-size: 16px
+    }
+
+    .ant-card-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+
+  .no-items-text-container {
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .filtered-products-container {
+    justify-content: start;
+    padding: 25px 0 25px 25px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .filtered-products-container {
+    & .load-more-btn {
+      width: 165px;
+      height: 165px;
+    }
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .filtered-products-container {
+    & .productCard {
+      margin: 10px;
+    }
+
+    & .load-more-btn {
+      width: 215px;
+      height: 215px;
+      margin: 10px;
+    }
+
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .filtered-products-container {
+
+    & .load-more-btn {
+      width: 260px;
+      height: 260px;
+
+      & .load-more-spinner {
+        & svg {
+          width: 45px;
+          height: 50px;
+        }
+      }
+
+      & .load-more-text {
+        font-size: 22px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .filtered-products-container {
+
+    & .load-more-btn {
+      width: 300px;
+      height: 300px;
+    }
+  }
+}
+
+

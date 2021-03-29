@@ -1,0 +1,80 @@
+@import '~antd/lib/style/themes/default.less';
+
+.userOptionsMenu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-bottom: 10px;
+
+  & button {
+    width: 150px;
+    height: 25px;
+    margin: 4px 10px;
+    padding: 0;
+    color: @white;
+    font-size: 14px;
+    background-color: @black;
+    border: 1px solid @black;
+
+    &:hover {
+      color: @black;
+      background-color: @yellow-5;
+      border: 1px solid @yellow-5;
+    }
+  }
+
+  & .selected .ant-btn-primary {
+    color: @black;
+    background-color: @yellow-5;
+    border: .2vw solid @black;
+  }
+}
+
+
+@media (min-width: 576px) {
+
+  .userOptionsMenu {
+    display: block;
+
+    & button {
+      min-width: 180px;
+      min-height: 30px;
+      margin: 6px 0 6px 30px;
+      padding: 0;
+      font-size: 16px;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+
+  .userOptionsMenu {
+
+    & button {
+      min-width: 200px;
+      min-height: 35px;
+      margin: 6px 0;
+    }
+  }
+
+}
+
+@media (min-width: 992px) {
+
+  .userOptionsMenu {
+    & button {
+      min-width: 240px;
+      min-height: 45px;
+      margin: 10px 0;
+      font-size: 22px;
+
+      &:hover {
+        margin-left: 3vw;
+      }
+    }
+
+    & .selected .ant-btn-primary {
+      margin-left: 3vw;
+    }
+  }
+}

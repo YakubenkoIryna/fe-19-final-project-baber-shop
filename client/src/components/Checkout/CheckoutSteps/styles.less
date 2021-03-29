@@ -1,0 +1,23 @@
+.checkout-steps {
+  margin-top: 10px;
+
+  .ant-col[disabled] {
+    display: none;
+
+    h3, .ant-form-item-label > label {
+      color: rgba(0, 0, 0, .45) !important;
+    }
+
+    .ant-input:hover {
+      border: 1px solid #000 !important;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .checkout-steps {
+    .ant-col[disabled] {
+      display: initial;
+    }
+  }
+}

@@ -20,26 +20,45 @@
     "@ant-design/colors": "^5.0.1",
     "@ant-design/icons": "^4.3.0",
     "@craco/craco": "^5.6.4",
+    "@sentry/react": "^6.0.2",
+    "@sentry/tracing": "^6.0.2",
     "@testing-library/jest-dom": "^5.9.0",
     "@testing-library/react": "^11.0.0",
     "@testing-library/user-event": "^11.1.0",
     "antd": "^4.5.2",
+    "antd-mask-input": "^0.1.14",
     "axios": "^0.21.1",
     "concurrently": "^5.3.0",
     "craco-less": "^1.17.0",
+    "dateformat": "^4.5.1",
+    "html-react-parser": "^1.2.4",
+    "jwt-decode": "^3.1.2",
+    "lodash": "^4.17.20",
     "npm-run-all": "^4.1.1",
     "npm-watch": "^0.3.0",
+    "query-string": "^6.13.8",
     "react": "^16.13.1",
+    "react-credit-cards": "^0.8.3",
     "react-dom": "^16.13.1",
+    "react-elastic-carousel": "^0.11.1",
+    "react-helmet": "^6.1.0",
+    "react-image-gallery": "^1.0.8",
+    "react-outside-click-handler": "^1.3.0",
     "react-redux": "^7.2.2",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
+    "react-test-renderer": "^17.0.1",
+    "react-toastify": "^7.0.3",
     "redux": "^4.0.5",
+    "redux-mock-store": "^1.5.4",
+    "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
+    "styled-components": "^5.2.1",
     "stylelint": "^13.8.0",
     "stylelint-config-rational-order": "^0.1.2",
-    "stylelint-order": "^4.1.0"
+    "stylelint-order": "^4.1.0",
+    "use-async-effect": "^2.2.2"
   },
   "scripts": {
     "all": "concurrently \"(npm run server --prefix ../)\" \"(npm run start)\"",
@@ -47,6 +66,7 @@
     "start-js": "craco start",
     "build": "npm run stylelint-build && craco build",
     "test": "craco test",
+    "coverage": "craco test --watchAll=false --coverage",
     "stylelint-dev": "stylelint \"src/**/*.less\" --cache --cache-location \".stylelintcache\" exit 0",
     "stylelint-build": "stylelint src/**/*.less",
     "stylelint-fix-sass": "stylelint --fix src/**/*.less",
@@ -71,11 +91,23 @@
     ]
   },
   "devDependencies": {
-    "eslint": "6.6.0",
+    "eslint": "^7.18.0",
+    "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-react": "^7.22.0",
     "husky": "^4.3.8",
+    "lint-staged": "^10.5.3",
     "prettier": "2.2.1",
+    "prop-types": "^15.7.2",
     "standard": "^16.0.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix --max-warnings=0"
   }
 }

@@ -1,0 +1,92 @@
+@import '../../../../node_modules/antd/lib/style/themes/default.less';
+
+.checkbox-container {
+  label, input {
+    cursor: pointer;
+  }
+
+  .checkbox-label {
+    margin-left: 10px;
+    font-size: 16px;
+    line-height: 22px;
+    vertical-align: middle;
+  }
+
+  .checkbox-label:hover {
+    color: @yellow-5;
+    background-color: @black;
+  }
+
+  .item-filter {
+    width: 20px;
+    height: 20px;
+    padding: 9px;
+    vertical-align: middle;
+    background-color: @white;
+    border: 1px solid @black;
+    border-radius: 2px;
+    box-shadow: none;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  input[type = 'checkbox']:checked {
+    background-color: @black;
+  }
+
+  .item-filter:focus {
+    outline: none;
+  }
+
+  .checkbox-group {
+    &__item {
+      display: flex;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .checkbox-container {
+    .checkbox-label {
+      margin-left: 10px;
+      font-size: 14px;
+      line-height: 16px;
+    }
+
+    .item-filter {
+      width: 15px;
+      height: 15px;
+      padding: 6px;
+    }
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .checkbox-container {
+    .checkbox-label {
+      font-size: 16px;
+    }
+
+    .item-filter {
+      width: 17px;
+      height: 17px;
+      padding: 7px;
+    }
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .checkbox-container {
+    .checkbox-label {
+      font-size: 18px;
+      line-height: 20px;
+    }
+
+    .item-filter {
+      width: 20px;
+      height: 20px;
+      padding: 9px;
+    }
+  }
+}

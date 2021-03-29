@@ -1,0 +1,147 @@
+@import '~antd/lib/style/themes/default.less';
+
+#register {
+
+  & .ant-input:not(#register_password) {
+    border: 1px solid @black;
+
+    &:hover {
+      box-shadow: 0 0 8px @yellow-5;
+    }
+
+    &:focus {
+      border: 1px solid @black;
+      box-shadow: 0 0 8px @yellow-5;
+    }
+  }
+
+  .ant-input-password {
+    border: 1px solid @black;
+
+    &:hover {
+      box-shadow: 0 0 8px @yellow-5;
+    }
+  }
+  .ant-input-affix-wrapper:focus, .ant-input-affix-wrapper-focused {
+    border: 1px solid @black;
+    box-shadow: 0 0 8px @yellow-5;
+  }
+
+
+  .registration-form-title {
+    padding-top: 20px;
+    font-weight: 700;
+    font-size: 30px;
+  }
+
+  div {
+    .ant-col {
+      flex: 1 1 50%;
+    }
+
+    .ant-form-item-control {
+      margin-right: 3%;
+    }
+  }
+
+  .registration-button {
+    color: black;
+    font-weight: 700;
+    background-color: rgba(239, 233, 94, 1);
+    border: .5px rgba(239, 233, 94, 1) solid;
+    //border-radius: 25px;
+  }
+
+  .registration-button:hover {
+    color: black;
+    background-color: white;
+    border: 1px black solid;
+  }
+
+  @media (max-width: 575px) {
+    .ant-form-item-control, .ant-form-item-label {
+      margin-left: 3%;
+    }
+  }
+
+  .ant-input-affix-wrapper > input.ant-input {
+    padding: 0;
+  }
+}
+
+.error-message-registration-div {
+  border-radius: 20px;
+
+  .registration-button {
+    margin: 10px;
+    padding: 5px 10px;
+    color: black;
+    font-weight: 700;
+    font-size: 15px;
+    background-color: rgba(239, 233, 94, 1);
+    border: .5px rgba(239, 233, 94, 1) solid;
+  }
+
+  .registration-button:hover {
+    color: black;
+    background-color: white;
+    border: 1px black solid;
+  }
+
+  .error-message-registration {
+    margin: 3px;
+    padding: 5px 20px;
+    color: red;
+    font-weight: bold;
+    font-size: 15px;
+  }
+}
+
+.success-message-registration {
+  margin: 5px;
+  padding: 5px 10px;
+  color: white;
+  font-size: 17px;
+  background-color: green;
+  border: 1px darkgreen solid;
+}
+
+.error-message-registration-div {
+  border-radius: 20px;
+
+  .registration-button {
+    margin: 20px;
+    padding: 5px 15px;
+    color: black;
+    font-weight: 700;
+    font-size: 17px;
+    background-color: rgba(239, 233, 94, 1);
+    border: .5px rgba(239, 233, 94, 1) solid;
+  }
+
+  .registration-button:hover {
+    color: black;
+    background-color: white;
+    border: 1px black solid;
+  }
+
+  .error-message-registration {
+    margin: 10px;
+    padding: 5px 20px;
+    color: red;
+    font-weight: bold;
+    font-size: 20px;
+    border: 1px black solid;
+    border-radius: 20px;
+  }
+}
+
+.success-message-registration {
+  margin: 20px;
+  padding: 5px 20px;
+  color: white;
+  font-size: 25px;
+  background-color: green;
+  border: 1px darkgreen solid;
+  border-radius: 20px;
+}

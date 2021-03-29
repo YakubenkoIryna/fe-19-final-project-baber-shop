@@ -1,0 +1,179 @@
+@import '~antd/lib/style/themes/default.less';
+
+
+.carousel {
+  position: relative;
+
+  &-mainImage {
+    min-width: 300px;
+    max-width: 100%;
+  }
+
+  &-text {
+    position: absolute;
+    top: 24%;
+    left: 10%;
+    width: 30%;
+    color: @white;
+    font-size: 1.6vw;
+    text-decoration: none;
+
+    &-title {
+      margin-bottom: 1.6vw;
+      color: @white;
+      font-weight: bold;
+      font-size: 3.4vw;
+    }
+
+    &-btn {
+      width: 10vw;
+      height: 3vw;
+      margin-top: 2vw;
+      padding: 0;
+      font-size: 1.4vw;
+      border-width: 1px;
+
+
+      &:hover {
+        color: @yellow-5;
+        border: 1px solid @yellow-5;
+      }
+    }
+  }
+}
+
+
+#customCarousel {
+
+  & .ant-carousel .slick-prev {
+    left: 4vw;
+    z-index: 1;
+    color: transparent;
+
+    &::before {
+      font-size: 1.8vw;
+    }
+  }
+
+  & .ant-carousel .slick-next {
+    right: 4vw;
+    color: transparent;
+
+    &::before {
+      z-index: 1;
+      font-size: 1.8vw;
+    }
+  }
+
+  & .ant-carousel .slick-slide img {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  & {
+    .slick-dots li button:before {
+      display: none;
+    }
+  }
+
+  & .ant-carousel .slick-dots {
+    margin-left: 0;
+  }
+
+  & .ant-carousel .slick-dots li {
+    margin-right: 5px;
+  }
+
+  & .ant-carousel .slick-dots li button {
+    width: 5px;
+    height: 5px;
+  }
+
+  & .ant-carousel .slick-dots li.slick-active button {
+    width: 7px;
+    height: 7px;
+  }
+}
+
+@media screen and (min-width: 586px) {
+  #customCarousel {
+    & .ant-carousel .slick-dots li {
+      margin-right: 10px;
+    }
+
+    & .ant-carousel .slick-dots li button {
+      width: 20px;
+      height: 5px;
+    }
+
+    & .ant-carousel .slick-dots li.slick-active button {
+      width: 30px;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .carousel {
+    &-text {
+      &-btn {
+        border-width: 2px;
+
+        &:hover {
+          border: 2px solid @yellow-5;
+        }
+      }
+    }
+  }
+
+  #customCarousel {
+    & .ant-carousel .slick-dots li {
+      margin-right: 20px;
+    }
+
+    & .ant-carousel .slick-dots li button {
+      width: 25px;
+      height: 5px;
+    }
+
+    & .ant-carousel .slick-dots li.slick-active button {
+      width: 40px;
+    }
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .carousel {
+    &-text {
+      &-btn {
+        border-width: 2px;
+
+        &:hover {
+          border: 2px solid @yellow-5;
+        }
+      }
+    }
+  }
+
+  #customCarousel {
+    .ant-carousel .slick-dots-bottom {
+      bottom: 40px;
+    }
+
+    & .ant-carousel .slick-dots li {
+      margin-right: 6vw;
+    }
+
+    & .ant-carousel .slick-dots li button {
+      width: 4vw;
+      height: .5vw;
+    }
+
+    & .ant-carousel .slick-dots li.slick-active button {
+      width: 6vw;
+      height: .5vw;
+
+    }
+  }
+
+
+}

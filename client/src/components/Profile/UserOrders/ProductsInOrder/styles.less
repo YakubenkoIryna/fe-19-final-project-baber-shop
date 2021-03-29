@@ -1,0 +1,59 @@
+@import '../../../../../node_modules/antd/lib/style/themes/default.less';
+
+.userProfileOrder {
+  &_tableNames {
+    padding: 10px 0;
+    color: #8c8c8c;
+    font-size: 12px;
+    text-align: center;
+  }
+
+  &-product {
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: center;
+
+    .ant-row {
+      margin-bottom: 5px;
+      color:@black;
+      font-size: 12px;
+
+      &:hover {
+        background-color: #fafafa;
+      }
+    }
+
+    .ant-col {
+      align-self: center;
+    }
+  }
+}
+
+@media screen and (min-width: 768px ) {
+  .userProfileOrder {
+    &_tableNames {
+      font-size: 14px;
+    }
+
+    &-product {
+      .ant-row {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1200px ) {
+  .userProfileOrder {
+    &_tableNames {
+      font-size: 16px;
+    }
+
+    &-product {
+      .ant-row {
+        font-size: 16px;
+      }
+    }
+  }
+}

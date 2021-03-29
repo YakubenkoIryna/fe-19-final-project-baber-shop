@@ -48,7 +48,18 @@ const GlobalConfigSchema = new Schema(
       },
       minOrderValue: {
         type: Number
-      }
+      },
+      images: {
+        cloud_name: {
+          type: String
+        },
+        api_key: {
+          type: String
+        },
+        api_secret: {
+          type: String
+        }
+      },
     },
     production: {
       database: {
@@ -91,7 +102,18 @@ const GlobalConfigSchema = new Schema(
       },
       minOrderValue: {
         type: Number
-      }
+      },
+      images: {
+        cloud_name: {
+          type: String
+        },
+        api_key: {
+          type: String
+        },
+        api_secret: {
+          type: String
+        }
+      },
     }
   },
   { strict: false }

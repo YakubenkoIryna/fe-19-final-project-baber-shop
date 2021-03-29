@@ -1,0 +1,71 @@
+@import '~antd/lib/style/themes/default.less';
+
+#changePassword {
+
+  & .ant-form-item-required {
+    font-weight: bold;
+
+    font-size: 14px;
+
+    &::before {
+      content: none;
+    }
+  }
+
+  & .ant-input-password {
+    border: 1px solid @black;
+
+    &:hover {
+      box-shadow: 0 0 8px @yellow-5;
+    }
+  }
+
+  .ant-input-affix-wrapper:focus, .ant-input-affix-wrapper-focused {
+    border: 1px solid @black;
+    box-shadow: 0 0 8px @yellow-5;
+  }
+
+  & .ant-form-item-control-input-content {
+    text-align: end;
+  }
+
+  & button {
+    min-width: 10vw;
+    color: @black;
+    font-size: 14px;
+    text-shadow: none;
+    background: @yellow-5;
+    border: 1px solid @yellow-5;
+
+    &:hover {
+      color: @black;
+      background: @yellow-6;
+      border: 1px solid @black;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  #userInfo {
+    & .ant-form-item-required {
+      font-size: 16px;
+    }
+
+    & button {
+      font-size: 16px;
+    }
+  }
+}
+
+
+@media (min-width: 1200px) {
+  #userInfo {
+    & .ant-form-item-required {
+      font-size: 20px;
+    }
+
+    & button {
+      font-size: 20px;
+    }
+  }
+}

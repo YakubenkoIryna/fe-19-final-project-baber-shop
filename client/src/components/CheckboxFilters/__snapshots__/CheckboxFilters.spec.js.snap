@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CheckboxFilter is rendered 1`] = `"<div class=\\"checkbox-container\\"><div class=\\"checkbox-group checkbox-catalog-group\\"><p class=\\"checkbox-group__name\\">Catalog</p></div></div>"`;
+
+exports[`renders correctly when there are couple of filters 1`] = `
+<div
+  className="checkbox-container"
+>
+  <div
+    className="checkbox-group checkbox-catalog-group"
+  >
+    <p
+      className="checkbox-group__name"
+    >
+      Catalog
+    </p>
+  </div>
+</div>
+`;
+
+exports[`renders correctly when there is one filter 1`] = `
+<div
+  className="checkbox-container"
+>
+  <div
+    className="checkbox-group checkbox-catalog-group"
+  >
+    <p
+      className="checkbox-group__name"
+    >
+      Catalog
+    </p>
+  </div>
+</div>
+`;

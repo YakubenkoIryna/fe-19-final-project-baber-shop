@@ -1,0 +1,82 @@
+@import '../../../node_modules/antd/lib/style/themes/default.less';
+
+.favouritesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  & .productCard {
+    margin: 4px;
+  }
+}
+
+.userProfileOrderFav {
+
+  &-emptyContainer {
+    padding-top: 25px;
+    font-size: 20px;
+    text-align: center;
+
+    & h1 {
+      font-size: 26px;
+    }
+
+    & h3 {
+      font-size: 18px;
+    }
+  }
+
+  &-icon {
+    padding-bottom: 10px;
+    font-size: 60px;
+  }
+}
+
+.profile-preloader {
+  height: 25px;
+  margin: 0 auto;
+  padding-top: 3vw;
+}
+
+@media (min-width: 576px) {
+  .favouritesContainer {
+    justify-content: start;
+  }
+
+  .userProfileOrderFav {
+
+    &-emptyContainer {
+      padding-top: 0;
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .userProfileOrderFav {
+
+    &-emptyContainer {
+      padding-top: 0;
+
+      & h1 {
+        font-size: 32px;
+      }
+
+      & h3 {
+        font-size: 24px;
+      }
+    }
+
+    &-icon {
+      font-size: 90px;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .favouritesContainer {
+
+    & .productCard {
+      margin: 8px;
+    }
+  }
+}

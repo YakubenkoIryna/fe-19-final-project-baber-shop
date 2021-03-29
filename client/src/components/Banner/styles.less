@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;700&family=Roboto&display=swap');
+
+.banners {
+  max-width: 95%;
+  margin: 15px auto;
+
+  &-title {
+    margin-left: 4%;
+    color: #000000;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: Montserrat Alternates, serif;
+    font-style: normal;
+  }
+
+  &-wrapper {
+    margin: 20px 0;
+
+    & .ant-row {
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+@media screen and (min-width: 586px) {
+  .banners {
+
+    &-title {
+      font-size: 22px;
+    }
+  }
+}
+
+
+@media screen and (min-width: 768px) {
+  .banners {
+    margin: 30px auto;
+
+    &-title {
+      font-size: 24px;
+    }
+
+    &-wrapper {
+      margin: 30px 0;
+
+      & .ant-row {
+        justify-content: space-evenly;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .banners {
+    margin: 35px auto;
+
+    &-title {
+      font-size: 30px;
+    }
+
+    &-wrapper {
+      margin: 30px 0;
+    }
+  }
+}
+
+
+@media screen and (min-width: 1200px) {
+  .banners {
+
+    &-title {
+      font-size: 38px;
+    }
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .banners {
+    margin: 45px auto;
+
+    &-title {
+      font-size: 46px;
+    }
+  }
+}
