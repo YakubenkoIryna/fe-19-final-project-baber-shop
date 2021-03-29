@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {useHistory} from "react-router";
 import {Button, Image} from 'antd';
-import {StarFilled, StarOutlined} from "@ant-design/icons";
+import {StarFilled, StarOutlined, DeleteOutlined} from "@ant-design/icons";
 import {Link} from "react-router-dom";
 import Ajax from "../../services/Ajax";
 import WishListService from '../../services/WishListServise'
@@ -85,9 +85,9 @@ const ProductCard = ({product, refresh}) => {
                     </Button>
 
                   { quantity === 0
-                    ? <Button className='btn-addToCard'>SOLD OUT</Button>
+                    ? <Button className='btn-addToCard btn-disabled' disabled={true}>SOLD OUT</Button>
                     : filteredProducts.length === 1
-                      ? <Button className='btn-addToCard add-disabled' onClick={()=>dispatch(deleteFromCart(_id))}>Added</Button>
+                      ? <Button className='btn-addToCard add-disabled' onClick={()=>dispatch(deleteFromCart(_id))}><DeleteOutlined /> from cart</Button>
                       : <Button className='btn-addToCard' onClick={onAddToCart}>Add to cart</Button>
                   }
                 </div>
