@@ -33,9 +33,7 @@ const CartItem = (props) => {
             : <p className="cart-item-available">Available: {realQuantity}</p>
           }
           <p>
-            Lorem ipsum dolor sit amet,
-            consectetur adipisicing elit.
-            Delectus doloribus explicabo veniam!
+            {("Lorem ipsum dolor sit amet,consectetur adipisicing elit Delectus doloribus explicabo veniam!").slice(0,92)}
           </p>
         </div>
       </div>
