@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, {PureComponent} from "react";
 import * as Sentry from "@sentry/react";
 import ErrorPageBoundary from "../../pages/ErrorPage_Boundary";
 
@@ -17,7 +17,7 @@ export default class ErrorBoundary extends PureComponent {
   }
 
   // use to log an error in Sentry
-  componentDidCatch (error, errorInfo) {
+  componentDidCatch(error, errorInfo) {
     this.setState({
       error: error,
       hasError: true
@@ -25,12 +25,12 @@ export default class ErrorBoundary extends PureComponent {
     Sentry.withScope((scope) => {
       scope.setExtras(errorInfo);
       const eventId = Sentry.captureException(error);
-      this.setState({ eventId, errorInfo, error });
+      this.setState({eventId, errorInfo, error});
     });
   }
 
-  render () {
-    const { hasError, errorInfo, error, eventId } = this.state;
+  render() {
+    const {hasError, errorInfo, error, eventId} = this.state;
     if (hasError) {
       return <ErrorPageBoundary errorInfo={errorInfo} error={error} eventI={eventId}/>
     }
