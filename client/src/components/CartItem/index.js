@@ -10,7 +10,7 @@ const CartItem = (props) => {
   const cartQuantity = props.product.cartQuantity
   const { imageUrls, name, currentPrice, _id, itemNo, quantity } = props.product.product
   const isAuth = useSelector(state => state.user.isAuthenticated)
-
+  console.log("props.product.product",props.product.product)
   const [realQuantity,setRealQuantity] = useState(quantity)
   useEffect(() => {
     setRealQuantity(quantity - cartQuantity)
@@ -29,11 +29,12 @@ const CartItem = (props) => {
             <p className='cart-item-link'>{name}</p>
           </Link>
           {realQuantity === 0
-            ? <p className="cart-item-available-zero">Available: 0</p>
-            : <p className="cart-item-available">Available: {realQuantity}</p>
+              ? <p className="cart-item-available available-zero">Available: 0</p>
+              : <p className="cart-item-available">Available: {realQuantity}</p>
           }
+
           <p>
-            {("Lorem ipsum dolor sit amet,consectetur adipisicing elit Delectus doloribus explicabo veniam!").slice(0,92)}
+            {(props.product.product.description).slice(0,92)}<span>...</span>
           </p>
         </div>
       </div>

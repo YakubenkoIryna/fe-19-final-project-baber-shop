@@ -1,7 +1,9 @@
 .cart-total-wrapper {
   display: flex;
   flex-direction: column;
-  min-width: 200px;
+  //min-width: 200px;
+  min-width: 185px;
+  margin-left: 15px;
   height: 100%;
   border: 1px black solid;
   .cart-total_header {
@@ -45,6 +47,12 @@
     }
   }
 }
+@media (max-width: 1200px) {
+  .cart-total-wrapper {
+    margin: 5px 0;
+  }
+}
+
 @media (max-width: 992px) {
   .cart-total-wrapper {
     .cart-total_header {

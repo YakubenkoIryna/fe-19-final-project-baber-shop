@@ -3,7 +3,7 @@
   justify-content: space-between;
   margin-left: 40px;
   p:last-child {
-    margin-right: 75px;
+    margin-right: 87px;
     span:nth-child(2) {
       margin-right: 40px;
       margin-left: 68px;
@@ -16,10 +16,21 @@
   flex-direction: column;
   height: 330px;
   margin: 20px 0;
-  overflow: scroll;
-  //::-webkit-scrollbar {
-  //  display: none;
-  //}
+  overflow: auto;
+  &::-webkit-scrollbar{
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: black;
+  }
+
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background-color: #f9f9fd;
+  }
 }
 .psevdo-div {
   max-width: 750px;
