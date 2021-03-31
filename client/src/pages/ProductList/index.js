@@ -11,7 +11,7 @@ import './styles.less';
 import {useHistory, useLocation} from 'react-router-dom';
 import {MetaForFiltered} from "../../components/Helmet";
 
-const perPage = 2;
+const perPage = 5;
 
 const ProductList = () => {
   const {search, key} = useLocation();

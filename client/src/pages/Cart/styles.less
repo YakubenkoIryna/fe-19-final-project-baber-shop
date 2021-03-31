@@ -1,15 +1,26 @@
 .cart-page-wrapper {
+  margin: 5px 20px 40px;
+  > div {
+    max-width: 1500px;
+    margin: 0 auto;
+  }
   .cart-container {
     display: flex;
-    justify-content: center;
-    padding: 5px;
+    justify-content: space-between;
+    //padding: 5px;
+    .cart-container-wrapper {
+      max-width: 1200px;
+    }
   }
 }
-
-@media (max-width: 992px) {
+@media (max-width: 1200px) {
+//@media (max-width: 992px) {
   .cart-container {
     display: flex;
     flex-direction: column;
+    .cart-container-wrapper {
+      margin-right: 0;
+    }
   }
 }
 
