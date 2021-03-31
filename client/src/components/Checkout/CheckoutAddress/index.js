@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {Button, Form, Input, message} from "antd";
-import {collectionItemsCheckoutAddress, onlyNumbers} from "../../Forms/RegistrationForm/collectionItems";
+import {collectionItemsCheckoutAddress} from "../../Forms/RegistrationForm/collectionItems";
 import {useDispatch, useSelector} from "react-redux";
 import "./styles.less";
 import {setAddress} from "../../../store/checkout/checkoutAction";
@@ -66,11 +66,7 @@ const CheckoutAddress = ({disabled, onChange}) => {
                         rules={formItem.rules}
                         key={formItem.name}
                     >
-                        {formItem.name === "phone"
-                            ? <Input placeholder={formItem.label} disabled={disabled} maxLength={13}
-                                     onKeyPress={onlyNumbers()}/>
-                            : <Input placeholder={formItem.label} disabled={disabled}/>
-                        }
+                        <Input maxLength={formItem.maxLength} placeholder={formItem.label} onKeyPress={formItem.onKeyPress}/>
                     </Form.Item>
                 )}
                 {!disabled

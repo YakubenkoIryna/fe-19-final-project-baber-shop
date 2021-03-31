@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, message, Modal } from "antd";
-import noImage from "../../../blank_image/no_image.png";
+import noImage from "../../../assets/no_image.png";
 import { Link } from "react-router-dom";
 import { DeleteOutlined, EditOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
 import CloudinaryService from "../../../services/CloudinaryService";

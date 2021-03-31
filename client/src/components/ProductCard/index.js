@@ -9,6 +9,7 @@ import WishListService from '../../services/WishListServise'
 import './styles.less';
 import { addToCart, deleteFromCart } from "../../store/cart/actionCart";
 import { setToLastProducts } from '../../store/lastViewedProducts/lastProductsAction'
+import LoginService from "../../services/LoginService";
 
 
 const {put, deleteRequest} = Ajax;
@@ -18,7 +19,7 @@ const {checkIfProductInWishList} = WishListService
 const ProductCard = ({product, refresh}) => {
 
   const { name, currentPrice, imageUrls, _id, quantity } = product;
-  const { exp, isAuthenticated, isAdmin } = useSelector(state => ({ ...state.user }));
+  const userData = useSelector(state => ({ ...state.user }));
   const history = useHistory();
   const dispatch = useDispatch();
   const [inWishlist, setInWishlist] = useState(false);
@@ -28,7 +29,7 @@ const ProductCard = ({product, refresh}) => {
   const onAddToCart = (e) => {
         e.preventDefault();
         const newProduct2 = {product, cartQuantity: + 1}
-        dispatch(addToCart(newProduct2, _id, isAuthenticated));
+        dispatch(addToCart(newProduct2, _id, userData.isAuthenticated));
     }
 
     const forwardToCardDetails = () => {
@@ -39,7 +40,7 @@ const ProductCard = ({product, refresh}) => {
     }
 
     const addToWishlist = async () => {
-        if (!(isAuthenticated && !isAdmin && localStorage.token && exp && (exp > Date.now() / 1000))) {
+        if (!LoginService.isRegularUserAuthenticated(userData)) {
             history.push('/login');
         } else {
             if (!inWishlist) {
@@ -60,10 +61,10 @@ const ProductCard = ({product, refresh}) => {
 
 
     useEffect(() => {
-        if ((isAuthenticated && !isAdmin && localStorage.token && exp && (exp > Date.now() / 1000))) {
+        if (LoginService.isRegularUserAuthenticated(userData)) {
             return checkIfProductInWishList(_id, setInWishlist, true);
         }
-    }, [_id, isAuthenticated, isAdmin, exp]);
+    }, [_id, userData]);
 
     const inWishlistIcon = inWishlist
         ? <StarFilled className='favourite-icon'/>

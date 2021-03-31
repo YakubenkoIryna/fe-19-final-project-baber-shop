@@ -4,6 +4,7 @@ import {Col, Image, Layout, Row} from 'antd';
 import Ajax from "../../services/Ajax";
 import Socials from "./Socials";
 import './styles.less'
+import logo from "../../assets/logo_white.png";
 
 const {get} = Ajax;
 const {Footer: AntFooter} = Layout;
@@ -27,7 +28,7 @@ const Footer = () => {
                 <Col xs={24} sm={24} lg={5}>
                     <div className='footer-logo'>
                         <Link to="/">
-                            <Image src="/logo/footerLogo/logo_white.png" alt="logo-white" preview={false}/>
+                            <Image src={logo} alt="logo-white" preview={false}/>
                         </Link>
                     </div>
                 </Col>

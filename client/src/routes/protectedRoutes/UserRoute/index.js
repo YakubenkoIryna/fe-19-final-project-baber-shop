@@ -2,11 +2,12 @@ import React from "react";
 import { Route} from "react-router-dom";
 import { useSelector } from "react-redux";
 import {Redirect} from "react-router";
+import LoginService from "../../../services/LoginService";
 
 const UserRoute = ({...rest }) => {
-  const { exp, isAuthenticated, isAdmin } = useSelector(state => ({ ...state.user }));
+  const userData = useSelector(state => ({ ...state.user }));
 
-  return !(isAuthenticated && !isAdmin && localStorage.token && exp && (exp > Date.now() / 1000))
+  return !LoginService.isRegularUserAuthenticated(userData)
       ? <Redirect to='/login'/>
       : <Route {...rest} />
 };

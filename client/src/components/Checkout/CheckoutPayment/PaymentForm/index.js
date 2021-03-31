@@ -5,6 +5,8 @@ import {Row, Col, Form, Input} from "antd";
 import 'react-credit-cards/es/styles-compiled.css';
 import "./styles.less";
 import PropTypes from "prop-types";
+import {onlyLetters} from "../../../Forms/RegistrationForm/collectionItems";
+import valid from "card-validator";
 
 const PaymentForm = ({disabled, form}) => {
     const [state, setState] = useState({
@@ -61,13 +63,23 @@ const PaymentForm = ({disabled, form}) => {
                     rules={[{required: true, message: 'Please enter your Full Name!', max: 20}]}
                 >
                     <Input name='name' placeholder='Full name' disabled={disabled}
-                        onChange={handleInputChange} onFocus={handleInputFocus}/>
+                        onChange={handleInputChange} onFocus={handleInputFocus} onKeyPress={onlyLetters()}/>
                 </Form.Item>
 
                 <Form.Item
                     label='Card number'
                     name='number'
-                    rules={[{required: true, message: 'Please enter your card number!'}]}
+                    rules={[{required: true, message: 'Please enter your card number!'}, ({ getFieldValue }) => ({
+                        validator(_, value) {
+                            const validationResult = valid.number(value);
+                            if (validationResult.isValid) {
+                                return Promise.resolve();
+                            } else {
+                                // eslint-disable-next-line prefer-promise-reject-errors
+                                return Promise.reject('Your card number seems to be invalid!');
+                            }
+                        },
+                    })]}
                 >
                     <MaskedInput name='number' placeholder='Card number' disabled={disabled}
                            onChange={handleInputChange} onFocus={handleInputFocus} mask='1111-1111-1111-1111' size={20}/>

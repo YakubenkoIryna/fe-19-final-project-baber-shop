@@ -5,11 +5,11 @@ import "antd/dist/antd.less";
 import {Layout} from "antd";
 import SiteHeader from "./components/Header";
 import MainRoutes from "./routes/MainRoutes";
-import jwt_decode from "jwt-decode";
 import {authUser} from "./store/user/userAction";
 import Footer from "./components/Footer";
 import AdminRouting from "./routes/AdminRouting";
 import BreadCrumbs from "./components/BreadCrumbs";
+import LoginService from "./services/LoginService";
 
 
 const {Content} = Layout;
@@ -21,18 +21,11 @@ const App = () => {
 
   useEffect(() => {
     // to check token expiration once App_did_Mount, after it will be checked through middleware in redux with every store request
-    if (localStorage.getItem("token")) {
-      const decoded = jwt_decode(localStorage.getItem("token"));
-      if (decoded?.exp && (decoded.exp < Date.now() / 1000)) {
-        localStorage.removeItem("token");
-        localStorage.removeItem("persist:root");
-        dispatch(authUser({ isAuthenticated: false }));
+    LoginService.checkSessionStatus((decoded) => dispatch(authUser({...decoded, isAuthenticated: true})),
+      () => {
+        dispatch(authUser({isAuthenticated: false}));
         history.push("/");
-      } else {
-        delete decoded.iat;
-        dispatch(authUser({ ...decoded, isAuthenticated: true }));
-      }
-    }
+      });
   }, [dispatch, history]);
 
     useEffect(() => {

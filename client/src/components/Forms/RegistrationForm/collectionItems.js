@@ -12,7 +12,7 @@ export const collectionItemsForm = [
 
 
 export const collectionItemsCheckoutAddress = [
-  { name: "fullName", label: "Full name", rules:[{required: true, message: 'Please enter your Full Name!'}]},
+  { name: "fullName", label: "Full name", rules:[{required: true, message: 'Please enter your Full Name!'}, {min: 2, message: 'Must be min 2 characters'}, {max: 49, message: 'Max 50 characters'}], maxLength: 50,onKeyPress: onlyLetters()},
   { name: "email", label: "E-mail", rules:[{required: true, message: 'Please enter your E-mail!'},{type: 'email', messageType: 'The entered e-mail is not valid!'}]},
   { name: "address", label: "Address", rules:[{required: true, message: 'Please enter your address!'}]},
   { name: "city", label: "City", rules:[{required: true, message: 'Please enter your city!'}]},
