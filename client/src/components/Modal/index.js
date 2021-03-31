@@ -1,8 +1,8 @@
 import React from "react";
 import "./styles.less";
-import { useDispatch, useSelector } from "react-redux";
-import { showModal } from "../../store/modal/modalAction";
-import { Modal } from "antd";
+import {useDispatch, useSelector} from "react-redux";
+import {showModal} from "../../store/modal/modalAction";
+import {Modal} from "antd";
 
 const withModal = (WrappedComponent, typeOfModal) => {
   const WithModal = (props) => {

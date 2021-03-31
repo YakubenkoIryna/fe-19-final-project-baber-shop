@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import { Form, Input, Button, message, Select, Row, Col, InputNumber, Checkbox } from "antd";
+import React, {useState} from "react";
+import {Button, Checkbox, Col, Form, Input, InputNumber, message, Row, Select} from "antd";
 import cloneDeep from "lodash/cloneDeep";
-import { fieldsSetArr, layout, tailLayout, initialFormValues, rootCloudinaryFolderName } from "./constants";
+import {fieldsSetArr, initialFormValues, layout, rootCloudinaryFolderName, tailLayout} from "./constants";
 import ImageUpload from "../../ImageUpload";
 import ProductService from "../../../services/ProductService";
 
 import "./style.less";
 
-const { Option } = Select;
+const {Option} = Select;
 
-const ProductForm = ({ loadProducts, dispatchModal, listOfCategories, filters: { brand, country } }) => {
+const ProductForm = ({loadProducts, dispatchModal, listOfCategories, filters: {brand, country}}) => {
   const [form] = Form.useForm();
   const [disabledBtn, setDisabledBtn] = useState(true);
   const [productCategories, setProductCategories] = useState(cloneDeep(listOfCategories));
@@ -25,7 +25,7 @@ const ProductForm = ({ loadProducts, dispatchModal, listOfCategories, filters: {
       case "input":
         element = (
           <Form.Item key={settings.name} {...settings}>
-            <Input placeholder={`input ${settings.label}`} />
+            <Input placeholder={`input ${settings.label}`}/>
           </Form.Item>
         );
         break;
@@ -39,7 +39,7 @@ const ProductForm = ({ loadProducts, dispatchModal, listOfCategories, filters: {
       case "number":
         element = (
           <Form.Item key={settings.name} {...settings}>
-            <InputNumber min={0} max={20000} />
+            <InputNumber min={0} max={20000}/>
           </Form.Item>
         );
         break;
@@ -80,7 +80,7 @@ const ProductForm = ({ loadProducts, dispatchModal, listOfCategories, filters: {
   });
 
   const onFinish = (values) => {
-    const submitValue = { ...values, imageUrls: images && images.length > 0 ? images : [] };
+    const submitValue = {...values, imageUrls: images && images.length > 0 ? images : []};
     ProductService.createProduct(submitValue)
       .then(res => {
         message.success(`Product ${res.name} was created`, 1.5);
@@ -144,7 +144,7 @@ const ProductForm = ({ loadProducts, dispatchModal, listOfCategories, filters: {
     status.includes(false) ? setDisabledBtn(true) : setDisabledBtn(false);
   };
 
-  const handleOnFieldsChange = ([{ name: [name], value }]) => {
+  const handleOnFieldsChange = ([{name: [name], value}]) => {
     handleCategoriesList(name, value, listOfCategories);
     handleCloudinaryFolderCreate();
     setSubmitButtonStatus();
@@ -163,7 +163,7 @@ const ProductForm = ({ loadProducts, dispatchModal, listOfCategories, filters: {
     >
       {setUpFormFields()}
       <Row gutter={16}>
-        <Col span={24} style={{ textAlign: "left" }}>
+        <Col span={24} style={{textAlign: "left"}}>
           <ImageUpload
             images={images}
             setImages={setImages}
@@ -180,7 +180,7 @@ const ProductForm = ({ loadProducts, dispatchModal, listOfCategories, filters: {
         >
           Submit
         </Button>
-        <Button htmlType="button" onClick={() => form.resetFields()} style={{ marginLeft: "20px" }}>
+        <Button htmlType="button" onClick={() => form.resetFields()} style={{marginLeft: "20px"}}>
           Reset
         </Button>
       </Form.Item>

@@ -6,14 +6,14 @@ import {showPage} from "../../../store/breadcrumbs/crumbsAction";
 
 
 const Register = () => {
-    const {key} = useLocation();
-    const dispatch = useDispatch()
+  const {key} = useLocation();
+  const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(showPage({pageName: 'Registration', key}));
-    }, [dispatch, key])
+  useEffect(() => {
+    dispatch(showPage({pageName: 'Registration', key}));
+  }, [dispatch, key])
 
-  return <RegistrationForm />;
+  return <RegistrationForm/>;
 }
 
 export default Register

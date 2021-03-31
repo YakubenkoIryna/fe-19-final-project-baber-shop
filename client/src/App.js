@@ -15,9 +15,9 @@ import LoginService from "./services/LoginService";
 const {Content} = Layout;
 
 const App = () => {
-    const dispatch = useDispatch();
-    const history = useHistory();
-    const {isAdmin} = useSelector(store => ({...store.user}));
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const {isAdmin} = useSelector(store => ({...store.user}));
 
   useEffect(() => {
     // to check token expiration once App_did_Mount, after it will be checked through middleware in redux with every store request
@@ -28,30 +28,30 @@ const App = () => {
       });
   }, [dispatch, history]);
 
-    useEffect(() => {
-        isAdmin && history.push('/admin/category');
-    }, [history, isAdmin]);
+  useEffect(() => {
+    isAdmin && history.push('/admin/category');
+  }, [history, isAdmin]);
 
-    const layoutShop = () => (
-        <Layout style={{backgroundColor:'white'}}>
-            <SiteHeader/>
-            <BreadCrumbs/>
-            <Content className="site-layout" style={{padding: "0 0px"}}>
-                <div className="site-layout-background" style={{minHeight: 380}}>
-                    <MainRoutes/>
-                </div>
-            </Content>
-            <Footer/>
-        </Layout>
-    );
+  const layoutShop = () => (
+    <Layout style={{backgroundColor: 'white'}}>
+      <SiteHeader/>
+      <BreadCrumbs/>
+      <Content className="site-layout" style={{padding: "0 0px"}}>
+        <div className="site-layout-background" style={{minHeight: 380}}>
+          <MainRoutes/>
+        </div>
+      </Content>
+      <Footer/>
+    </Layout>
+  );
 
-    const layoutAdmin = () => <AdminRouting/>;
+  const layoutAdmin = () => <AdminRouting/>;
 
-    return (
-        <>
-            {isAdmin ? layoutAdmin() : layoutShop()}
-        </>
-    );
+  return (
+    <>
+      {isAdmin ? layoutAdmin() : layoutShop()}
+    </>
+  );
 };
 
 export default App;

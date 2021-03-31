@@ -1,11 +1,11 @@
 import React from "react";
-import { Result, Button, Row, Col } from "antd";
-import { useHistory } from "react-router";
-import { useSelector } from "react-redux";
+import {Button, Col, Result, Row} from "antd";
+import {useHistory} from "react-router";
+import {useSelector} from "react-redux";
 import * as Sentry from "@sentry/react";
 
-const ErrorPageBoundary = ({ errorInfo, error, eventId }) => {
-  const { isAdmin } = useSelector(store => ({ ...store.user }));
+const ErrorPageBoundary = ({errorInfo, error, eventId}) => {
+  const {isAdmin} = useSelector(store => ({...store.user}));
   const history = useHistory();
 
   return (
@@ -20,7 +20,7 @@ const ErrorPageBoundary = ({ errorInfo, error, eventId }) => {
             </Col>
           </Row>
           <Button
-            style={{ width: 160 }}
+            style={{width: 160}}
             type="primary"
             key="err_return-home"
             onClick={() => {
@@ -33,10 +33,10 @@ const ErrorPageBoundary = ({ errorInfo, error, eventId }) => {
             Return to Home
           </Button>
           <Button
-            style={{ width: 160 }}
+            style={{width: 160}}
             type="primary"
             key="crash-report"
-            onClick={() => Sentry.showReportDialog({ eventId })}>
+            onClick={() => Sentry.showReportDialog({eventId})}>
             Create Crash Report
           </Button>
         </>

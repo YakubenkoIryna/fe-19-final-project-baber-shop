@@ -1,7 +1,7 @@
 import Ajax from "./Ajax";
 
 class CategoryService {
-  async getRandomCategories (count) {
+  async getRandomCategories(count) {
     const allCategories = await Ajax.get("/catalog");
 
     if (allCategories && allCategories.length > 0) {
@@ -18,20 +18,20 @@ class CategoryService {
     }
   }
 
-  async getLowestPrice (category = { id: "razor" }) {
-    const { products } = await Ajax.get(`/products/filter?categories=${category.name}`);
+  async getLowestPrice(category = {id: "razor"}) {
+    const {products} = await Ajax.get(`/products/filter?categories=${category.name}`);
     return Math.min.apply(Math, (products || []).map(p => p.currentPrice));
   }
 
-  async getCategories () {
+  async getCategories() {
     return await Ajax.get("/catalog");
   }
 
-  async getCategory (id) {
+  async getCategory(id) {
     return await Ajax.get(`/catalog/${id}`);
   }
 
-  async getUniqIdCategoriesWithLevel (level) {
+  async getUniqIdCategoriesWithLevel(level) {
     const allCategories = await this.getCategories();
     if (allCategories && allCategories.length > 0) {
       const uniq = allCategories
@@ -43,11 +43,11 @@ class CategoryService {
     }
   }
 
-  async createCategory (category) {
+  async createCategory(category) {
     return await Ajax.post("/catalog", category);
   }
 
-  async getCategoriesSortedPerLevels () {
+  async getCategoriesSortedPerLevels() {
     const allCategories = await this.getCategories();
     const sortedCategories = {};
     if (allCategories && allCategories.length > 0) {
@@ -63,11 +63,11 @@ class CategoryService {
     }
   }
 
-  async updateCategory (id, updates) {
+  async updateCategory(id, updates) {
     return await Ajax.put(`/catalog`, id, JSON.stringify(updates));
   }
 
-  async deleteCategory (id) {
+  async deleteCategory(id) {
     return await Ajax.deleteRequest(`/catalog`, id);
   }
 

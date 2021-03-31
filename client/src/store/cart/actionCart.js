@@ -1,12 +1,19 @@
-import {ADDING_TO_CART,DELETE_FROM_CART,DECREASE_QUANTITY,INCREASE_QUANTITY,UPDATE_CART,RESET_CART} from "./actionTypes"
+import {
+  ADDING_TO_CART,
+  DECREASE_QUANTITY,
+  DELETE_FROM_CART,
+  INCREASE_QUANTITY,
+  RESET_CART,
+  UPDATE_CART
+} from "./actionTypes"
 import Ajax from '../../services/Ajax'
 
-const { deleteRequest, put } = Ajax
+const {deleteRequest, put} = Ajax
 
 
-export const addToCart = (item,_id, isAuthenticated)  => {
-  if(isAuthenticated){
-    put('/cart/',_id).then(r => console.log(r.products))
+export const addToCart = (item, _id, isAuthenticated) => {
+  if (isAuthenticated) {
+    put('/cart/', _id).then(r => console.log(r.products))
   }
   return {
     type: ADDING_TO_CART,
@@ -14,7 +21,7 @@ export const addToCart = (item,_id, isAuthenticated)  => {
   }
 }
 
-export const deleteFromCart = (_id, isAuth)  => {
+export const deleteFromCart = (_id, isAuth) => {
   if (isAuth) {
     deleteRequest('/cart', _id).then(r => console.log(r.products))
   }
