@@ -4,7 +4,7 @@ import {Button, Col, Form, Input, message} from "antd";
 import Ajax from "../../../services/Ajax";
 import {changeFirstName} from "../../../store/user/userAction";
 import {showPage} from "../../../store/breadcrumbs/crumbsAction";
-import {collectionItemsForm, onlyLetters, onlyNumbers} from "../../Forms/RegistrationForm/collectionItems";
+import {collectionItemsForm} from "../../Forms/RegistrationForm/collectionItems";
 import './style.less'
 
 const {get, put} = Ajax;
@@ -91,13 +91,8 @@ const UserInformation = () => {
                             rules={formItem.rules}
                             key={formItem.name}
                         >
-                            {formItem.name === "phone"
-                                ? <Input maxLength={13} onKeyPress={onlyNumbers()}/>
-                                : formItem.name === "firstName" || formItem.name === "lastName"
-                                    ? <Input placeholder={formItem.label} onKeyPress={onlyLetters()} maxLength={25}/>
-                                    : <Input placeholder={formItem.label} maxLength={25}/>
-                            }
-                        </Form.Item>
+                           <Input placeholder={formItem.label} maxLength={formItem.maxLength} onKeyPress={formItem.onKeyPress}/>
+                           </Form.Item>
                         : ''
                 )}
                 <Form.Item {...formTailLayout}>
