@@ -1,5 +1,5 @@
-export const onlyLetters = () => {return e => /[-.;"!@#$%ˆ&*():<>|,§_/'=?/\d/]/.test(e.key) && e.preventDefault()}
-export const onlyNumbers = () => {return e => /[-.;"!@#$%ˆ&*():<>|,§_/'=?a-zA-Zа-яА-Я]/.test(e.key) && e.preventDefault()}
+export const onlyLetters = () => {return e => /^[A-Za-zА-Яа-яёЁЇїІіЄєҐґ]+$/.test(e.target.value+e.key) || e.preventDefault()}
+export const onlyNumbers = () => {return e => /^\+\d*$/.test(e.target.value+e.key) || e.preventDefault()}
 
 export const collectionItemsForm = [
   { name: "firstName", label: "First Name", rules:[{required: true, message: 'Please enter your First Name!'}, {min: 2, message: 'Must be min 2 characters'}, {max: 24, message: 'Max 25 characters'}],maxLength: 25,onKeyPress: onlyLetters()},
