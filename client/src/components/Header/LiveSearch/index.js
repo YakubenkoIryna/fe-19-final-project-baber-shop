@@ -1,11 +1,12 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
 import './style.less'
-import { Input, Menu, Dropdown } from 'antd'
-import { Link } from 'react-router-dom'
-import { SearchOutlined } from '@ant-design/icons'
+import {Dropdown, Input, Menu} from 'antd'
+import {Link} from 'react-router-dom'
+import {SearchOutlined} from '@ant-design/icons'
 import {debounce} from 'lodash'
 import Ajax from '../../../services/Ajax'
-const { post } = Ajax
+
+const {post} = Ajax
 
 const prefix = <SearchOutlined/>
 
@@ -17,23 +18,25 @@ const LiveSearch = () => {
     setFilteredItem(event.target.value.toLowerCase())
   }
 
-  const filterData = (products) =>{
+  const filterData = (products) => {
     setItems(products.filter(item => {
       return item.name.toLowerCase().match(filteredItem)
     }))
   }
 
-  const updateQuery = () =>{
-    if(!filteredItem){
+  const updateQuery = () => {
+    if (!filteredItem) {
       return setItems([])
     }
-    async function fetch (){
+
+    async function fetch() {
       const products = await post('/products/search', {query: filteredItem})
       filterData(products)
     }
+
     fetch()
   }
-  const delayedQuery = useCallback(debounce(updateQuery, 500),[filteredItem])
+  const delayedQuery = useCallback(debounce(updateQuery, 500), [filteredItem])
 
 
   const products = items.map((el) =>
@@ -43,7 +46,8 @@ const LiveSearch = () => {
           <img className='search-product-logo' src={el.imageUrls[0].url} alt="product logo"/>
           <p className='search-product-name'>{el.name.toUpperCase()}</p>
           <p className='search-product-price'>{el.currentPrice} $</p>
-        </div></Link>
+        </div>
+      </Link>
     </Menu.Item>
   )
   const menu = (<Menu>
@@ -56,7 +60,6 @@ const LiveSearch = () => {
     delayedQuery()
     return delayedQuery.cancel
   }, [delayedQuery])
-
 
 
   return (

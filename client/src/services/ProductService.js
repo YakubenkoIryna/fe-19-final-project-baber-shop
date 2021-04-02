@@ -1,7 +1,7 @@
 import Ajax from "./Ajax";
 
 class ProductService {
-  async getProductsForBanner (category = { id: "razor" }) {
+  async getProductsForBanner(category = {id: "razor"}) {
     const response = await Ajax.get(`/products/filter?categories=${category.name}`);
     if (response.productsQuantity > 0) {
       return response.products.splice(0, 4);
@@ -10,11 +10,11 @@ class ProductService {
     }
   }
 
-  async createProduct (product) {
+  async createProduct(product) {
     return await Ajax.post("/products", product);
   }
 
-  async getProductsListForAdminPageByFiletr (query) {
+  async getProductsListForAdminPageByFiletr(query) {
     const response = await Ajax.get(`/products/filter${query}`);
     if (response?.products.length > 0) {
       return response;
@@ -23,15 +23,15 @@ class ProductService {
     }
   }
 
-  async deleteProduct (id) {
+  async deleteProduct(id) {
     return await Ajax.deleteRequest(`/products`, id);
   }
 
-  async getProduct (itemNo) {
+  async getProduct(itemNo) {
     return await Ajax.get(`/products/${itemNo}`);
   }
 
-  async updateProduct (id, updates) {
+  async updateProduct(id, updates) {
     return await Ajax.put(`/products`, id, JSON.stringify(updates));
   }
 

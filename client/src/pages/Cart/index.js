@@ -2,12 +2,12 @@ import React, {useEffect} from "react";
 import "./styles.less";
 import ProductsContainer from "../../components/CartProductsContainer";
 import {useDispatch, useSelector} from "react-redux";
-import { TotalAmount } from "../../components/CartTotalQuaintity";
+import {TotalAmount} from "../../components/CartTotalQuaintity";
 import Checkout from "../../components/Checkout";
 import EmptyCartPage from "../../components/CartEmpty"
 import {useLocation} from "react-router-dom";
 import {showPage} from "../../store/breadcrumbs/crumbsAction";
-import { ToastContainer } from "react-toastify";
+import {ToastContainer} from "react-toastify";
 
 const Cart = () => {
   const {pathname, key} = useLocation();

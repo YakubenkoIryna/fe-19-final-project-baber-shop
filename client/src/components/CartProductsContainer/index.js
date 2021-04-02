@@ -2,7 +2,7 @@ import React from 'react'
 import './style.less'
 import CartItem from '../CartItem'
 
-const ProductsContainer = ({ products }) => {
+const ProductsContainer = ({products}) => {
   const items = products.map(product =>
     <CartItem
       product={product}

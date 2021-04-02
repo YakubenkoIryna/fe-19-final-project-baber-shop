@@ -7,23 +7,23 @@ import PropTypes from 'prop-types';
 import './styles.less';
 
 const Login = () => {
-    const {key} = useLocation();
-    const dispatch = useDispatch();
+  const {key} = useLocation();
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(showPage({pageName: 'Login', key}));
-    }, [dispatch, key])
+  useEffect(() => {
+    dispatch(showPage({pageName: 'Login', key}));
+  }, [dispatch, key])
 
-    return (
-        <div className='login-page-wrapper'>
-            <LoginForm />
-        </div>
-    )
+  return (
+    <div className='login-page-wrapper'>
+      <LoginForm/>
+    </div>
+  )
 }
 
 Login.propTypes = {
-    key: PropTypes.string,
-    dispatch: PropTypes.func
+  key: PropTypes.string,
+  dispatch: PropTypes.func
 }
 
 export default Login

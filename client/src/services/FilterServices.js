@@ -2,7 +2,7 @@ import Ajax from "./Ajax";
 
 class FilterServices {
 
-  async getListByFilterType (filterTypes) {
+  async getListByFilterType(filterTypes) {
     const requestedFilters = {};
     for (const filter of filterTypes) {
       const res = await Ajax.get(`/filters/${filter}`);
