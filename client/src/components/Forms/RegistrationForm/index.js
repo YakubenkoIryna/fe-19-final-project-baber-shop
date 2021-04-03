@@ -16,7 +16,6 @@ import jwt_decode from "jwt-decode";
 import "./styles.less";
 
 const RegistrationForm = (props) => {
-  console.log("RegistrationForm = (props) =>", props);
   const [form] = Form.useForm();
   const history = useHistory();
   const dispatch = useDispatch();

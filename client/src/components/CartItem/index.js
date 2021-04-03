@@ -10,7 +10,6 @@ const CartItem = (props) => {
   const cartQuantity = props.product.cartQuantity
   const { imageUrls, name, currentPrice, _id, itemNo, quantity } = props.product.product
   const isAuth = useSelector(state => state.user.isAuthenticated)
-  console.log("props.product.product",props.product.product)
   const [realQuantity,setRealQuantity] = useState(quantity)
   useEffect(() => {
     setRealQuantity(quantity - cartQuantity)
@@ -20,22 +19,18 @@ const CartItem = (props) => {
     <div className="cart-item-wrapper">
       <div className="cart-item_item-image-description">
         <Link to={`/product/${itemNo}`}>
-        <div>
           <img className="cart-item_item-image" src={imageUrls[0].url} alt={name}/>
-        </div>
         </Link>
         <div className="cart-item_item-description">
           <Link to={`/product/${itemNo}`}>
             <p className='cart-item-link'>{name}</p>
           </Link>
+
           {realQuantity === 0
               ? <p className="cart-item-available available-zero">Available: 0</p>
               : <p className="cart-item-available">Available: {realQuantity}</p>
           }
-
-          <p>
-            {(props.product.product.description).slice(0,92)}<span>...</span>
-          </p>
+          <p className="cart-item_item-description-paragraph">{(props.product.product.description)}</p>
         </div>
       </div>
       <div className="cart-item_item-handler">
@@ -67,8 +62,8 @@ const CartItem = (props) => {
         </div>
         <div className="cart-item-available-mobile">
           {realQuantity === 0
-            ? <p className="cart-item-available-zero">Available: 0</p>
-            : <p className="cart-item-available">Available: {realQuantity}</p>
+              ? <p className="cart-item-available available-zero">Available: 0</p>
+              : <p className="cart-item-available">Available: {realQuantity}</p>
           }
         </div>
         <div className="item-handler_main-basket-mobile" onClick={() => dispatch(deleteFromCart(_id, isAuth))}>
@@ -80,3 +75,12 @@ const CartItem = (props) => {
 }
 
 export default CartItem
+
+
+// {maximumScreen
+//     ? <p>{(sttrr).slice(0, 412)}<span>...</span></p>
+//     : from1200to1245
+//         ? <p>{(sttrr).slice(0, 280)}<span>...</span></p>
+//         : from1245to1000 ? <p>{(props.product.product.description).slice(0, 200)}<span>...</span></p>
+//             : <p>{(sttrr).slice(0, 100)}<span>...</span></p>
+// }
