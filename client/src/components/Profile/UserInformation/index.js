@@ -70,38 +70,38 @@ const UserInformation = () => {
     return () => cleanupFunction = true
   }, [form, dispatch])
 
-    return (
-        <Col xs={{span: 20, offset: 2}} sm={{span: 12, offset: 1}} md={{span: 12, offset: 2}}
-             xl={{span: 10, offset: 2}}>
-            <Form
-                form={form}
-                {...layout}
-                name="userInfo"
-                initialValues={{
-                    remember: true,
-                    phone: "+380"
-                }}
-                scrollToFirstError
+  return (
+    <Col xs={{span: 20, offset: 2}} sm={{span: 12, offset: 1}} md={{span: 12, offset: 2}}
+         xl={{span: 10, offset: 2}}>
+      <Form
+        form={form}
+        {...layout}
+        name="userInfo"
+        initialValues={{
+          remember: true,
+          phone: "+380"
+        }}
+        scrollToFirstError
+      >
+        {collectionItemsForm.map(formItem =>
+          formItem.name !== "password"
+            ? <Form.Item
+              label={formItem.label}
+              name={formItem.name}
+              rules={formItem.rules}
+              key={formItem.name}
             >
-                {collectionItemsForm.map(formItem =>
-                    formItem.name !== "password"
-                        ? <Form.Item
-                            label={formItem.label}
-                            name={formItem.name}
-                            rules={formItem.rules}
-                            key={formItem.name}
-                        >
-                           <Input placeholder={formItem.label} maxLength={formItem.maxLength} onKeyPress={formItem.onKeyPress}/>
-                           </Form.Item>
-                        : ''
-                )}
-                <Form.Item {...formTailLayout}>
-                    <Button type="primary" onClick={onFinish}>
-                        Submit
-                    </Button>
-                </Form.Item>
-            </Form>
-        </Col>
-    )
+              <Input placeholder={formItem.label} maxLength={formItem.maxLength} onKeyPress={formItem.onKeyPress}/>
+            </Form.Item>
+            : ''
+        )}
+        <Form.Item {...formTailLayout}>
+          <Button type="primary" onClick={onFinish}>
+            Submit
+          </Button>
+        </Form.Item>
+      </Form>
+    </Col>
+  )
 }
 export default UserInformation;
