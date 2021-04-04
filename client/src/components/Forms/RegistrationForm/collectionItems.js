@@ -94,7 +94,7 @@ export const collectionItemsCheckoutAddress = [
   {
     name: "phone",
     label: "Phone Number",
-    rules: [{required: true, message: 'Please enter your phone number!'}, {
+    rules: [{required: true, message: 'Please enter your phone number "+38"!'}, {
       min: 13,
       max: 13,
       message: 'The phone number must contain 13 characters'
