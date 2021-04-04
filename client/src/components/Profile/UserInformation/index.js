@@ -11,64 +11,64 @@ const {get, put} = Ajax;
 
 
 const UserInformation = () => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const layout = {
-        labelCol: {
-            span: 24,
-        },
-        wrapperCol: {
-            span: 24
-        },
-    };
+  const layout = {
+    labelCol: {
+      span: 24,
+    },
+    wrapperCol: {
+      span: 24
+    },
+  };
 
-    const formTailLayout = {
-        labelCol: {
-            span: 24,
-        },
-        wrapperCol: {
-            span: 24,
-        },
-    };
-    const [form] = Form.useForm();
-    const success = () => {
-        message.success('Your user data has been successfully updated');
-    };
-    const error = () => {
-        message.error('Enter correct information');
-    };
-    const onFinish = async () => {
-        try {
-            const values = await form.validateFields();
-            await put('/customers', '', values);
-            console.log(values);
-            dispatch(changeFirstName(values.firstName));
-            success();
+  const formTailLayout = {
+    labelCol: {
+      span: 24,
+    },
+    wrapperCol: {
+      span: 24,
+    },
+  };
+  const [form] = Form.useForm();
+  const success = () => {
+    message.success('Your user data has been successfully updated');
+  };
+  const error = () => {
+    message.error('Enter correct information');
+  };
+  const onFinish = async () => {
+    try {
+      const values = await form.validateFields();
+      await put('/customers', '', values);
+      console.log(values);
+      dispatch(changeFirstName(values.firstName));
+      success();
 
-        } catch (errorInfo) {
-            error();
-        }
+    } catch (errorInfo) {
+      error();
     }
+  }
 
-    useEffect(() => {
-        dispatch(showPage({pageName: 'Personal information', key: 'user_info'}));
+  useEffect(() => {
+    dispatch(showPage({pageName: 'Personal information', key: 'user_info'}));
 
-        let cleanupFunction = false;
-        get('/customers/customer')
-            .then(customer => {
-                if (!cleanupFunction)
-                    form.setFieldsValue({
-                            firstName: customer.firstName,
-                            lastName: customer.lastName,
-                            login: customer.login,
-                            email: customer.email,
-                            phone: customer.phone,
-                        }
-                    )
+    let cleanupFunction = false;
+    get('/customers/customer')
+      .then(customer => {
+        if (!cleanupFunction)
+          form.setFieldsValue({
+              firstName: customer.firstName,
+              lastName: customer.lastName,
+              login: customer.login,
+              email: customer.email,
+              phone: customer.phone,
+            }
+          )
 
-            })
-        return () => cleanupFunction = true
-    }, [form, dispatch])
+      })
+    return () => cleanupFunction = true
+  }, [form, dispatch])
 
     return (
         <Col xs={{span: 20, offset: 2}} sm={{span: 12, offset: 1}} md={{span: 12, offset: 2}}

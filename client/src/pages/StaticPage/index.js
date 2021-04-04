@@ -13,46 +13,46 @@ const {get} = Ajax;
 
 
 const StaticPage = () => {
-    const {id} = useParams();
-    const dispatch = useDispatch();
+  const {id} = useParams();
+  const dispatch = useDispatch();
 
-    const [page, setPage] = useState(null);
-    const [error, setError] = useState(false);
+  const [page, setPage] = useState(null);
+  const [error, setError] = useState(false);
 
-    useEffect(() => {
-        get(`/pages/${encodeURIComponent(id)}`)
-            .then(page => {
-                setPage(page);
+  useEffect(() => {
+    get(`/pages/${encodeURIComponent(id)}`)
+      .then(page => {
+        setPage(page);
 
-                const parentPages = page.customId.split('/');
-                const currentPage = parentPages.pop();
-     
-                let result = '/pages/';
-                const pathNames = parentPages.map(page => result+=`${page}`);
+        const parentPages = page.customId.split('/');
+        const currentPage = parentPages.pop();
 
-                dispatch(showPage({pageName: currentPage, parentPages, pathNames, key: page._id}));
-            })
-            .catch(err => {
-                console.log(err)
-                setPage(null)
-                setError(true)
-            });
+        let result = '/pages/';
+        const pathNames = parentPages.map(page => result += `${page}`);
 
-    }, [id, dispatch])
+        dispatch(showPage({pageName: currentPage, parentPages, pathNames, key: page._id}));
+      })
+      .catch(err => {
+        console.log(err)
+        setPage(null)
+        setError(true)
+      });
 
-    return (
-        <>
-            {page !== null ?
-                <Content className='staticPage-container'>
-                    <Title>{page.title}</Title>
-                    {parse(page.htmlContent)}
-                </Content>
-                : error
-                    ? <Redirect to={'/error'}/>
-                    : ''
-            }
-        </>
-    )
+  }, [id, dispatch])
+
+  return (
+    <>
+      {page !== null ?
+        <Content className='staticPage-container'>
+          <Title>{page.title}</Title>
+          {parse(page.htmlContent)}
+        </Content>
+        : error
+          ? <Redirect to={'/error'}/>
+          : ''
+      }
+    </>
+  )
 }
 
 export default StaticPage;

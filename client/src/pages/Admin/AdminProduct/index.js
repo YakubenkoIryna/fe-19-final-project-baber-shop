@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router";
-import { Layout, Row, Col, Divider, Button, Pagination } from "antd";
+import React, {useEffect, useState} from "react";
+import {useHistory} from "react-router";
+import {Button, Col, Divider, Layout, Pagination, Row} from "antd";
 import useAsyncEffect from "use-async-effect";
 import AdminSider from "../../../components/AdminSider";
 import ProductForm from "../../../components/Forms/ProductForm";
@@ -10,14 +10,14 @@ import ProductService from "../../../services/ProductService";
 import AdminCardSkeleton from "../../../components/AdminCards/AdminCardSkeleton";
 import AdminProductCard from "../../../components/AdminCards/AdminProductCard";
 import withModal from "../../../components/Modal";
-import { useDispatch } from "react-redux";
-import { showModal } from "../../../store/modal/modalAction";
+import {useDispatch} from "react-redux";
+import {showModal} from "../../../store/modal/modalAction";
 import Preloader from "../../../components/Preloader";
 import QuerySearch from "../../../components/QuerySearch";
 
 import "./styles.less";
 
-const { Content } = Layout;
+const {Content} = Layout;
 
 const AdminProduct = () => {
 
@@ -110,7 +110,7 @@ const AdminProduct = () => {
   }, []);
 
   const dispatchModal = (status) => {
-    dispatch(showModal({ status, type: typeOfModal }));
+    dispatch(showModal({status, type: typeOfModal}));
   };
 
   const handlePageChange = (page, pageSize) => {
@@ -133,14 +133,14 @@ const AdminProduct = () => {
 
   return (
     <Layout className="admin-products-container">
-      <AdminSider />
+      <AdminSider/>
       <Content className="admin-products-content-container">
         <Divider orientation="left">
-          {!preloaderStatusFilters && !preloaderStatusCategory ? <span>Create Product</span> : <Preloader />}
+          {!preloaderStatusFilters && !preloaderStatusCategory ? <span>Create Product</span> : <Preloader/>}
         </Divider>
         <Row gutter={16}>
-          <Col span={22} style={{ margin: "auto", textAlign: "left" }}>
-            <Button type={"primary"} style={{ marginLeft: "14px" }} onClick={() => dispatchModal(true)}>Create
+          <Col span={22} style={{margin: "auto", textAlign: "left"}}>
+            <Button type={"primary"} style={{marginLeft: "14px"}} onClick={() => dispatchModal(true)}>Create
               Product</Button>
             <ModalProductForm
               width={800}
@@ -153,7 +153,7 @@ const AdminProduct = () => {
         </Row>
         <Divider orientation="left">ItemNo Search</Divider>
         <Row gutter={16}>
-          <Col span={22} style={{ margin: "auto", textAlign: "left" }}>
+          <Col span={22} style={{margin: "auto", textAlign: "left"}}>
             <QuerySearch
               keyWord={keyWord}
               setKeyWord={setKeyWord}
@@ -162,21 +162,21 @@ const AdminProduct = () => {
           </Col>
         </Row>
         <Divider orientation="left">
-          {!preloaderStatusProducts ? <span>Products</span> : <Preloader />}
+          {!preloaderStatusProducts ? <span>Products</span> : <Preloader/>}
         </Divider>
         {products.length === 0 && <div>Product wasn't found, try another ItemNo</div>}
         {products.length > 0 &&
         <>
           <Row gutter={16}>
-            <Col span={24} className={"admin-products-list-container"} style={{ margin: "auto" }}>
+            <Col span={24} className={"admin-products-list-container"} style={{margin: "auto"}}>
               {preloaderStatusProducts && [...Array(perPage).keys()].map(skeleton => <AdminCardSkeleton
-                key={`skeleton_${skeleton}`} />)}
+                key={`skeleton_${skeleton}`}/>)}
               {!preloaderStatusProducts && products.map(product => (
-                <AdminProductCard key={product.itemNo} product={product} loadProducts={loadProducts} />))}
+                <AdminProductCard key={product.itemNo} product={product} loadProducts={loadProducts}/>))}
             </Col>
           </Row>
           <Row gutter={16}>
-            <Col span={24} style={{ margin: "auto", padding: "15px" }}>
+            <Col span={24} style={{margin: "auto", padding: "15px"}}>
               <nav>
                 <Pagination
                   current={page}

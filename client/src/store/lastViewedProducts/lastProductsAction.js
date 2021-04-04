@@ -1,5 +1,5 @@
 export const setToLastProducts = (products) => (dispatch) =>
-    dispatch({
-        type: 'SET_TO_LAST_PRODUCTS',
-        payload: products,
-    })
+  dispatch({
+    type: 'SET_TO_LAST_PRODUCTS',
+    payload: products,
+  })

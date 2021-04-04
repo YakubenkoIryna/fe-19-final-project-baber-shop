@@ -1,25 +1,25 @@
-import { SET_LOADING, CANCEL_LOADING } from '../actionTypes';
+import {CANCEL_LOADING, SET_LOADING} from '../actionTypes';
 
 const initialState = {
-    loading: false
+  loading: false
 }
 
-function preloaderReducer (state = initialState, action) {
-    switch (action.type) {
-        case SET_LOADING:
-            return {
-                ...state,
-                loading: action.payload
-            }
+function preloaderReducer(state = initialState, action) {
+  switch (action.type) {
+    case SET_LOADING:
+      return {
+        ...state,
+        loading: action.payload
+      }
 
-        case CANCEL_LOADING:
-            return {
-                ...state,
-                loading: action.payload
-            }
-        default:
-            return state;
-    }
+    case CANCEL_LOADING:
+      return {
+        ...state,
+        loading: action.payload
+      }
+    default:
+      return state;
+  }
 }
 
 export default preloaderReducer;
