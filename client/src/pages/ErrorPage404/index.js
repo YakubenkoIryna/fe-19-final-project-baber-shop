@@ -7,7 +7,7 @@ const Btn = () => {
     const history = useHistory();
 
     return (
-        <button type='primary' onClick={() => {
+        <button type='primary' className='btn-goBack' onClick={() => {
             history.goBack()
         }}> Go back</button>
     );
