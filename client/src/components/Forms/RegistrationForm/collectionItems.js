@@ -1,8 +1,11 @@
 export const onlyLetters = () => {
-  return e => /[-.;"!@#$%ˆ&*():<>|,§_/'=?/\d/]/.test(e.key) && e.preventDefault()
+  return e => /^[A-Za-zА-Яа-яёЁЇїІіЄєҐґ ]+$/.test(e.target.value + e.key) || e.preventDefault()
 }
 export const onlyNumbers = () => {
-  return e => /[-.;"!@#$%ˆ&*():<>|,§_/'=?a-zA-Zа-яА-Я]/.test(e.key) && e.preventDefault()
+  return e => /^\+\d*$/.test(e.target.value + e.key) || e.preventDefault()
+}
+export const zip = () => {
+  return e => /^\d*$/.test(e.target.value + e.key) || e.preventDefault()
 }
 
 export const collectionItemsForm = [
@@ -56,7 +59,7 @@ export const collectionItemsForm = [
   {
     name: "phone",
     label: "Phone Number",
-    rules: [{required: true, message: 'Please enter your phone number!'}, {
+    rules: [{required: true, message: 'Please enter your phone number "+38"!'}, {
       min: 13,
       max: 13,
       message: 'The phone number must contain 13 characters'
@@ -65,7 +68,6 @@ export const collectionItemsForm = [
     onKeyPress: onlyNumbers()
   }
 ];
-
 
 export const collectionItemsCheckoutAddress = [
   {
@@ -88,11 +90,11 @@ export const collectionItemsCheckoutAddress = [
   },
   {name: "address", label: "Address", rules: [{required: true, message: 'Please enter your address!'}]},
   {name: "city", label: "City", rules: [{required: true, message: 'Please enter your city!'}]},
-  {name: "zip", label: "Zip", rules: [{required: true, message: 'Please enter your zip!'}]},
+  {name: "zip", label: "Zip", rules: [{required: true, message: 'Please enter your zip!'}], onKeyPress: zip()},
   {
     name: "phone",
     label: "Phone Number",
-    rules: [{required: true, message: 'Please enter your phone number!'}, {
+    rules: [{required: true, message: 'Please enter your phone number "+38"!'}, {
       min: 13,
       max: 13,
       message: 'The phone number must contain 13 characters'

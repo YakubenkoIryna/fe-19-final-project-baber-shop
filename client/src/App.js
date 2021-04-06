@@ -33,7 +33,7 @@ const App = () => {
   }, [history, isAdmin]);
 
   const layoutShop = () => (
-    <Layout style={{backgroundColor: 'white'}}>
+    <Layout style={{backgroundColor: 'white', minHeight: '100vh'}}>
       <SiteHeader/>
       <BreadCrumbs/>
       <Content className="site-layout" style={{padding: "0 0px"}}>
