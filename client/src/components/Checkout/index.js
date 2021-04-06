@@ -33,12 +33,9 @@ const Checkout = ({products}) => {
       newOrder.products = JSON.stringify(products);
     }
 
-    console.log('Order prepared: ', JSON.stringify(newOrder));
-
     try {
       setLoading(true);
       const order = await Ajax.post('/orders', newOrder);
-      console.log('Order created:', order);
       if (order.message) {
         return Promise.reject(order.message);
       }

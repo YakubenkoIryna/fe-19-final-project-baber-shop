@@ -16,7 +16,6 @@ import jwt_decode from "jwt-decode";
 import "./styles.less";
 
 const RegistrationForm = (props) => {
-  console.log("RegistrationForm = (props) =>", props);
   const [form] = Form.useForm();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -46,15 +45,10 @@ const RegistrationForm = (props) => {
           .catch(err => {
             errorRegisterToastCustom()
             console.log("login error", err);
-            const error = err.response.data;
-            console.log("error", error);
           })
       })
       .catch(err => {
         errorRegisterToastCustom()
-        console.log("Registration error");
-        const error = err.response.data;
-        console.log("error", error);
         console.log(err);
       });
   };

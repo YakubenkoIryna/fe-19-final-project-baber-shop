@@ -26,8 +26,6 @@ const FilteredProducts = ({queryString, onLoadMore}) => {
 
     fetch()
   }, [queryString])
-  // console.log("filteredProducts",filteredProducts);
-  // console.log("productsPerPage",productsPerPage);
 
   const showLoadingContainer = {
     display: showLoading ? 'flex' : 'none'
