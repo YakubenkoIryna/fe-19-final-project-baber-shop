@@ -10,7 +10,6 @@ const CartItem = (props) => {
   const cartQuantity = props.product.cartQuantity
   const {imageUrls, name, currentPrice, _id, itemNo, quantity} = props.product.product
   const isAuth = useSelector(state => state.user.isAuthenticated)
-  console.log("props.product.product", props.product.product)
   const [realQuantity, setRealQuantity] = useState(quantity)
   useEffect(() => {
     setRealQuantity(quantity - cartQuantity)

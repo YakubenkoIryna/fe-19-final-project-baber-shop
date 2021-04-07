@@ -41,7 +41,6 @@ const UserInformation = () => {
     try {
       const values = await form.validateFields();
       await put('/customers', '', values);
-      console.log(values);
       dispatch(changeFirstName(values.firstName));
       success();
 
