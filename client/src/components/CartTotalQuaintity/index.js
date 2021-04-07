@@ -1,8 +1,8 @@
 import React from 'react'
 import './style.less'
-import { useDispatch, useSelector } from 'react-redux'
-import { Button } from 'antd'
-import { Link } from 'react-router-dom'
+import {useDispatch, useSelector} from 'react-redux'
+import {Button} from 'antd'
+import {Link} from 'react-router-dom'
 import {resetCart} from '../../store/cart/actionCart'
 
 export const TotalAmount = (props) => {

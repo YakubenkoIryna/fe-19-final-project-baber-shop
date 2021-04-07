@@ -5,22 +5,22 @@ import Ajax from "../../services/Ajax";
 import './styles.less';
 
 const ProductDetails = (props) => {
-    const [images, setImages] = useState([])
+  const [images, setImages] = useState([])
 
-    useEffect(() => {
-        async function fetch() {
-            const {imageUrls} = await Ajax.get('/products/76100')
-            setImages(imageUrls);
-        }
+  useEffect(() => {
+    async function fetch() {
+      const {imageUrls} = await Ajax.get('/products/76100')
+      setImages(imageUrls);
+    }
 
-        fetch();
-    }, [])
+    fetch();
+  }, [])
 
-    return (
-        <div className='container'>
-            <ProductCarousel imageUrls={images}/>
-        </div>
-    )
+  return (
+    <div className='container'>
+      <ProductCarousel imageUrls={images}/>
+    </div>
+  )
 }
 
 export default ProductDetails

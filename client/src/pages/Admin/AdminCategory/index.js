@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import { Layout, Row, Col, Divider, Button } from "antd";
+import React, {useState} from "react";
+import {Button, Col, Divider, Layout, Row} from "antd";
 import useAsyncEffect from "use-async-effect";
 import AdminSider from "../../../components/AdminSider";
 import CategoryForm from "../../../components/Forms/CategoryForm";
 import CategoryService from "../../../services/CategoryService";
 import AdminCategoryCard from "../../../components/AdminCards/AdminCategoryCard";
 import withModal from "../../../components/Modal";
-import { useDispatch } from "react-redux";
-import { showModal } from "../../../store/modal/modalAction";
+import {useDispatch} from "react-redux";
+import {showModal} from "../../../store/modal/modalAction";
 import LocalSearch from "../../../components/LocalSearch";
 
 import "./styles.less";
 
-const { Content } = Layout;
+const {Content} = Layout;
 
 const AdminCatergory = () => {
   const [listOfCategories, setListOfCategories] = useState(null);
@@ -43,25 +43,26 @@ const AdminCatergory = () => {
   };
 
   const dispatchModal = (status) => {
-    dispatch(showModal({ status, type: typeOfModal }));
+    dispatch(showModal({status, type: typeOfModal}));
   };
 
   const searched = keyword => c => c.name.toLowerCase().includes(keyword);
 
   return (
     <Layout className="admin-category-container">
-      <AdminSider />
+      <AdminSider/>
       <Content className="category-content-container">
         <Divider orientation="left">Create Category</Divider>
         <Row gutter={16}>
-          <Col span={22} style={{ margin: "auto", textAlign: 'left'}}>
-            <Button type={'primary'} style={{marginLeft: '14px'}} onClick={() => dispatchModal(true)}>Create Category</Button>
-            <ModalCategoryForm width={800} loadCategories={loadCategories} dispatchModal={dispatchModal} />
+          <Col span={22} style={{margin: "auto", textAlign: 'left'}}>
+            <Button type={'primary'} style={{marginLeft: '14px'}} onClick={() => dispatchModal(true)}>Create
+              Category</Button>
+            <ModalCategoryForm width={800} loadCategories={loadCategories} dispatchModal={dispatchModal}/>
           </Col>
         </Row>
         <Divider orientation="left">Search</Divider>
         <Row gutter={16}>
-          <Col span={22} style={{ margin: "auto", textAlign: 'left'}}>
+          <Col span={22} style={{margin: "auto", textAlign: 'left'}}>
             <LocalSearch keyWord={keyWord} setKeyWord={setKeyWord}/>
           </Col>
         </Row>
@@ -79,7 +80,7 @@ const AdminCatergory = () => {
                       {categories && categories.length > 0 && categories.filter(searched(keyWord)).map(category => {
                           return (
                             <div className={"category-list-item"} key={`${category._id}`}>
-                              <AdminCategoryCard category={category} loadCategories={loadCategories} />
+                              <AdminCategoryCard category={category} loadCategories={loadCategories}/>
                             </div>
                           );
                         }

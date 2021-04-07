@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
+import React, {useEffect, useState} from "react";
+import {Helmet} from "react-helmet";
 import Ajax from "../../services/Ajax";
-import { useLocation, useParams } from "react-router-dom";
+import {useLocation, useParams} from "react-router-dom";
 
-export const MetaForPages = ({ title, content, rel, href, src, type }) => {
+export const MetaForPages = ({title, content, rel, href, src, type}) => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     async function fetchProducts() {
       const result = await Ajax.get("/products");
       setProducts(result);
     }
+
     fetchProducts();
   }, []);
 
   const metaContent = [...new Set(products.map(item => item.name + item.brand + item.categories))].toString().split(",").join(" ");
   const metaTitle = [...new Set(products.map(item => item.categories))].toString().split(",").join(" ");
-
   return (
     <Helmet>
       <title>{title} {metaTitle}</title>
@@ -26,16 +26,17 @@ export const MetaForPages = ({ title, content, rel, href, src, type }) => {
   );
 };
 
-export const MetaForEachPage = ({ title, content, rel, href, src, type, }) => {
-  const { itemNo } = useParams()
+export const MetaForEachPage = ({title, content, rel, href, src, type,}) => {
+  const {itemNo} = useParams()
   const [product, setProduct] = useState({})
   useEffect(() => {
     async function fetchProducts2() {
       const result = await Ajax.get(`/products/${itemNo}`);
       setProduct(result);
     }
+
     fetchProducts2();
-  },[itemNo]);
+  }, [itemNo]);
 
   const metaContent = (product.name + product.brand + product.categories + product.categories_level1 + product.categories_parent).toString();
 
@@ -50,18 +51,17 @@ export const MetaForEachPage = ({ title, content, rel, href, src, type, }) => {
 }
 
 
-
-
-export const MetaForFiltered = ({ title, content, rel, href, src, type }) => {
+export const MetaForFiltered = ({title, content, rel, href, src, type}) => {
   const {search} = useLocation();
   const newSearch = search.substring(1)
   const [filteredProducts, setFilteredProducts] = useState([]);
 
-  useEffect(()=>{
-    async function fetch(){
+  useEffect(() => {
+    async function fetch() {
       const data = await Ajax.get(`/products/filter/?${newSearch}`);
       setFilteredProducts(data.products);
     }
+
     fetch()
   }, [newSearch])
 

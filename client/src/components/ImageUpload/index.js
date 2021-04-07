@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, {useEffect, useState} from "react";
 import Preloader from "../Preloader";
-import { Avatar, Badge, message } from "antd";
+import {Avatar, Badge, message} from "antd";
 import CloudinaryService from "../../services/CloudinaryService";
 
 import "./styles.less";
 
-const ImageUpload = ({ images, setImages, cloudinaryfolderName, imageButtonDisabled }) => {
+const ImageUpload = ({images, setImages, cloudinaryfolderName, imageButtonDisabled}) => {
 
   const [preloaderStatus, setPreloaderStatus] = useState(false);
   const [imageUploadButtonStyle, setImageUploadButtonStyle] = useState("cloudinary__upload cloudinaryDisabled");
@@ -32,7 +32,7 @@ const ImageUpload = ({ images, setImages, cloudinaryfolderName, imageButtonDisab
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onloadend = () => {
-          CloudinaryService.imageUpload({ image: reader.result, folder: cloudinaryfolderName })
+          CloudinaryService.imageUpload({image: reader.result, folder: cloudinaryfolderName})
             .then(data => {
               setPreloaderStatus(false);
               allUploadedFiles.push(data);
@@ -50,7 +50,7 @@ const ImageUpload = ({ images, setImages, cloudinaryfolderName, imageButtonDisab
   const handleImageRemove = (public_id) => {
     if (!public_id) return
     setPreloaderStatus(true);
-    CloudinaryService.imageRemove({ public_id })
+    CloudinaryService.imageRemove({public_id})
       .then(res => {
         setPreloaderStatus(false);
         const filteredImages = [...images].filter((item) => {
@@ -77,7 +77,7 @@ const ImageUpload = ({ images, setImages, cloudinaryfolderName, imageButtonDisab
         />
       </label>
       {preloaderStatus && <div className={"cloudinary__preloader"}>
-        <Preloader />
+        <Preloader/>
       </div>}
       {!preloaderStatus &&
       <div>

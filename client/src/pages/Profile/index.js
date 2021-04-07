@@ -6,14 +6,14 @@ import './style.less';
 
 const Profile = () => {
 
-    return (
-        <div className='profile'>
-            <Row justify-content='center'>
-                <UserOptionsMenu/>
-                <ProfileRoutes/>
-            </Row>
-        </div>
-    )
+  return (
+    <div className='profile'>
+      <Row justify-content='center'>
+        <UserOptionsMenu/>
+        <ProfileRoutes/>
+      </Row>
+    </div>
+  )
 }
 
 export default Profile;

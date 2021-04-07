@@ -1,11 +1,11 @@
 import React from 'react';
-import { useDispatch } from "react-redux";
-import { Button } from "antd";
-import { toast } from "react-toastify";
-import { showModal } from "../../store/modal/modalAction";
+import {useDispatch} from "react-redux";
+import {Button} from "antd";
+import {toast} from "react-toastify";
+import {showModal} from "../../store/modal/modalAction";
 import 'react-toastify/dist/ReactToastify.css';
 import "./styless.less"
-import { MehOutlined } from '@ant-design/icons'
+import {MehOutlined} from '@ant-design/icons'
 
 const LoginModal = () => {
   const dispatch = useDispatch();
@@ -44,13 +44,13 @@ export const absentToday = () => {
 
 
 export const errorRegisterToast = () => {
-  toast.error(<LoginModal/>,{
+  toast.error(<LoginModal/>, {
     position: toast.POSITION.TOP_CENTER,
     autoClose: 4000
   })
 }
 export const successRegisterToast = () => {
-  toast.success("Registration complete",{
+  toast.success("Registration complete", {
     position: toast.POSITION.TOP_CENTER,
     autoClose: 2000
   })

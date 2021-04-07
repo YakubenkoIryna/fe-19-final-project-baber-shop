@@ -7,29 +7,29 @@ import renderer from "react-test-renderer";
 
 let container = null;
 beforeEach(() => {
-    container = document.createElement('div');
-    document.body.appendChild(container);
+  container = document.createElement('div');
+  document.body.appendChild(container);
 })
 afterEach(() => {
-    unmountComponentAtNode(container);
-    container.remove();
-    container = null;
+  unmountComponentAtNode(container);
+  container.remove();
+  container = null;
 })
 test('CheckboxFilter is rendered', () => {
-    act(() => {
-        render(<MemoryRouter>
-            <CheckboxFilter/>
-        </MemoryRouter>, container)
-    });
-    expect(container.innerHTML).toMatchSnapshot();
+  act(() => {
+    render(<MemoryRouter>
+      <CheckboxFilter/>
+    </MemoryRouter>, container)
+  });
+  expect(container.innerHTML).toMatchSnapshot();
 });
 test('renders correctly when there is one filter', () => {
-    const items = ['filter'];
-    const tree = renderer.create(<CheckboxFilter items={items} />).toJSON();
-    expect(tree).toMatchSnapshot();
+  const items = ['filter'];
+  const tree = renderer.create(<CheckboxFilter items={items}/>).toJSON();
+  expect(tree).toMatchSnapshot();
 });
 test('renders correctly when there are couple of filters', () => {
-    const items = ['filter-one', 'filter-two', 'filter-three'];
-    const tree = renderer.create(<CheckboxFilter items={items} />).toJSON();
-    expect(tree).toMatchSnapshot();
+  const items = ['filter-one', 'filter-two', 'filter-three'];
+  const tree = renderer.create(<CheckboxFilter items={items}/>).toJSON();
+  expect(tree).toMatchSnapshot();
 });

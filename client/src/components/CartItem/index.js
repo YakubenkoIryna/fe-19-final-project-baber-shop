@@ -1,19 +1,19 @@
 import React, {useEffect, useState} from 'react'
 import './style.less'
-import { PlusCircleFilled, MinusCircleFilled, DeleteFilled } from '@ant-design/icons'
-import { useDispatch, useSelector } from 'react-redux'
-import { deleteFromCart, increaseQuantity, decreaseQuantity} from "../../store/cart/actionCart";
-import { Link } from 'react-router-dom'
+import {DeleteFilled, MinusCircleFilled, PlusCircleFilled} from '@ant-design/icons'
+import {useDispatch, useSelector} from 'react-redux'
+import {decreaseQuantity, deleteFromCart, increaseQuantity} from "../../store/cart/actionCart";
+import {Link} from 'react-router-dom'
 
 const CartItem = (props) => {
   const dispatch = useDispatch()
   const cartQuantity = props.product.cartQuantity
-  const { imageUrls, name, currentPrice, _id, itemNo, quantity } = props.product.product
+  const {imageUrls, name, currentPrice, _id, itemNo, quantity} = props.product.product
   const isAuth = useSelector(state => state.user.isAuthenticated)
-  const [realQuantity,setRealQuantity] = useState(quantity)
+  const [realQuantity, setRealQuantity] = useState(quantity)
   useEffect(() => {
     setRealQuantity(quantity - cartQuantity)
-  },[cartQuantity, quantity])
+  }, [cartQuantity, quantity])
 
   return (
     <div className="cart-item-wrapper">
@@ -75,12 +75,3 @@ const CartItem = (props) => {
 }
 
 export default CartItem
-
-
-// {maximumScreen
-//     ? <p>{(sttrr).slice(0, 412)}<span>...</span></p>
-//     : from1200to1245
-//         ? <p>{(sttrr).slice(0, 280)}<span>...</span></p>
-//         : from1245to1000 ? <p>{(props.product.product.description).slice(0, 200)}<span>...</span></p>
-//             : <p>{(sttrr).slice(0, 100)}<span>...</span></p>
-// }

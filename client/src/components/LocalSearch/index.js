@@ -1,7 +1,7 @@
 import React from "react";
 import './style.less'
 
-const LocalSearch = ({ keyWord, setKeyWord }) => {
+const LocalSearch = ({keyWord, setKeyWord}) => {
 
   const onSearch = (e) => {
     e.preventDefault();
