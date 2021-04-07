@@ -52,5 +52,6 @@ export const TotalAmount = (props) => {
         }
       </div>
     }</>
+
   )
 }
