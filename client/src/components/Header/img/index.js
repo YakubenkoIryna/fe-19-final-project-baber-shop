@@ -4,4 +4,4 @@ import iconLogin from './icon-login.png'
 import iconCatalogue from './icon-catalogue.png'
 import iconCart from './cart.png'
 
-export  {headerLogo, iconContact, iconLogin, iconCatalogue, iconCart}
+export {headerLogo, iconContact, iconLogin, iconCatalogue, iconCart}

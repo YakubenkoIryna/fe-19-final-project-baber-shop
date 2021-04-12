@@ -1,22 +1,21 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { Button, Form, Input } from "antd";
+import {Link, useHistory} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {Button, Form, Input} from "antd";
 import PropTypes from "prop-types";
-import { collectionItemsForm } from "./collectionItems";
-import { formItemLayout2, tailFormItemLayout} from "./formLayouts"
-import { showModal } from "../../../store/modal/modalAction";
-import { authUser } from "../../../store/user/userAction";
+import {collectionItemsForm} from "./collectionItems";
+import {formItemLayout2, tailFormItemLayout} from "./formLayouts"
+import {showModal} from "../../../store/modal/modalAction";
+import {authUser} from "../../../store/user/userAction";
 import LoginService from "../../../services/LoginService";
 import RegisterService from "../../../services/RegisterService";
-import { cartMerging } from '../../../services/cartAuth'
-import { ToastContainer } from "react-toastify";
-import { errorRegisterToastCustom, successRegisterToastCustom } from "../../Toasters";
+import {cartMerging} from '../../../services/cartAuth'
+import {ToastContainer} from "react-toastify";
+import {errorRegisterToastCustom, successRegisterToastCustom} from "../../Toasters";
 import jwt_decode from "jwt-decode";
 import "./styles.less";
 
 const RegistrationForm = (props) => {
-  console.log("RegistrationForm = (props) =>", props);
   const [form] = Form.useForm();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -26,7 +25,7 @@ const RegistrationForm = (props) => {
   };
 
   const onFinish = (values) => {
-    const newCustomer = { ...values, isAdmin: false };
+    const newCustomer = {...values, isAdmin: false};
     const userData = {}
     RegisterService.RegisterResult(newCustomer)
       .then(savedCustomer => {
@@ -45,16 +44,11 @@ const RegistrationForm = (props) => {
           })
           .catch(err => {
             errorRegisterToastCustom()
-            console.log("login error",err);
-            const error = err.response.data;
-            console.log("error",error);
+            console.log("login error", err);
           })
       })
       .catch(err => {
         errorRegisterToastCustom()
-        console.log("Registration error");
-        const error = err.response.data;
-        console.log("error",error);
         console.log(err);
       });
   };
@@ -82,7 +76,7 @@ const RegistrationForm = (props) => {
                      rules={formItem.rules}
                      key={formItem.name}>
             {formItem.name === "password"
-              ? <Input.Password maxLength={formItem.maxLength} placeholder={formItem.label} />
+              ? <Input.Password maxLength={formItem.maxLength} placeholder={formItem.label}/>
               : <Input maxLength={formItem.maxLength} placeholder={formItem.label} onKeyPress={formItem.onKeyPress}/>
             }
           </Form.Item>
@@ -95,8 +89,8 @@ const RegistrationForm = (props) => {
         <Form.Item {...tailFormItemLayout}>
           Already registered?
           {props.modal
-          ? <span className="login-register_modal-link" onClick={showModalLogin}> Login now</span>
-          : <Link to="/login"> Login now</Link>
+            ? <span className="login-register_modal-link" onClick={showModalLogin}> Login now</span>
+            : <Link to="/login"> Login now</Link>
           }
         </Form.Item>
         <ToastContainer/>

@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { Form, Input, Button, message, Select, Row, Col } from "antd";
+import React, {useState} from "react";
+import {Button, Col, Form, Input, message, Row, Select} from "antd";
 import CategoryService from "../../../services/CategoryService";
-import { fieldsSetArr, layout, tailLayout, initialFormValues, rootCloudinaryFolderName } from "./constants";
+import {fieldsSetArr, initialFormValues, layout, rootCloudinaryFolderName, tailLayout} from "./constants";
 import ImageUpload from "../../ImageUpload";
 import "./style.less";
 
-const { Option } = Select;
+const {Option} = Select;
 
-const CategoryForm = ({ loadCategories, dispatchModal }) => {
+const CategoryForm = ({loadCategories, dispatchModal}) => {
   const [form] = Form.useForm();
   const [disabledBtn, setDisabledBtn] = useState(true);
   const [disabledParentCategory, setDisabledParentCategory] = useState(true);
@@ -25,7 +25,7 @@ const CategoryForm = ({ loadCategories, dispatchModal }) => {
       case "input":
         element = (
           <Form.Item key={settings.name} {...settings}>
-            <Input placeholder={`input ${settings.label}`} />
+            <Input placeholder={`input ${settings.label}`}/>
           </Form.Item>
         );
         break;
@@ -71,7 +71,7 @@ const CategoryForm = ({ loadCategories, dispatchModal }) => {
 
   // handle form on a successfully submit
   const onFinish = (values) => {
-    const submitValue = { ...values, imgUrl: images && images.length > 0 ? images : [] };
+    const submitValue = {...values, imgUrl: images && images.length > 0 ? images : []};
     CategoryService.createCategory(submitValue)
       .then(res => {
         message.success(`new Category ${res.name} was created`, 1.5);
@@ -91,7 +91,7 @@ const CategoryForm = ({ loadCategories, dispatchModal }) => {
   };
 
   // Activate Submit button once form is filled handleOnFieldsChange
-  const handleOnFieldsChange = ([{ name, value }]) => {
+  const handleOnFieldsChange = ([{name, value}]) => {
     //  handle cloudinary foldary name creation
     if (name && name.length > 0 && name[0] === "id" && value.length > 0) {
       let cloudinaryCategoryfolderName = `${rootCloudinaryFolderName}/${value}`;
@@ -104,7 +104,7 @@ const CategoryForm = ({ loadCategories, dispatchModal }) => {
       setImageButtonDisabled(true);
     }
     // handleSubmitButtonDisable
-    setDisabledBtn(!form.isFieldsTouched(true) || form.getFieldsError().filter(({ errors }) => errors.length).length > 0);
+    setDisabledBtn(!form.isFieldsTouched(true) || form.getFieldsError().filter(({errors}) => errors.length).length > 0);
   };
 
   return (
@@ -120,7 +120,7 @@ const CategoryForm = ({ loadCategories, dispatchModal }) => {
     >
       {setUpFormFields()}
       <Row gutter={16}>
-        <Col span={24} style={{ textAlign: "left" }}>
+        <Col span={24} style={{textAlign: "left"}}>
           <ImageUpload
             images={images}
             setImages={setImages}
@@ -136,7 +136,7 @@ const CategoryForm = ({ loadCategories, dispatchModal }) => {
           disabled={disabledBtn}>
           Submit
         </Button>
-        <Button htmlType="button" onClick={() => form.resetFields()} style={{ marginLeft: "20px" }}>
+        <Button htmlType="button" onClick={() => form.resetFields()} style={{marginLeft: "20px"}}>
           Reset
         </Button>
       </Form.Item>

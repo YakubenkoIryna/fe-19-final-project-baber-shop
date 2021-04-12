@@ -1,4 +1,4 @@
-import { TEST_STORE } from '../actionTypes'
+import {TEST_STORE} from '../actionTypes'
 
 const initialValue = {
   name: 'new product for testing purposes',

@@ -10,10 +10,10 @@ export const authUser = status => dispatch => {
 };
 
 export const changeFirstName = name => dispatch => {
-    return dispatch(
-        {
-            type: USER_NAME_CHANGE,
-            payload: name
-        }
-    )
+  return dispatch(
+    {
+      type: USER_NAME_CHANGE,
+      payload: name
+    }
+  )
 }
