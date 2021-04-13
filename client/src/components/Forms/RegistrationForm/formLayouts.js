@@ -1,11 +1,11 @@
 export const formItemLayout2 = {
   labelCol: {
-    xs: { span: 24 },
-    sm: { span: 8 }
+    xs: {span: 24},
+    sm: {span: 8}
   },
   wrapperCol: {
-    xs: { span: 24 },
-    sm: { span: 16 }
+    xs: {span: 24},
+    sm: {span: 16}
   }
 };
 

@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import React, {useState} from "react";
+import {useParams} from "react-router-dom";
 import useAsyncEffect from "use-async-effect";
-import { Layout, Row, Col, Divider } from "antd";
+import {Col, Divider, Layout, Row} from "antd";
 import AdminSider from "../../../components/AdminSider";
 import CategoryService from "../../../services/CategoryService";
 import ProductService from "../../../services/ProductService";
@@ -11,10 +11,10 @@ import "./styles.less";
 import FilterServices from "../../../services/FilterServices";
 import Preloader from "../../../components/Preloader";
 
-const { Content } = Layout;
+const {Content} = Layout;
 
 const AdminProductUpdate = () => {
-  const { itemNo } = useParams();
+  const {itemNo} = useParams();
   const [preloader, setPreloader] = useState(false);
   const [productToUpdate, setProductToUpdate] = useState(null);
   const [listOfCategories, setListOfCategories] = useState(null);
@@ -43,12 +43,12 @@ const AdminProductUpdate = () => {
 
   return (
     <Layout className="admin-category-container">
-      <AdminSider />
+      <AdminSider/>
       <Content className="category-content-container">
         <Divider orientation="left">Update Product</Divider>
         <Row gutter={16}>
-          <Col span={22} style={{ margin: "auto" }}>
-            {preloader && <Preloader />}
+          <Col span={22} style={{margin: "auto"}}>
+            {preloader && <Preloader/>}
             {!preloader && productToUpdate && listOfCategories && filters &&
             <ProductUpdateForm
               productToUpdate={productToUpdate}

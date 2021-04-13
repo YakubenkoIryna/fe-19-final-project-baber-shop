@@ -1,13 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import * as Sentry from "@sentry/react";
-import { Integrations } from "@sentry/tracing";
+import {Integrations} from "@sentry/tracing";
 import App from './App'
 import * as serviceWorker from './serviceWorker'
-import { BrowserRouter } from 'react-router-dom'
-import { Provider } from 'react-redux'
+import {BrowserRouter} from 'react-router-dom'
+import {Provider} from 'react-redux'
 import {PersistGate} from 'redux-persist/integration/react'
-import {store, persistor} from './store/configureStore'
+import {persistor, store} from './store/configureStore'
 import ErrorBoundary from "./components/ErrorBoundary";
 import ScrollToTop from "./routes/ScrollToTop";
 import './reset.css'
@@ -30,10 +30,10 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <PersistGate persistor={persistor}>
-      <ScrollToTop />
-      <ErrorBoundary>
-        <App />
-      </ErrorBoundary>
+        <ScrollToTop/>
+        <ErrorBoundary>
+          <App/>
+        </ErrorBoundary>
       </PersistGate>
     </BrowserRouter>
   </Provider>,

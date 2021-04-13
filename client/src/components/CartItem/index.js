@@ -1,41 +1,36 @@
 import React, {useEffect, useState} from 'react'
 import './style.less'
-import { PlusCircleFilled, MinusCircleFilled, DeleteFilled } from '@ant-design/icons'
-import { useDispatch, useSelector } from 'react-redux'
-import { deleteFromCart, increaseQuantity, decreaseQuantity} from "../../store/cart/actionCart";
-import { Link } from 'react-router-dom'
+import {DeleteFilled, MinusCircleFilled, PlusCircleFilled} from '@ant-design/icons'
+import {useDispatch, useSelector} from 'react-redux'
+import {decreaseQuantity, deleteFromCart, increaseQuantity} from "../../store/cart/actionCart";
+import {Link} from 'react-router-dom'
 
 const CartItem = (props) => {
   const dispatch = useDispatch()
   const cartQuantity = props.product.cartQuantity
-  const { imageUrls, name, currentPrice, _id, itemNo, quantity } = props.product.product
+  const {imageUrls, name, currentPrice, _id, itemNo, quantity} = props.product.product
   const isAuth = useSelector(state => state.user.isAuthenticated)
-  console.log("props.product.product",props.product.product)
-  const [realQuantity,setRealQuantity] = useState(quantity)
+  const [realQuantity, setRealQuantity] = useState(quantity)
   useEffect(() => {
     setRealQuantity(quantity - cartQuantity)
-  },[cartQuantity, quantity])
+  }, [cartQuantity, quantity])
 
   return (
     <div className="cart-item-wrapper">
       <div className="cart-item_item-image-description">
         <Link to={`/product/${itemNo}`}>
-        <div>
           <img className="cart-item_item-image" src={imageUrls[0].url} alt={name}/>
-        </div>
         </Link>
         <div className="cart-item_item-description">
           <Link to={`/product/${itemNo}`}>
             <p className='cart-item-link'>{name}</p>
           </Link>
+
           {realQuantity === 0
               ? <p className="cart-item-available available-zero">Available: 0</p>
               : <p className="cart-item-available">Available: {realQuantity}</p>
           }
-
-          <p>
-            {(props.product.product.description).slice(0,92)}<span>...</span>
-          </p>
+          <p className="cart-item_item-description-paragraph">{(props.product.product.description)}</p>
         </div>
       </div>
       <div className="cart-item_item-handler">
@@ -67,8 +62,8 @@ const CartItem = (props) => {
         </div>
         <div className="cart-item-available-mobile">
           {realQuantity === 0
-            ? <p className="cart-item-available-zero">Available: 0</p>
-            : <p className="cart-item-available">Available: {realQuantity}</p>
+              ? <p className="cart-item-available available-zero">Available: 0</p>
+              : <p className="cart-item-available">Available: {realQuantity}</p>
           }
         </div>
         <div className="item-handler_main-basket-mobile" onClick={() => dispatch(deleteFromCart(_id, isAuth))}>

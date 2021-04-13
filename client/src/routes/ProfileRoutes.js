@@ -7,13 +7,13 @@ import ChangePassword from "../components/Profile/ChangePassword";
 
 
 const ProfileRoutes = () => {
-    return (
-        <Switch>
-            <Route exact path={'/profile'} component={UserInformation}/>
-            <Route exact path={'/profile/orders'} component={UserOrders}/>
-            <Route exact path={'/profile/favourites'} component={UserFavourites}/>
-            <Route exact path={'/profile/change-password'} component={ChangePassword}/>
-        </Switch>
-    )
+  return (
+    <Switch>
+      <Route exact path={'/profile'} component={UserInformation}/>
+      <Route exact path={'/profile/orders'} component={UserOrders}/>
+      <Route exact path={'/profile/favourites'} component={UserFavourites}/>
+      <Route exact path={'/profile/change-password'} component={ChangePassword}/>
+    </Switch>
+  )
 }
 export default ProfileRoutes;

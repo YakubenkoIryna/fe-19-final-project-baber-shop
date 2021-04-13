@@ -5,7 +5,7 @@ const initialState = {
   typesOfModal: ''
 }
 
-export function modalHandler (state = initialState, action) {
+export function modalHandler(state = initialState, action) {
   switch (action.type) {
     case HANDLE_MODAL:
       return {
@@ -13,7 +13,8 @@ export function modalHandler (state = initialState, action) {
         modalOpen: action.payload.status,
         typesOfModal: action.payload.type
       }
-    default: return state
+    default:
+      return state
   }
 }
 

@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux'
+import {combineReducers} from 'redux'
 import testReducer from './test_store/testReducer'
 import modalHandler from './modal/modalReducer'
 import preloaderReducer from './preloader/preloaderReducer'
@@ -10,10 +10,10 @@ import checkoutReducer from "./checkout/checkoutReducer";
 import lastProducts from './lastViewedProducts/lastProductsReducer';
 import showCurrentPageInfo from './breadcrumbs/crumbsReducer';
 
-const persistConfig ={
-  key:'root',
+const persistConfig = {
+  key: 'root',
   storage,
-  whitelist: ['user','cart', 'lastProducts']
+  whitelist: ['user', 'cart', 'lastProducts']
 }
 
 const rootReducer = combineReducers({
@@ -27,4 +27,4 @@ const rootReducer = combineReducers({
   showCurrentPageInfo
 })
 
-export default persistReducer(persistConfig,rootReducer)
+export default persistReducer(persistConfig, rootReducer)

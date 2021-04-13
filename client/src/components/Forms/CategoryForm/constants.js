@@ -1,13 +1,13 @@
 // Create-Form Schema and controls rules
 
-const rules = [{ required: true, message: "field is required" }];
+const rules = [{required: true, message: "field is required"}];
 
 export const fieldsSetArr = [
-  ["select-level", { label: "Level", name: "level", rules }],
-  ["select-parentCategory", { label: "Parent ID", name: "parentId", rules }],
-  ["input", { label: "Category ID", name: "id", rules }],
-  ["input", { label: "Category Name", name: "name", rules }],
-  ["input", { label: "Category Description", name: "description", rules }]
+  ["select-level", {label: "Level", name: "level", rules}],
+  ["select-parentCategory", {label: "Parent ID", name: "parentId", rules}],
+  ["input", {label: "Category ID", name: "id", rules}],
+  ["input", {label: "Category Name", name: "name", rules}],
+  ["input", {label: "Category Description", name: "description", rules}]
 ];
 
 // form layout settings

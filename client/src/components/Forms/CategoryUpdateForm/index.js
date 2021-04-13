@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router";
-import { Form, Input, Button, message, Row, Col } from "antd";
-import { fieldsSetArr, layout, tailLayout } from "./constants";
-import { rootCloudinaryFolderName } from "../CategoryForm/constants";
+import React, {useEffect, useState} from "react";
+import {useHistory} from "react-router";
+import {Button, Col, Form, Input, message, Row} from "antd";
+import {fieldsSetArr, layout, tailLayout} from "./constants";
+import {rootCloudinaryFolderName} from "../CategoryForm/constants";
 import CategoryService from "../../../services/CategoryService";
 import ImageUpload from "../../ImageUpload";
 
 import "./style.less";
 
-const CategoryUpdateForm = ({ categoryToUpdate }) => {
+const CategoryUpdateForm = ({categoryToUpdate}) => {
   const history = useHistory();
   const [form] = Form.useForm();
   const [images, setImages] = useState([]);
@@ -31,7 +31,7 @@ const CategoryUpdateForm = ({ categoryToUpdate }) => {
       case "input":
         element = (
           <Form.Item key={settings.name} {...settings}>
-            <Input placeholder={`input ${settings.label}`} />
+            <Input placeholder={`input ${settings.label}`}/>
           </Form.Item>
         );
         break;
@@ -43,7 +43,7 @@ const CategoryUpdateForm = ({ categoryToUpdate }) => {
 
   // handle form on a successfully submit
   const onFinish = (values) => {
-    const submitValue = { ...values, imgUrl: images && images.length > 0 ? images : [] };
+    const submitValue = {...values, imgUrl: images && images.length > 0 ? images : []};
     CategoryService.updateCategory(categoryToUpdate.id, submitValue)
       .then(res => {
         message.success(`Category ${res.name} was updated`, 1.5);
@@ -71,7 +71,7 @@ const CategoryUpdateForm = ({ categoryToUpdate }) => {
     >
       {setUpFormFields()}
       <Row gutter={16}>
-        <Col span={16} style={{ textAlign: "left" }}>
+        <Col span={16} style={{textAlign: "left"}}>
           <ImageUpload
             images={images}
             setImages={setImages}
@@ -86,7 +86,7 @@ const CategoryUpdateForm = ({ categoryToUpdate }) => {
           htmlType="submit">
           Submit
         </Button>
-        <Button htmlType="button" onClick={() => form.resetFields()} style={{ marginLeft: "20px" }}>
+        <Button htmlType="button" onClick={() => form.resetFields()} style={{marginLeft: "20px"}}>
           Reset
         </Button>
       </Form.Item>

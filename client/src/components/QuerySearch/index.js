@@ -1,7 +1,7 @@
 import React from "react";
 import './style.less'
 
-const QuerySearch = ({ keyWord, setKeyWord, handleSearch }) => {
+const QuerySearch = ({keyWord, setKeyWord, handleSearch}) => {
 
   const handleChange = (e) => {
     e.preventDefault();

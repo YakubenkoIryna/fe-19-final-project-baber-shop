@@ -4,7 +4,7 @@ import {Result} from 'antd';
 import {useHistory} from "react-router";
 
 const Btn = () => {
-    const history = useHistory();
+  const history = useHistory();
 
     return (
         <button type='primary' className='btn-goBack' onClick={() => {
@@ -13,15 +13,15 @@ const Btn = () => {
     );
 }
 const ErrorPage = () => {
-    return (
-        <>
-            <Result
-                status="404"
-                title="404"
-                subTitle="Something went wrong, boy"
-                extra={<Btn/>}
-            />
-        </>
-    );
+  return (
+    <>
+      <Result
+        status="404"
+        title="404"
+        subTitle="Something went wrong, boy"
+        extra={<Btn/>}
+      />
+    </>
+  );
 }
 export default ErrorPage;
