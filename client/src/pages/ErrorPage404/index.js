@@ -6,11 +6,11 @@ import {useHistory} from "react-router";
 const Btn = () => {
   const history = useHistory();
 
-  return (
-    <button type='primary' onClick={() => {
-      history.goBack()
-    }}> Go back</button>
-  );
+    return (
+        <button type='primary' className='btn-goBack' onClick={() => {
+            history.goBack()
+        }}> Go back</button>
+    );
 }
 const ErrorPage = () => {
   return (
