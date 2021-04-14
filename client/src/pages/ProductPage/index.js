@@ -48,60 +48,60 @@ const ProductPage = (props) => {
   }
 
   return (
-    <>
-      <MetaForEachPage
-        title="Barber Shop Market"
-        content="Barber Shop market"
-        rel="icon"
-      />
-      <div className="product-page">
-        <div className="product_page__container">
-          <Row>
-            <Col className="product_page__box" xs={{span: 24, order: 1}} sm={{order: 1}}
-                 lg={{span: 12, order: 1}}>
-              <div className="product_title">{product.name}</div>
-              <div className="img-slider">
-                <ProductCarousel imageUrls={images}/>
-              </div>
-            </Col>
-            <Col className="product_page__box-description" xs={{span: 24, order: 2}} sm={{order: 2}}
-                 lg={{span: 9, order: 1}}>
-              <Col>
-                <div className="product_page__available">
-                  {product.quantity === 0
-                    ? (<span className="sold-out">Sold out</span>)
-                    : (<span className="product-available"><CheckCircleOutlined/> Available: {product.quantity}</span>)
-                  }
+      <>
+        <MetaForEachPage
+            title="Barber Shop Market"
+            content="Barber Shop market"
+            rel="icon"
+        />
+        <div className="product-page">
+          <div className="product_page__container">
+            <Row>
+              <Col className="product_page__box" xs={{span: 24, order: 1}} sm={{order: 1}}
+                   lg={{span: 12, order: 1}}>
+                <div className="product_title">{product.name}</div>
+                <div className="img-slider">
+                  <ProductCarousel imageUrls={images}/>
                 </div>
-
-                <div className="product-code">Item No:{product.itemNo}</div>
-                <Row>
-                  <Col>
-                    <div className="product_page__price">${product.currentPrice}</div>
-                  </Col>
-                  <Col className="btn-buy_box">
-                    {product.quantity === 0
-                      ? (<></>)
-                      : filteredProducts.length === 1
-                        ? (<button className="btn-buy add-disabled"
-                                   onClick={() => dispatch(deleteFromCart(product._id))}><DeleteOutlined/> from cart
-                        </button>)
-                        : (<button className="btn-buy" onClick={onAddToCart}>Buy</button>)
-
-                    }
-
-                  </Col>
-
-                </Row>
-                <div className="product_page__description"> {product.description}</div>
               </Col>
-            </Col>
-          </Row>
+              <Col className="product_page__box-description" xs={{span: 24, order: 2}} sm={{order: 2}}
+                   lg={{span: 9, order: 1}}>
+                <Col className="product_page__box-items">
+                  <div className="product_page__available">
+                    {product.quantity === 0
+                        ? (<span className="sold-out">Sold out</span>)
+                        : (<span className="product-available"><CheckCircleOutlined/> Available: {product.quantity}</span>)
+                    }
+                  </div>
+
+                  <div className="product-code">Item No:{product.itemNo}</div>
+                  <Row>
+                    <Col className="product-page__price-box">
+                      <div className="product_page__price">${product.currentPrice}</div>
+                    </Col>
+                    <Col className="btn-buy_box">
+                      {product.quantity === 0
+                          ? (<></>)
+                          : filteredProducts.length === 1
+                              ? (<button className="btn-buy add-disabled"
+                                         onClick={() => dispatch(deleteFromCart(product._id))}><DeleteOutlined/> from cart
+                              </button>)
+                              : (<button className="btn-buy" onClick={onAddToCart}>Buy</button>)
+
+                      }
+
+                    </Col>
+
+                  </Row>
+                  <div className="product_page__description"> {product.description}</div>
+                </Col>
+              </Col>
+            </Row>
+          </div>
+          <LastViewedProducts/>
+          <Banner title={'One more  thing'} config='cc'/>
         </div>
-        <LastViewedProducts/>
-        <Banner title={'One more  thing'} config='cc'/>
-      </div>
-    </>
+      </>
   )
 }
 
